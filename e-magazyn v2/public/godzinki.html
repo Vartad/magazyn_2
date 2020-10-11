@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>e-magazyn/Godzinki</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="Styles/WebApp.css">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../Styles/WebApp.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+</head>
+<body onload="zaladuj()">
+<div id="page">
+<div class="w3-container">
+    <h2 align="center">Bystrzacki <strong>e-Magazyn</strong></h2>
+    <div id="user-name">Imie</div>
+
+</div>
+
+<div class="w3-container">
+
+
+<div class="w3-bar w3-border w3-deep-orange w3-center w3-round-xlarge">
+    <a onclick="signOut()" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-hover-red">wyloguj</a>
+    <a href="konto.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-hover-red">Konto</a>
+    <a href="wypozycz.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-hover-red">Wypożycz</a>
+    <a href="zwrot.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-hover-red">Zwróć</a>
+    <a href="godzinki.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-orange w3-hover-red">Godzinki</a>
+
+</div>
+
+        <form class method="post" action="">
+                <div align="center">
+                    <label>Wnioski rozpatrywane : </label><br>
+                    <table class="table table-hover" id="tabelaRozpatrywanychWnioskow">
+                        <thead>
+                        <tr>
+                            <th>Lp.</th>
+                            <th>Data złożenia</th>
+                            <th>Data wykonania</th>
+                            <th>Os. rozpatrująca</th>
+                            <th>Opis</th>
+                            <th>Godzinki</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </form>
+    <br>
+
+    <form class method="post" action="">
+        <fieldset>
+            <div align="center">
+                <label>Złóż wniosek o przyznanie godzinek : </label><br>
+                <table class="table table-hover" id="tabelaZlozWniosek">
+                    <tbody>
+                    <tr>
+                        <td>komu pomagałeś?</td>
+                        <td><input list="dl_magazynierzy" id="in_magazynierzy">
+                            <datalist id="dl_magazynierzy"></datalist></td>
+                    </tr>
+                    <tr>
+                        <td>kiedy to robiłeś?</td>
+                        <td><input type="date" name="dataPomagania" id="dataPomagania" ></input></td>
+                    </tr>
+                    <tr>
+                        <td>Napisz co robiłeś</td>
+                        <td><textarea id="ta" class="form-control" rows="3"  ></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>Na ile wyceniasz swoją pomoc?</td>
+                        <td><input type="number" id="godzinkiIleChce"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+    </form>
+    <button class="button" onclick="wyslijWniosek()" id="btnWyslijWniosek">Wyslij</button>
+
+</div>
+
+<div class="w3-deep-orange w3-container w3-round-xlarge">
+    <p align="right">V.1.0.0</p>
+</div>
+</div> <!-- page-->
+<div id="loading">
+    <h2>LOADING...</h2>
+    <img src="images/waveSurf.gif" alt="waveSurf.gif">
+</div>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+<script src="main.js"></script>
+<script src="godzinki.js"></script>
+</body>
+</html>

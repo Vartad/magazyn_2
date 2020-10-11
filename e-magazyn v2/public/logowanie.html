@@ -1,0 +1,43 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="msapplication-square70x70logo" content="width=device-width, initial-scale=1">
+    <title>Witaj w e-magazynie Bystrze</title>
+</head>
+<body>
+<form>
+    <legend align="center">Zarejestruj się</legend>
+    <table class="table table-hover" id="registerTable1">
+        <tr>
+            <th>  <input type="text" id="loginRegister1" class="fadeIn second" name="login" placeholder="login"></th>
+        </tr>
+        <tr>
+            <th> <input type="text" id="passwordRegister1" class="fadeIn third" name="login" placeholder="password"></th>
+        </tr>
+
+    </table>
+    <button id="btnRegister" value="Sign in">Zarejestruj się</button>
+</form>
+<script>
+    btnRegister.addEventListener("click",e =>{
+
+var email = document.getElementById("loginRegister1").value;
+var password = document.getElementById("passwordRegister1").value;
+
+//const promise = firebase.auth().signInWithEmailAndPassword(email,password);
+//promise.catch(e => console.log(e.message));
+})
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+<script src="index.js"></script>
+
+</body>
+</html>

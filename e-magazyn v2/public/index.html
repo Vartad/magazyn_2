@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="msapplication-square70x70logo" content="width=device-width, initial-scale=1">
+    <title>Witaj w e-magazynie Bystrze</title>
+
+      <link rel="stylesheet" href="Styles/index.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+      <link rel="stylesheet" href="Styles/WebApp.css">
+
+
+
+      <style media="screen">
+      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
+      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
+      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
+      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
+      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
+      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
+      @media (max-width: 600px) {
+        body, #message { margin-top: 0; background: white; box-shadow: none; }
+        body { border-top: 16px solid #ffa100; }
+      }
+    </style>
+  </head>
+  <body onload="przejdzDalej()">
+      <div id="message">
+          <h2>Witaj</h2>
+          <h1>E-Magazyn Bystrze</h1>
+          <p>Witaj w Bystrzackim e-Magazynie, zaloguj się za pomocą konta google lub adresu email </p>
+          <a onclick="logowanieGoogle()" >Zaloguj się za pomocą konta google</a> <!-- target="_self" href="konto.html" -->
+         <br>
+          <a onclick="modalLogin()" >Zaloguj się za pomocą email</a>
+          <br>
+          <a onclick="modalRegister()">Jeżeli nie masz konta google, zarejestruj sie za pomoca innego </a>
+      </div>
+<button onclick="signOut()">idz</button>
+      <p id="load">Firebase SDK Loading&hellip;</p>
+      <script>
+          document.addEventListener('DOMContentLoaded', function () {
+              // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+              // // The Firebase SDK is initialized and available here!
+              //
+              // firebase.auth().onAuthStateChanged(user => { });
+              // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+              // firebase.messaging().requestPermission().then(() => { });
+              // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+              //
+              // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+              try {
+                  let app = firebase.app();
+                  let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
+                  document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+              } catch (e) {
+                  console.error(e);
+                  document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+              }
+          });
+      </script>
+
+      <div id="modalLogin" class="modal">
+          <span class="close">&times;</span>
+          <div id="formContent">
+              <!-- Tabs Titles -->
+
+              <!-- Icon -->
+              <div class="fadeIn first">
+              </div>
+
+              <!-- Login Form -->
+              <form>
+                  <legend align="center">Zaloguj się</legend>
+                  <table class="table table-hover" id="loginTable">
+                      <tr>
+                        <th>  <input type="text" id="login" class="fadeIn second" name="login" placeholder="login"></th>
+                      </tr>
+                  <tr>
+                     <th> <input type="text" id="password" class="fadeIn third" name="login" placeholder="password"></th>
+                  </tr>
+                      <tr>
+                       <th>   </th>
+                      </tr>
+
+                  </table>
+              </form>
+              <input onclick="zamknijLogin()" id="btnLogin" type="submit" class="fadeIn fourth" value="Log In">
+              <!-- Remind Passowrd -->
+              <div id="formFooter">
+                <!--  <a class="underlineHover" href="#">Forgot Password?</a> -->
+              </div>
+
+          </div>
+      </div><!-- modal login-->
+
+      <div id="modalRegister" class="modal">
+          <span class="close">&times;</span>
+          <div >
+              <!-- Tabs Titles -->
+
+              <!-- Icon -->
+              <div class="fadeIn first">
+              </div>
+
+              <!-- Login Form -->
+              <form>
+                  <legend align="center">Zarejestruj się</legend>
+                  <table class="table table-hover" id="registerTable">
+                      <tr>
+                          <th>  <input type="text" id="loginRegister" class="fadeIn second" name="login" placeholder="login"></th>
+                      </tr>
+                      <tr>
+                          <th> <input type="text" id="passwordRegister" class="fadeIn third" name="login" placeholder="password"></th>
+                      </tr>
+                      <tr>
+                      </tr>
+
+                  </table>
+              </form>
+             <button onclick="zamknijRegister()" value="Sign in">Zarejestruj się</button>
+
+              <!-- Remind Passowrd -->
+              <div >
+                  <!--  <a class="underlineHover" href="#">Forgot Password?</a> -->
+              </div>
+
+          </div>
+      </div> <!-- modal register-->
+
+      <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-storage.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+      <script src="main.js"></script>
+      <script src="index.js"></script>
+
+
+  </body>
+</html>

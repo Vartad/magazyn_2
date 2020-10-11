@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>e-Magazyn Bystrze</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="Styles/WebApp.css">
+
+    <style>
+        #page{
+            display: none;
+        }
+        #loading{
+            display: block;
+        }
+    </style>
+</head>
+<body onload="zaladuj()">
+<div id="page">
+    <div class="w3-container">
+        <h2 class="w3-container" align="center">Bystrzacki <strong>e-Magazyn</strong></h2>
+        <div id="user-name">Imie</div>
+    </div>
+        <div class=" w3-bar w3-border w3-deep-orange w3-center w3-round-xlarge ">
+            <a onclick="signOut()" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-hover-red">wyloguj</a>
+            <a href="konto.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-orange w3-hover-red">Konto</a>
+            <a id="opcjaWypozycz" href="wypozycz.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-hover-red">Wypożycz</a>
+            <a href="zwrot.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-hover-red">Zwróć</a>
+            <a href="godzinki.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-hover-red">Godzinki</a>
+        </div>
+        <div>
+            <button calss="button" id="btn_rozpatrzWypozyczenia" onclick="rozpatrzWypozyczenia.html">Rozpatrz Wypozyczenia</button>
+        </div> <!--button -->
+    <div>
+        <form class  method="post" id="tabWydanych" action="">
+            <fieldset>
+                <div align="center">
+                    <label>Wypozyczenia w których zostałeś wskazany jako wydający sprzęt</label><br>
+                    <table class="table table-hover" id="tabelaWydanych">
+                        <thead>
+                        <tr>
+                            <th>Lp.</th>
+                            <th>Data wyp.</th>
+                            <th>Os. otwierajaca</th>
+                            <th>Kajak</th>
+                            <th>Wiosło</th>
+                            <th>Fartuch</th>
+                            <th>Kamizelka</th>
+                            <th>Kask</th>
+                            <th>Planowana data zw.</th>
+                            <th>Rzeczywista data zw.</th>
+                            <th>Status</th>
+                            <th>Uwagi</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <br>
+                </div>
+            </fieldset>
+        </form>
+
+        <button class="button" onclick="zatwierdz('radioWydanySprzet','wypozyczeniaWydanySprzet','zatwierdzone')" id="btnZatwierdzWydanie">Zatwierdź wydanie sprzętu</button>
+
+        <button class="button" onclick="modal('wypozyczeniaWydanySprzet')" id="btnEdytujWydanie">Edytuj</button>
+
+
+        <button class="button" onclick="wyslijWniosek()" id="btnOdrzucWydanie">Odrzuć wydanie sprzętu</button>
+
+    </div> <!--tabela wydanych-->
+<br>
+    <div>
+        <form class  method="post" id="tabPrzyjetych" action="">
+            <fieldset>
+                <div align="center">
+                    <label>Wypozyczenia w których zostałeś wskazany jako odbierajacy sprzęt</label><br>
+                    <table class="table table-hover" id="tabelaPrzyjetych">
+                        <thead>
+                        <tr>
+                            <th>Lp.</th>
+                            <th>Data wyp.</th>
+                            <th>Os. otwierajaca</th>
+                            <th>Kajak</th>
+                            <th>Wiosło</th>
+                            <th>Fartuch</th>
+                            <th>Kamizelka</th>
+                            <th>Kask</th>
+                            <th>Planowana data zw.</th>
+                            <th>Rzeczywista data zw.</th>
+                            <th>Status</th>
+                            <th>Uwagi</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <br>
+                </div>
+            </fieldset>
+        </form>
+
+        <button class="button" onclick="zatwierdz('radioOdebranySprzet','wypozyczeniaOdebranySprzet','zatwierdzone')" id="btnZatwierdzPrzyjecie">zatwierdź przyjęcie sprzętu</button>
+
+        <button class="button" onclick="modal('wypozyczeniaOdebranySprzet')" id="btnEdytujPrzyjęcie">Edytuj</button>
+
+
+        <button class="button" onclick="wyslijWniosek()" id="btnOdrzucPrzyjęcie">Odrzuć przyjęcie sprzętu</button>
+    </div> <!--tabela przyjetych-->
+
+
+    <!-- modal --><div id="modal" class="modal">
+
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p align="center">edycja wypozyczenia</p>
+        <p>Jeżeli chcesz dokonać zmiany podaj nową wartość w kolumnie "Zmiana"</p>
+
+        <div>
+            <table class="table table-hover" id="tabelaModal">
+                <form class method="post" id="form_wybierzSprzet" action="">
+                        <tr>
+                            <th></th>
+                            <th>Aktualnie:</th>
+                            <th>Zmiana</th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label>Osoba wypozyczajaca sprzęt : </label>
+                            </th>
+                            <th>
+                                <input type="text" id="OsobaWypozyczajaca" disabled >
+                            </th>
+                        </tr>
+                    <tr>
+                        <th>
+                            <label>Osoba wydająca sprzęt : </label>
+                        </th>
+                        <th>
+                            <input type="text" id="OsobaWydajaca" disabled >
+                        </th>
+                        <th>
+                            <input id="in_osobaWydajaca" >
+                            <datalist id="dl_osobaWydajaca"></datalist>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label>Osoba przyjmujaca sprzęt : </label>
+                        </th>
+                        <th>
+                            <input type="text" id="OsobaPrzyjmujaca" disabled >
+                        </th>
+                        <th>
+                            <input id="in_osobaPrzyjmujaca" >
+                            <datalist id="dl_osobaPrzyjmujaca"></datalist>
+                        </th>
+                    </tr>
+                        <tr>
+                            <th><label>Kajak : </label>
+                            </th>
+                            <th>
+                                <input type="text"  id="sprzet_kajaki" disabled>
+                            </th>
+                            <th>
+                                <input type="text" list="dl_kajaki" id="in_kajaki" placeholder="kajaki">
+                                <datalist id="dl_kajaki"></datalist>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label>Wiosło : </label>
+                            </th>
+                            <th>
+                                <input type="text" id="sprzet_wiosla" disabled>
+                            </th>
+                            <th>
+                                <input type="text" list="dl_wiosla" id="in_wiosla" placeholder="wiosla">
+                                <datalist id="dl_wiosla"></datalist>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label>Kask : </label>
+                            </th>
+                            <th>
+                                <input type="text" id="sprzet_kaski" disabled>
+                            </th>
+                            <th>
+                                <input list="dl_kaski" id="in_kaski">
+                                <datalist id="dl_kaski"></datalist>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label>Fartuch : </label>
+                            </th>
+                            <th>
+                                <input type="text" id="sprzet_fartuchy" disabled>
+                            </th>
+                            <th>
+                                <input list="dl_fartuchy" id="in_fartuchy">
+                                <datalist id="dl_fartuchy">
+                                </datalist>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label>Kamizelka : </label>
+                            </th>
+                            <th>
+                                <input type="text" id="sprzet_kamizelki" disabled>
+                            </th>
+                            <th>
+                                <input list="dl_kamizelki" id="in_kamizelki">
+                                <datalist id="dl_kamizelki"></datalist>
+                            </th>
+                        </tr>
+                    <tr>
+
+                        <th>
+                            <label for="data_wydania">Data wydania :</label>
+                        </th>
+                        <th>
+                            <input type="text" id="data_wydania" disabled>
+                        </th>
+                        <th>
+                            <input type="date" id="nowaData_wydania" name="dataWydania"></input>
+                        </th>
+                    </tr>
+                        <tr>
+
+                            <th>
+                                <label for="data_planowanegoOddania">Planowany zwrot :</label>
+                            </th>
+                            <th>
+                                <input type="text" id="data_planowanegoOddania" disabled>
+                            </th>
+                            <th>
+                                <input type="date" id="nowaData_planowanegoOddania" name="dataOddania"></input>
+                            </th>
+                        </tr>
+                    <tr>
+
+                        <th>
+                            <label for="data_zwrotu">Data zwrotu :</label>
+                        </th>
+                        <th>
+                            <input type="text" id="data_zwrotu" disabled>
+                        </th>
+                        <th>
+                            <input type="date" id="nowaData_zwrotu" name="dataZwrotu"></input>
+                        </th>
+                    </tr>
+                    <tr>
+
+                        <th>
+                            <label for="koszt_planowany">Koszt planowany :</label>
+                        </th>
+                        <th>
+                            <input type="text" id="koszt_planowany" disabled>
+                        </th>
+                        <th>
+                            <input type="number" id="nowyKoszt_planowany" name="koszt_planowany"></input>
+                        </th>
+                    </tr>
+                    <tr>
+
+                        <th>
+                            <label for="koszt_rzeczywisty">Koszt rzeczywisty :</label>
+                        </th>
+                        <th>
+                            <input type="text" id="koszt_rzeczywisty" disabled>
+                        </th>
+                        <th>
+                            <input type="number" id="nowyKoszt_rzeczywisty" name="koszt_rzeczywisty"></input>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label for="status">Status :</label>
+                        </th>
+                        <th>
+                            <input type="text" id="status" disabled>
+                        </th>
+                        <th>
+                            <input type="text" id="nowyStatus" name="status"></input>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label for="Uwagi">Uwagi :</label>
+                        </th>
+                        <th>
+                            <textarea id="uwagi" class="form-control" rwos="5" disabled></textarea>
+                        </th>
+                    </tr>
+
+                </form>
+            </table>
+
+        </div> <!--edytowane wypozyczenie w modalu-->
+
+        <div class="form-group">
+            <label for="uwagi">Dodaj uwagę : </label>
+            <textarea id="noweUwagi" class="form-control" rows="5" ></textarea>
+        </div>
+        <button class="button button1" id="zapiszDoBazy" onclick="zatwierdzEdycje()">Zatwierdź edytowane dane</button>
+    </div>
+
+
+    <!-- modal -->       </div>
+
+</div>
+        <div id="loading">
+            <h2>LOADING...</h2>
+        </div>
+        <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-storage.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+        <script src="rozpatrzWypozyczenia.js"></script>
+        <script src="main.js"></script>
+
+</body>
+</html>

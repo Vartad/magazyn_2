@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript cwiczenia</title>
+    <script>
+    function myFunction() {
+    document.getElementById("wiersz").innerHTML = "Paragraph changed.";
+    }
+
+        document.write(5 + 6);
+        window.alert(1+1);
+        console.log(2+2); //należy wcisnąc f12 zeby uruchomic konsole, tam będą wyniki.
+
+
+    </script>
+
+</head>
+<body>
+
+<h2>What Can JavaScript Do?</h2>
+
+<p id="wiersz">JavaScript can change HTML content.</p>
+
+<button type="button" onclick='document.getElementById("wiersz").innerHTML = "Hello JavaScript!"'>Zmien tresc</button>
+<br>
+<button type="button" onclick='document.getElementById("wiersz").style.fontSize = "35px"'>Zmien rozmiar</button>
+<br>
+<button type="button" onclick='document.getElementById("wiersz").innerHTML = "Funkcja w Head"'>Zmien tresc za pomoca funkcji</button>
+<br>
+<button type="button" onclick='changeParagraph()'>Zmien tresc za pomoca funkcji z script.js</button>
+<br>
+<button onclick="window.print()">Print this page</button>
+
+
+<script src="Script.js"></script>
+
+</body>
+</html>

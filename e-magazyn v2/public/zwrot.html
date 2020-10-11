@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>e-magazyn/Zwrot</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="Styles/WebApp.css">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../Styles/WebApp.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body onload="zaladuj()">
+<div id="page">
+<div class="w3-container">
+    <h2 align="center">Bystrzacki <strong>e-Magazyn</strong></h2>
+    <div id="user-name">Imie</div>
+</div>
+<div class="w3-container">
+<div class="w3-bar w3-border w3-deep-orange w3-center w3-round-xlarge">
+    <a onclick="signOut()" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-hover-red" >wyloguj</a>
+    <a href="konto.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-hover-red">Konto</a>
+    <a href="wypozycz.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-hover-red">Wypożycz</a>
+    <a href="zwrot.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-orange w3-hover-red">Zwróć</a>
+    <a href="godzinki.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-hover-red">Godzinki</a>
+</div>
+    <br>
+
+    <form class  method="post" id="formAktywnychWypozyczen" action="">
+        <fieldset>
+            <div align="center">
+                <label>wypożyczony sprzęt :</label><br>
+                <table class="table table-hover" id="tabelaAktywnychWypozyczen">
+                    <thead>
+                    <tr>
+                        <th>Lp.</th>
+                        <th>Data wyp.</th>
+                        <th>Os. otwierajaca</th>
+                        <th>Kajak</th>
+                        <th>Wiosło</th>
+                        <th>Fartuch</th>
+                        <th>Kamizelka</th>
+                        <th>Kask</th>
+                        <th>Planowana data zw.</th>
+                        <th>Status</th>
+                        <th>Uwagi</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </fieldset>
+    </form>
+    <br>
+    <button class="button button1" id="BtnZwrotModal" onclick="zwrotModal()" >Zwróć wybrany sprzęt</button>
+
+
+    <!-- MODAL ----------------------------------------------- -->
+    <div id="modalZwrot" class="modal">
+
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p class method="post" id="form_wybierzSprzet" action=""></p>
+                <fieldset>
+                    <legend>Osoba otwierajaca magazyn :</legend>
+                    <div align="center">
+                        <input type="text" list="dl_magazynierzy" id="in_magazynierzy" placeholder="goście ;)">
+                        <datalist id="dl_magazynierzy"></datalist>
+                        <br>
+                    </div>
+                </fieldset>
+<br>
+            <fieldset>
+                <legend>Odznacz sprzęt który zwracasz.</legend>
+                <div align="center">
+                    <table class="table table-hover" id="tabelaZwrotuModal">
+                        <thead>
+                        <tr >
+                            <th>Lp.</th>
+                            <th>Kajak</th>
+                            <th>Wiosło</th>
+                            <th>Fartuch</th>
+                            <th>Kamizelka</th>
+                            <th>Kask</th>
+                            <th>Koszt</th>
+                            <th>Uwagi</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <br>
+                </div>
+            </fieldset>
+            </form>
+
+            <button class="button button1" id="zwracamSprzet" onclick="zwrotSprzetu()">Zwracam sprzęt</button>
+        </div>
+
+    </div> <!-- Modal Zwrot -->
+
+    <div class="w3-deep-orange w3-container w3-round-xlarge">
+        <p align="right">V.1.0.0</p>
+    </div>
+
+</div><!-- MODAL ------------------------ -->
+</div>
+<div id="loading">
+    <h2>LOADING...</h2>
+    <img src="images/waveSurf.gif" alt="waveSurf.gif">
+</div>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+<script src="main.js"></script>
+<script src="zwrot.js"></script>
+</body>
+</html>
+
+<!-- stare
+
+    <div id="modalZwrot" class="modal">
+
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p align="center">Żeby zwrócić wybrany sprzęt podaj poniższe informacje:</p>
+            <p class method="post" id="form_wybierzSprzet" action=""></p>
+                <fieldset>
+                    <label>Osoba otwierajaca magazyn :</label>
+                    <div align="center">
+                        <input type="text" list="dl_magazynierzy" id="in_magazynierzy" placeholder="goście ;)">
+                        <datalist id="dl_magazynierzy"></datalist>
+                        <br>
+                    </div>
+                </fieldset>
+<br>
+            <fieldset>
+                <legend>Odznacz sprzęt który zwracasz.</legend>
+                <div align="center">
+                    <table class="table table-hover" id="tabelaZwrotuModal">
+                        <thead>
+                        <tr >
+                            <th>Lp.</th>
+                            <th>Kajak</th>
+                            <th>Wiosło</th>
+                            <th>Fartuch</th>
+                            <th>Kamizelka</th>
+                            <th>Kask</th>
+                            <th>Koszt</th>
+                            <th>Uwagi</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr id="tabelaZwrotuModalW1">
+                            <td>
+                                <p>1</p>
+                            </td>
+                            <td><p calss="sprzetW1" id="z1_kajak">-</p>
+                                <input type="checkbox" id="cbZ1_kajak" class="w1" disabled></td>
+                            <td><p calss="sprzetW1" id="z1_wioslo">-</p>
+                                <input type="checkbox" id="cbZ1_wioslo" class="w1" disabled></td>
+                            <td><p calss="sprzetW1" id="z1_fartuch">-</p>
+                                <input type="checkbox" id="cbZ1_fartuch" class="w1" disabled></td>
+                            <td><p calss="sprzetW1" id="z1_kamizelka">-</p>
+                                <input type="checkbox" id="cbZ1_kamizelka" class="w1" disabled></td>
+                            <td><p calss="sprzetW1" id="z1_kask">-</p>
+                                <input type="checkbox" id="cbZ1_kask" class="w1" disabled ></td>
+                            <td><a id="z1_koszt"></a></td>
+                            <td><a id="z1_uwagi">
+                                <textarea id="taZ1" class="form-control" rows="3"  class="w1" disabled></textarea>
+                            </a></td>
+                        </tr>
+                        <tr id="tabelaZwrotuModalW2">
+                            <td>
+                                <p>2</p>
+                            </td>
+                            <td><p id="z2_kajak">-</p>
+                                <input type="checkbox" id="cbZ2_kajak"  class="w2" disabled></td>
+                            <td><p id="z2_wioslo">-</p>
+                                <input type="checkbox" id="cbZ2_wioslo" class="w2" disabled></td>
+                            <td><p id="z2_fartuch">-</p>
+                                <input type="checkbox" id="cbZ2_fartuch" class="w2" disabled></td>
+                            <td><p id="z2_kamizelka">-</p>
+                                <input type="checkbox" id="cbZ2_kamizelka" class="w2" disabled></td>
+                            <td><p id="z2_kask">-</p>
+                                <input type="checkbox" id="cbZ2_kask" class="w2" disabled></td>
+                            <td><a id="z2_koszt"></a></td>
+                            <td><a id="z2_uwagi">
+                                <textarea class="form-control" rows="3" id="taZ2" class="w2" disabled></textarea>
+                            </a></td>
+                        </tr>
+                        <tr id="tabelaZwrotuModalW3" >
+                            <td>
+                                <p>3</p>
+                            </td>
+                            <td><p id="z3_kajak">-</p>
+                                <input type="checkbox" id="cbZ3_kajak" class="w3" disabled></td>
+                            <td><p id="z3_wioslo">-</p>
+                                <input type="checkbox" id="cbZ3_wioslo" class="w3" disabled></td>
+                            <td><p id="z3_fartuch">-</p>
+                                <input type="checkbox" id="cbZ3_fartuch" class="w3" disabled></td>
+                            <td><p id="z3_kamizelka">-</p>
+                                <input type="checkbox" id="cbZ3_kamizelka" class="w3" disabled></td>
+                            <td><p id="z3_kask">-</p>
+                                <input type="checkbox" id="cbZ3_kask" class="w3" disabled></td>
+                            <td><a id="z3_koszt"></a></td>
+                            <td><a id="z3_uwagi">
+                                <textarea class="form-control" rows="3" id="taZ3" class="w3" disabled></textarea>
+                            </a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                </div>
+            </fieldset>
+            </form>
+
+            <button class="button button1" id="zwracamSprzet" onclick="zwrotSprzetu()">Zwracam sprzęt</button>
+        </div>
+
+    </div>
+    Modal Zwrot -->
+<!--
+
+    <form class  method="post" id="dl_wypozyczenia" action="">
+        <fieldset>
+            <legend>Wybierz wypożyczenie które chcesz zakończyć :</legend>
+            <div align="center">
+                <label>wypożyczenia aktywne oraz czekające na zatwierdzenie : </label><br>
+<table class="table table-hover" id="tabelaWypozyczen">
+    <thead>
+    <tr>
+        <th>Lp.</th>
+        <th>Data wyp.</th>
+        <th>Os. otwierajaca</th>
+        <th>Kajak</th>
+        <th>Wiosło</th>
+        <th>Fartuch</th>
+        <th>Kamizelka</th>
+        <th>Kask</th>
+        <th>Planowana /rzeczywista data zw.</th>
+        <th>Status</th>
+        <th>Uwagi</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <label for="wypozyczenie1">1 :</label><br>
+            <input type="checkbox" id="wypozyczenie1" disabled>
+
+        </td>
+        <td><a id="w1_data">-</a></td>
+        <td><a id="w1_magazynierOtwierajacy">-</a></td>
+        <td><a id="w1_kajak">-</a></td>
+        <td><a id="w1_wioslo">-</a></td>
+        <td><a id="w1_fartuch">-</a></td>
+        <td><a id="w1_kamizelka">-</a></td>
+        <td><a id="w1_kask">-</a></td>
+        <td><a id="w1_PDZ">-</a></td>
+        <td><a id="w1_status">-</a></td>
+        <td><a id="w1_uwagi"></a></td>
+    </tr>
+    <tr>
+    <td>
+        <input type="checkbox" id="wypozyczenie2" disabled>
+        <label for="wypozyczenie2">2 : </label><br>
+    </td>
+        <td><a id="w2_data">-</a></td>
+        <td><a id="w2_magazynierOtwierajacy">-</a></td>
+    <td><a id="w2_kajak">-</a></td>
+    <td><a id="w2_wioslo">-</a></td>
+    <td><a id="w2_fartuch">-</a></td>
+        <td><a id="w2_kamizelka">-</a></td>
+        <td><a id="w2_kask">-</a></td>
+        <td><a id="w2_PDZ">-</a></td>
+        <td><a id="w2_status">-</a></td>
+        <td><a id="w2_uwagi"></a></td>
+    </tr>
+    <tr>
+    <td>
+        <input type="checkbox" id="wypozyczenie3" disabled>
+        <label for="wypozyczenie3">3 : </label><br>
+    </td>
+        <td><a id="w3_data">-</a></td>
+        <td><a id="w3_magazynierOtwierajacy">-</a></td>
+    <td><a id="w3_kajak">-</a></td>
+    <td><a id="w3_wioslo">-</a></td>
+    <td><a id="w3_fartuch">-</a></td>
+        <td><a id="w3_kamizelka">-</a></td>
+        <td><a id="w3_kask">-</a></td>
+        <td><a id="w3_PDZ">-</a></td>
+        <td><a id="w3_status">-</a></td>
+        <td><a id="w3_uwagi">-</a></td>
+    </tr>
+    </tbody>
+</table>
+                <br>
+            </div>
+            </fieldset>
+    </form>
+<br>
+    <button class="button button1" id="returnButton" onclick = "zwrotModal()">Zwróć wybrany sprzęt</button>
+-->

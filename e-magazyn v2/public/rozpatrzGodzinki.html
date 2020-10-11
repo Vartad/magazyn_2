@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>e-Magazyn Bystrze</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="Styles/WebApp.css">
+
+    <style>
+        #page{
+            display: none;
+        }
+        #loading{
+            display: block;
+        }
+    </style>
+</head>
+<body onload="zaladuj()">
+<div id="page">
+    <div class="w3-container">
+        <h2 class="w3-container" align="center">Bystrzacki <strong>e-Magazyn</strong></h2>
+        <div id="user-name">Imie</div>
+    </div>
+    <div class=" w3-bar w3-border w3-deep-orange w3-center w3-round-xlarge ">
+        <a onclick="signOut()" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-hover-red">wyloguj</a>
+        <a href="konto.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-orange w3-hover-red">Konto</a>
+        <a id="opcjaWypozycz" href="wypozycz.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-hover-red">Wypożycz</a>
+        <a href="zwrot.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-hover-red">Zwróć</a>
+        <a href="godzinki.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-hover-red">Godzinki</a>
+    </div>
+    <div>
+        <button calss="button" id="btn_rozpatrzWypozyczenia" onclick="rozpatrzWypozyczenia.html">Rozpatrz Wypozyczenia</button>
+    </div>
+    <br>
+    <div class="w3-deep-orange w3-container w3-round-xlarge">
+        <p align="right">V.1.12.16</p>
+    </div> <!-- stopka -->
+</div>
+
+</div>
+
+
+<!-- modal --><div id="modal" class="modal">
+
+    <div class="modal-content">
+        <button class="close">&times;</button>
+        <p align="center">Czy chcesz wypożyczyć poniższy sprzęt?</p>
+        <table class="table table-hover" id="tabelaSprawdzian">
+            <tr>
+                <th>Osoba wydająca sprzęt :</th>
+                <th><a id="wybranyMagazynier"></a></th>
+            </tr>
+            <tr>
+                <th><a>Kajak : </a></th>
+                <th><a id="wybranyKajak" ></a></th>
+            </tr>
+            <tr>
+                <th><a>Wiosło :</a></th>
+                <th><a id="wybraneWioslo"></a></th>
+            </tr>
+            <tr>
+                <th><a>Kask :</a></th>
+                <th><a id="wybranyKask"></a></th>
+            </tr>
+            <tr>
+                <th><a>Fartuch :</a></th>
+                <th><a id="wybranyFartuch"></a></th>
+            </tr>
+            <tr>
+                <th><a>Kamizelka :</a></th>
+                <th><a id="wybranaKamizelka"></a></th>
+            </tr>
+            <tr>
+                <th><a>Planowany zwrot sprzętu :</a></th>
+                <th><a id="wybranaData"></a></th>
+            </tr>
+            <tr>
+                <th>Koszt wypożyczenia za jeden dzień : </th>
+                <th><a id="kosztWypozyczeniaDzien"></a></th>
+            </tr>
+            <tr>
+                <th>Koszt wypożyczenia :</th>
+                <th><a id="kosztWypozyczenia"></a></th>
+            </tr>
+
+            </tr>
+        </table>
+        <div class="form-group">
+            <label for="uwagi">Uwagi : </label>
+            <textarea id="uwagi" class="form-control" rows="5" ></textarea>
+        </div>
+        <button class="button button1" id="zapiszDoBazy" onclick="storeData()">Tak, wypożyczam</button>
+    </div>
+
+
+    <!-- modal -->       </div>
+
+</div> <!-- margines-->
+<div id="loading">
+    <h2>LOADING...</h2>
+</div>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+<script src="rozpatrzWypozyczenia.js"></script>
+</body>
+</html>

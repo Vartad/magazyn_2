@@ -1,0 +1,45 @@
+ - CEL
+    - mozliwosc wypozyczenia sprzetu
+        - mozliwosc grupowego wypozyczenia na splyw kursowy
+        - sprzet wraz z opisem i zdjeciem
+    - zwrotu sprzetu
+    - zgloszenia sie po godzinki
+        - sprawdzenia kto co wzial
+        - sprawdzanie kto wydawal sprzet
+        - sprawdzenie kto przyjmowal sprzet
+        - przyznania godzinek
+    - automatyczne podliczanie godzinek
+        - uwzglednienie znizek np jako instruktor
+    - sprawdzenia historii wypozyczen
+    - zalogowanie sie przez konto google
+    - zalogowanie sie przez dowolny mail
+    - sprawdzenia czy moze wypozyczyc, godzinki, skladka, zakoczone poprawnie poprzednie wypozyczenia
+    - rezerwacja sprzetu
+    - ogloszenia
+        - analiza wypozyczen sprzetowych.
+        - analiza sprzetu
+
+
+
+- TERAZ
+    - zrobic interfejs logowania. dziala zakladanie konta i logowanie ale nie da sie
+        przejsc dalej ani uzytkowac strony
+    -logowanie za pomoca maila
+    -naprawic kalkulator kosztu w wypozyczeniu
+    -naprawic kalkulator koszt w zwrocie
+    -strona godzinkowa (done)
+    -strona rozpatrywania godzinek
+    -strona rozpatrywania wpozyczen
+    -loading screen ( dopracowac wyglad, dziala)
+    -modale - blokuja sie przezco nie mozna np kliknac przycisku na dole
+    -ogolnie css
+    -posprzatac kod, wszytsko poza wypozycz.js
+    -ogarnac spsob wyswietlenia dodanyc opcji dla uzytkownikow
+        o wiekszych prawach (dodatkowy pasek przycisków ?)
+    -ogarnac sposob powiadomienia o dolaczeniu nowego uzytkonika
+    -powiadomienia pop-up dla stale zalogowanych (monitorowanie zmian)
+    - sprawdzenie mozliwosci oszukania systemu przez wedrowanie po stronach
+        teraz dostep oraz godzinki sa sprawdzane tylko na zakladce konto
+
+
+- POTEM - okno typu "modal" wyswietlajace prosbe o zatwierdzenie poprawnosci wybranego sprzetu

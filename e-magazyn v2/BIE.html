@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Block and inline elements</title>
+  <!--  <link rel="stylesheet" href="styles.css">-->
+    <style>
+.city {
+  background-color: tomato;
+  color: white;
+  border: 2px solid black;
+  margin: 20px;
+  padding: 20px;
+}
+.main {
+  text-align: center;
+}
+.note {
+  font-size: 120%;
+  color: red;
+}
+</style>
+</head>
+<body>
+<h1>My <span class="note">Important</span> Heading</h1>
+<p>This is some <span class="note">important</span> text.</p>
+<div class="city">
+    <h2>London</h2>
+    <p>London is the capital of England.</p>
+</div>
+
+<div class="city">
+    <h2>Paris</h2>
+    <p>Paris is the capital of France.</p>
+</div>
+
+<div class="city main">
+    <h2>Tokyo</h2>
+    <p>Tokyo is the capital of Japan.</p>
+</div>
+<button onclick="showFunction()">Crate elements</button>
+<button onclick="myFunction()">Destroy elements</button>
+<button onclick="createFunction()">Show elements</button>
+<button onclick="zniszczFunction()">Hide elements</button>
+<br>
+<iframe src="demo_iframe.htm" name="iframe_a" title="Iframe Example" align="centre"></iframe>
+<p><a href="http://www.bystrze.org/bystrze/" target="iframe_a">pokaz strone pyszcza</a></p>
+<script>
+function myFunction() {
+  var x = document.getElementsByClassName("city");
+  for (var i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  }
+  function zniszczFunction(){
+  var x = document.getElementsByClassName("city");
+  for (var i = 0; i < x.length; i++) {
+    x[i].style.visibility = "hidden";
+  }
+}
+function showFunction(){
+var x = document.getElementsByClassName("city");
+  for (var i = 0; i < x.length; i++) {
+    x[i].style.display = "block";
+  }
+}
+function createFunction(){
+var x = document.getElementsByClassName("city");
+  for (var i = 0; i < x.length; i++) {
+    x[i].style.visibility = "visible";
+  }
+}
+</script>
+</body>
+</html>
