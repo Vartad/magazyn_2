@@ -54,7 +54,7 @@ const headerRowModal = document.getElementById("headerRowModal");
 var zaznaczoneAktywne = [];
 var tabelaModal = document.getElementById("tabelaZwrotuModal");
 var modal = document.getElementById("modalZwrot");
-window.wypozyczeniaWModal = _zaznaczoneZPodanegoForms(0,tabWypozyczenie);
+window.wypozyczeniaWModal = _zaznaczoneZPodanegoForms("formAktywnychWypozyczen",tabWypozyczenie);
 
 _wyswietlTabliceWTabeli(headerRowModal,wypozyczeniaWModal,tabelaModal,"Modal",
                         //"checkBoxAktywne",
@@ -90,7 +90,15 @@ span.onclick = function() {
 }
 
 function btnModalZwracamSprzet(){
-zapiszDane()
+var indexyZaznaczonychCB = document.getElementsByClassName("Modal");
+console.log("CB " + indexyZaznaczonychCB[0] )
+_pokazTablice(indexyZaznaczonychCB);
+
+for(var i =0;i<wypozyczeniaWModal.length;i++){
+console.log("id : " + wypozyczeniaWModal[i].id)
+var sciezka = db.doc("wypozyczenia/"+ wypozyczeniaWModal[i].id);
+//_zapiszDane(sciezka,wypozyczeniaWModal[i],"Zwrócono wybrany sprzęt",true);
+}
 }
 
 //^^NOWA WERSJA^^

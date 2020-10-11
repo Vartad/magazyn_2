@@ -460,7 +460,7 @@ cell[j-argNb].innerHTML = arguments[j];
    if(arguments[3] != "" && arguments[j].includes("sprzet")){
         inputType = "<input type='checkBox'>";
         cell[j-argNb].innerHTML = inputType;
-        cell[j-argNb].name = arguments[3];
+        cell[j-argNb].class = arguments[3];
         }
 
         cell[j-argNb].innerHTML += " " + _Wypozyczenie.daj(tablica[i-1],arguments[j] );
@@ -516,7 +516,7 @@ fromFirestore: function(snapshot, options){
 }
 
 function _zaznaczoneZPodanegoForms(nr,tablica){
-var input = document.forms[nr];
+var input = document.getElementById(nr);
 var indeksyZaznaczonych =[]; // zwraca tablice indeksow zaznaczonych checboxow
 var zaznaczoneWypozyczenia =[]; //zwraca tablice wypozyczen ktore wybrano
 //console.log("input.length : " + input.length)
@@ -537,6 +537,7 @@ return indeksyZaznaczonych;
 }
 
 function _pokazTablice (array){
+console.log(array + " length : " + array.length);
  for(var i =0;i<array.length;i++){
  console.log("i " + i + " - " + array[i]);
  }
