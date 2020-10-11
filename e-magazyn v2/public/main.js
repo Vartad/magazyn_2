@@ -193,6 +193,10 @@ this.status = status;                                   //15
 this.uwagi = uwagi;                                     //16
 }
 
+static koszt_oblicz(wypozyczenie){
+
+}
+
 static daj(wypozyczenie,i){
     switch(i){
     case "data_planowanegoZwrotu" : return wypozyczenie.data_planowanegoZwrotu
@@ -211,15 +215,15 @@ static daj(wypozyczenie,i){
     case "sprzet_wioslo" : return wypozyczenie.sprzet_wioslo
     case "status" : return wypozyczenie.status
     case "uwagi" :  return wypozyczenie.uwagi
-    case "sprzet" : sprzet(wypozyczenie)
+    case "sprzet" : return new _Sprzet(wypozyczenie.sprzet_fartuch,wypozyczenie.sprzet_kajak,wypozyczenie.sprzet_kamizelka,wypozyczenie.sprzet_kask,wypozyczenie.sprzet_wioslo,);
+    case "obliczKoszt" : return _kalkulatorKosztu(wypozyczenie.data_wydania,_NOW.short,_Wypozyczenie.daj(wypozyczenie,"sprzet"));
     break;
     default : console.log(" zadana wartosc nie istnieje");
     }
 }
 
 static sprzet(wypozyzczenie){
-return sprzet = new _Sprzet(wypozyczenie.sprzet_fartuch,wypozyczenie.sprzet_kajak,
-    wypozyczenie.sprzet_kamizelka,wypozyczenie.sprzet_kask,wypozyczenie.sprzet_wioslo,);
+
 }
 
 get dataPlanowanegoZwrotu(){
@@ -334,7 +338,7 @@ var fartuchWart = czyWybranoSprzet(sprzet.fartuch);
 var kamizelkaWart = czyWybranoSprzet(sprzet.kamizelka);
 //console.log("kajak : " + kajakWart);
 liczbaDni = liczbaDni * ( kajakWart *1 + wiosloWart *1 + kaskwart * 1 + fartuchWart * 1 + kamizelkaWart *1);
-console.log("KOSZT : " + liczbaDni)
+//console.log("KOSZT : " + liczbaDni)
 return liczbaDni;
 }
 
@@ -388,7 +392,7 @@ loading();
 async function loading (){
 
 const result = await zaladujStrone();
-console.log('loading result :' + result);
+//console.log('loading result :' + result);
 if ( result == "resolved"){
 //console.log("zaladowano");
 document.getElementById("page").style.display = "block";
@@ -399,45 +403,68 @@ document.getElementById("loading").style.display = "none";
 function _wczytajDane(tablica,skad,kryterium,szukana){
 return new Promise(czekaj => {
 var i = 0;
-console.log("poszukiwany dokument : skad - " + skad + " kryterium - " + kryterium + " szukana - " + szukana  )
+//console.log("poszukiwany dokument : skad - " + skad + " kryterium - " + kryterium + " szukana - " + szukana  )
 const ref = db.collection(skad).where(kryterium,"==", szukana)// kolejne kryteria to po prostu .where()//
 .withConverter(wypozyczenieConverter)
 .get().then(function(querySelector) {
 querySelector.forEach(function(doc){
+if(doc.exists){
 tablica[i] = doc.data();
 tablica[i].id = doc.id;
 i += 1;
 czekaj("resolved");
+}else{
+console.log("No such Document")
+czekaj("resolved");
+}}
+);
 });
 }).catch(function(error){
   console.log("bład podczas wczytywania dokumentu " + error)
   });//forEach;//then
-
-})
+czekaj("resolved");
 }
 
-function _wyswietlTabliceWTabeli(tablica,tabela){
+function _wyswietlTabliceWTabeli(headerRow,tablica,tabela,cbName){
+var argNb = 4;
 var cell = [];
-for(var i=0;i<tablica.length;i++ ){ //petla wierszy
-var row = tabela.insertRow();
+var new_tbody = document.createElement("tbody");
+tabela.innerHTML = ""
+
+tabela.appendChild(headerRow);
+//console.log("liczbaWierszy : " + tabela.rows.length)
+for(var i=1;i<=tablica.length;i++ ){ //petla wierszy
+ row = tabela.insertRow();
 for(var j=0;j<=arguments.length-3;j++){ //petla dodajaca kolumny
 cell[j]  = row.insertCell();
 } //petla dodajaca kolumny
 //console.log("wiersz : " + i);
 
-for( var j=2;j<arguments.length;j++){ //petla kolumn
+for( var j=argNb;j<arguments.length;j++){ //petla kolumn
 //console.log("kolumna : " + j);
-   if(arguments[j].includes("checkBox") || arguments[j].includes("radio") || arguments[j].includes("textArea") ){
-   if(arguments[j].includes("checkBox")){inputType = "<input type='checkBox'> <label></label>";  }
-   if(arguments[j].includes("radio")){inputType = "<input type='radio'>"; }
-   if(arguments[j].includes("textArea")){inputType = "<input type='textArea'rows=3>"; }else{
-   console.log("nie rozpoznano typu input");
+if(typeof arguments[j] == "number"){
+cell[j-argNb].innerHTML = arguments[j];
+}else{
+   if(arguments[j].includes("checkBox") || arguments[j].includes("radio") || arguments[j].includes("textArea") || arguments[j].includes("Lp") ){
+   if(arguments[j].includes("checkBox")){inputType =i + ": <input type='checkBox'> <label></label>";  }
+   if(arguments[j].includes("radio")){inputType =i + ": <input type='radio'>"; }
+   if(arguments[j].includes("textArea")){inputType = "<input type='textArea'rows=3>";}
+   if(arguments[j].includes("Lp")){inputType = i; }
+    else{
+ //  console.log("nie rozpoznano typu input");
    }
-//   console.log("inputType " + inputType);
-   cell[j-2].innerHTML = i+1 + ":"+ inputType;
-   cell[j-2].name = arguments[j];
+   //console.log("arguments[j] " + arguments[j]  + " inputType " + inputType);
+   cell[j-argNb].innerHTML = inputType;
+   cell[j-argNb].name = arguments[j];
    }else{
-cell[j-2].innerHTML = _Wypozyczenie.daj(tablica[i],arguments[j]);
+   if(arguments[3] != "" && arguments[j].includes("sprzet")){
+        inputType = "<input type='checkBox'>";
+        cell[j-argNb].innerHTML = inputType;
+        cell[j-argNb].name = arguments[3];
+        }
+
+        cell[j-argNb].innerHTML += " " + _Wypozyczenie.daj(tablica[i-1],arguments[j] );
+}
 }
 
 }//petla kolumn
@@ -488,12 +515,50 @@ fromFirestore: function(snapshot, options){
     }
 }
 
-function _zaznaczoneCB_Radio(Name){
-var tabInput = [];
-var input = document.getElementsByClassName(Name);
-for (var i =0;i<=input.length;i++){
-console.log("i :" + i + " value " )
+function _zaznaczoneZPodanegoForms(nr,tablica){
+var input = document.forms[nr];
+var indeksyZaznaczonych =[]; // zwraca tablice indeksow zaznaczonych checboxow
+var zaznaczoneWypozyczenia =[]; //zwraca tablice wypozyczen ktore wybrano
+//console.log("input.length : " + input.length)
+for (var i =0;i<input.length;i++){
+//console.log("i :" + i + " : " +  input[i].checked );
+if(input[i].checked){
+indeksyZaznaczonych.push(i-1);
+//console.log("i = " + i + " isChecked " +  input[i].checked );
+}
+}
+if(tablica != ""){
+for(var i=0;i<indeksyZaznaczonych.length;i++){
+zaznaczoneWypozyczenia.push(tablica[indeksyZaznaczonych[i]]);
+}
+return zaznaczoneWypozyczenia
+}
+return indeksyZaznaczonych;
 }
 
+function _pokazTablice (array){
+ for(var i =0;i<array.length;i++){
+ console.log("i " + i + " - " + array[i]);
+ }
+ }
+
+function _zapiszDane(sciezka,obiekt,komunikat,reload){
+     sciezka.set(obiekt,{merge: true})
+    .then(()=>{
+    alert(komunikat);
+    console.log("Document successfully written")
+    if(reload == true){
+        location.reload();
+    }
+    })
+    .catch(function(error) {
+        console.error("Error writing document: ", error);
+    });
+
+    /*
+    // Set with cityConverter
+      .withConverter(wypozyczenieConverter)
+      .set(new _Wypozyczenie("Los Angeles", "CA", "USA"));
+    */
 }
 

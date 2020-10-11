@@ -44,7 +44,7 @@
                 <label>wypożyczony sprzęt :</label><br>
                 <table class="table table-hover" id="tabelaAktywnychWypozyczen">
                     <thead>
-                    <tr>
+                    <tr id="headerRowAktywne">
                         <th>Lp.</th>
                         <th>Data wyp.</th>
                         <th>Os. otwierajaca</th>
@@ -87,9 +87,9 @@
             <fieldset>
                 <legend>Odznacz sprzęt który zwracasz.</legend>
                 <div align="center">
-                    <table class="table table-hover" id="tabelaZwrotuModal">
+                    <table class="table table-hover" id="tabelaZwrotuModal" name="tabelaModal">
                         <thead>
-                        <tr >
+                        <tr id="headerRowModal">
                             <th>Lp.</th>
                             <th>Kajak</th>
                             <th>Wiosło</th>
@@ -108,7 +108,7 @@
             </fieldset>
             </form>
 
-            <button class="button button1" id="zwracamSprzet" onclick="zwrotSprzetu()">Zwracam sprzęt</button>
+            <button class="button button1" id="zwracamSprzet" onclick="btnModalZwracamSprzet()">Zwracam sprzęt</button>
         </div>
 
     </div> <!-- Modal Zwrot -->

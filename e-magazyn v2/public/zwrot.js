@@ -22,8 +22,9 @@ firebase.auth().onAuthStateChanged(function(user) {
 window.tabelaAktywnychWypozyczen = document.getElementById('tabelaAktywnychWypozyczen');
 window.tabWypozyczenie = []
 const szukana = "aktywne/" + getUserName();
+const headerRowAktywne = document.getElementById("headerRowAktywne");
 _wczytajDane(tabWypozyczenie,"wypozyczenia","status",szukana).then(() => {
-_wyswietlTabliceWTabeli(tabWypozyczenie,tabelaAktywnychWypozyczen,
+_wyswietlTabliceWTabeli(headerRowAktywne,tabWypozyczenie,tabelaAktywnychWypozyczen,"",
                         "checkBoxAktywne",
                         "data_wydania",
                         "osoba_wydajaca",
@@ -49,10 +50,28 @@ console.log("niezalogowanyś");
 } // ZALADUJ()
 
 function zwrotModal(){
-
+const headerRowModal = document.getElementById("headerRowModal");
+var zaznaczoneAktywne = [];
+var tabelaModal = document.getElementById("tabelaZwrotuModal");
 var modal = document.getElementById("modalZwrot");
+window.wypozyczeniaWModal = _zaznaczoneZPodanegoForms(0,tabWypozyczenie);
 
-_zaznaczoneCB_Radio("checkBoxAktywne");
+_wyswietlTabliceWTabeli(headerRowModal,wypozyczeniaWModal,tabelaModal,"Modal",
+                        //"checkBoxAktywne",
+                        //"data_wydania",
+                        //"osoba_wydajaca",
+                        "Lp",
+                        "sprzet_kajak",
+                        "sprzet_wioslo",
+                        "sprzet_fartuch",
+                        "sprzet_kamizelka",
+                        "sprzet_kask",
+                        //"koszt_planowany",
+                        "obliczKoszt",
+                        //"data_planowanegoZwrotu",
+                        //"status",
+                        "textAreaModal"
+                        );
 
 modal.style.display="block";
 // Get the <span> element that closes the modal
@@ -68,6 +87,10 @@ span.onclick = function() {
 }
 
 }
+}
+
+function btnModalZwracamSprzet(){
+zapiszDane()
 }
 
 //^^NOWA WERSJA^^
