@@ -23,7 +23,7 @@ window.tabelaAktywnychWypozyczen = document.getElementById('tabelaAktywnychWypoz
 window.tabWypozyczenie = []
 const szukana = "aktywne/" + getUserName();
 const headerRowAktywne = document.getElementById("headerRowAktywne");
-_wczytajDane(tabWypozyczenie,"wypozyczenia","status",szukana).then(() => {
+_wczytajDane(resolve,tabWypozyczenie,"wypozyczenia","status",szukana).then(() => {
 _wyswietlTabliceWTabeli(headerRowAktywne,tabWypozyczenie,tabelaAktywnychWypozyczen,"",
                         "checkBoxAktywne",
                         "data_wydania",
@@ -54,7 +54,7 @@ const headerRowModal = document.getElementById("headerRowModal");
 var zaznaczoneAktywne = [];
 var tabelaModal = document.getElementById("tabelaZwrotuModal");
 var modal = document.getElementById("modalZwrot");
-window.wypozyczeniaWModal = _zaznaczoneZPodanegoForms("formAktywnychWypozyczen",tabWypozyczenie);
+window.wypozyczeniaWModal = _zaznaczoneZPodanegoForms(0,tabWypozyczenie);
 
 _wyswietlTabliceWTabeli(headerRowModal,wypozyczeniaWModal,tabelaModal,"Modal",
                         //"checkBoxAktywne",
@@ -90,14 +90,40 @@ span.onclick = function() {
 }
 
 function btnModalZwracamSprzet(){
-var indexyZaznaczonychCB = document.getElementsByClassName("Modal");
-console.log("CB " + indexyZaznaczonychCB[0] )
-_pokazTablice(indexyZaznaczonychCB);
+var CB = document.forms[1]
+_pokazTablice(CB);
+console.log("AAA : " + document.getElementById("TA1").value) // dziala
 
 for(var i =0;i<wypozyczeniaWModal.length;i++){
+console.log("zapis i " + i);
 console.log("id : " + wypozyczeniaWModal[i].id)
+
+console.log("TA name : "+ "TA"+Number(i+1));
+var TA = document.getElementById("TA"+Number(i+1)).value;
+console.log("TA value " + TA);
+//sprzet
+var sprzet = new _Sprzet()
+var komunikat = "Zwrócono Sprzęt";
+var reload = true;
 var sciezka = db.doc("wypozyczenia/"+ wypozyczeniaWModal[i].id);
-//_zapiszDane(sciezka,wypozyczeniaWModal[i],"Zwrócono wybrany sprzęt",true);
+sciezka.set({
+data_zwrotu : _NOW.short,
+osoba_przyjmujaca : document.getElementById("in_magazynierzy").value,
+koszt_rzeczywisty : _kalkulatorKosztu(wypozyczeniaWModal[i].data_wydania,_NOW.short,sprzet),
+uwagi :  wypozyczeniaWModal[i].uwagi + " | " +  _NOW.short + " " + getUserName() + "- '" +  TA + "'",
+status : "zwrocono/"+getUserName()
+},{merge: true})
+    .then(()=>{
+    alert(komunikat);
+    console.log("Document successfully written")
+    if(reload == true){
+        location.reload();
+    }
+    })
+    .catch(function(error) {
+        console.error("Error writing document: ", error);
+    });
+
 }
 }
 

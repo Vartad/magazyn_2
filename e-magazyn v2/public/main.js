@@ -218,7 +218,7 @@ static daj(wypozyczenie,i){
     case "sprzet" : return new _Sprzet(wypozyczenie.sprzet_fartuch,wypozyczenie.sprzet_kajak,wypozyczenie.sprzet_kamizelka,wypozyczenie.sprzet_kask,wypozyczenie.sprzet_wioslo,);
     case "obliczKoszt" : return _kalkulatorKosztu(wypozyczenie.data_wydania,_NOW.short,_Wypozyczenie.daj(wypozyczenie,"sprzet"));
     break;
-    default : console.log(" zadana wartosc nie istnieje");
+    default : {console.log(" zadana wartosc nie istnieje");}
     }
 }
 
@@ -400,7 +400,7 @@ document.getElementById("loading").style.display = "none";
 }
 }
 
-function _wczytajDane(tablica,skad,kryterium,szukana){
+function _wczytajDane(resolve,tablica,skad,kryterium,szukana){
 return new Promise(czekaj => {
 var i = 0;
 //console.log("poszukiwany dokument : skad - " + skad + " kryterium - " + kryterium + " szukana - " + szukana  )
@@ -413,9 +413,11 @@ tablica[i] = doc.data();
 tablica[i].id = doc.id;
 i += 1;
 czekaj("resolved");
+resolve("resolved");
 }else{
 console.log("No such Document")
 czekaj("resolved");
+resolve("resolved");
 }}
 );
 });
@@ -423,6 +425,7 @@ czekaj("resolved");
   console.log("bład podczas wczytywania dokumentu " + error)
   });//forEach;//then
 czekaj("resolved");
+resolve("resolved");
 }
 
 function _wyswietlTabliceWTabeli(headerRow,tablica,tabela,cbName){
@@ -446,23 +449,47 @@ if(typeof arguments[j] == "number"){
 cell[j-argNb].innerHTML = arguments[j];
 }else{
    if(arguments[j].includes("checkBox") || arguments[j].includes("radio") || arguments[j].includes("textArea") || arguments[j].includes("Lp") ){
-   if(arguments[j].includes("checkBox")){inputType =i + ": <input type='checkBox'> <label></label>";  }
-   if(arguments[j].includes("radio")){inputType =i + ": <input type='radio'>"; }
-   if(arguments[j].includes("textArea")){inputType = "<input type='textArea'rows=3>";}
-   if(arguments[j].includes("Lp")){inputType = i; }
-    else{
- //  console.log("nie rozpoznano typu input");
+   if(arguments[j].includes("checkBox")){
+   inputType =i + ": <input type='checkBox'> ";
+    }
+   if(arguments[j].includes("radio")){
+   inputType =i + ": <input type='radio'>";
    }
-   //console.log("arguments[j] " + arguments[j]  + " inputType " + inputType);
+   if(arguments[j].includes("Lp")){inputType = i; }
+   else{
+   console.log("nie rozpoznano typu input");
+   }
+  // console.log("arguments[j] " + arguments[j]  + " inputType " + inputType);
    cell[j-argNb].innerHTML = inputType;
-   cell[j-argNb].name = arguments[j];
+   cell[j-argNb].class = arguments[j];
+   console.log("ID : "+ cell[j-argNb].class);
+
+   if(arguments[j].includes("textArea")){
+      console.log("textarea")
+      cell[j-argNb].innerHTML = "";
+     // inputType = "<input type='textArea'>"
+      var textArea = document.createElement("input");
+      textArea.type = "textarea";
+      textArea.id = "TA"+i;
+      cell[j-argNb].appendChild(textArea);
+      console.log("id NAME : "+ textArea.id)
+     // cell[j-argNb].name
+      }
+
    }else{
    if(arguments[3] != "" && arguments[j].includes("sprzet")){
-        inputType = "<input type='checkBox'>";
-        cell[j-argNb].innerHTML = inputType;
-        cell[j-argNb].class = arguments[3];
+   var checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    //checkbox.name = arguments[j] + i;
+            if(_Wypozyczenie.daj(tablica[i-1],arguments[j])==""){
+            checkbox.disabled = true;
+            }
+        //inputType = "<input type='checkBox'>";
+        cell[j-argNb].appendChild(checkbox);
+        console.log("argument[j] = " + arguments[j] + i);
+        // cell[j-argNb].name = arguments[3] ;
+        //console.log("id " + cell[j-argNb].id);
         }
-
         cell[j-argNb].innerHTML += " " + _Wypozyczenie.daj(tablica[i-1],arguments[j] );
 }
 }
@@ -516,7 +543,7 @@ fromFirestore: function(snapshot, options){
 }
 
 function _zaznaczoneZPodanegoForms(nr,tablica){
-var input = document.getElementById(nr);
+var input = document.forms[nr];
 var indeksyZaznaczonych =[]; // zwraca tablice indeksow zaznaczonych checboxow
 var zaznaczoneWypozyczenia =[]; //zwraca tablice wypozyczen ktore wybrano
 //console.log("input.length : " + input.length)
@@ -539,7 +566,7 @@ return indeksyZaznaczonych;
 function _pokazTablice (array){
 console.log(array + " length : " + array.length);
  for(var i =0;i<array.length;i++){
- console.log("i " + i + " - " + array[i]);
+ console.log("i " + i + " - " + array[i].checked);
  }
  }
 
