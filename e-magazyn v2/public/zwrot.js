@@ -102,14 +102,26 @@ console.log("TA name : "+ "TA"+Number(i+1));
 var TA = document.getElementById("TA"+Number(i+1)).value;
 console.log("TA value " + TA);
 //sprzet
+var fartuch = wypozyczeniaWModal[i].sprzet_fartuch +"/"+ (CB[2].disabled ? "zwrócono":"NIEzwrócono");
+var kajak = wypozyczeniaWModal[i].sprzet_kajak +"/"+ (CB[0].disabled ? "zwrócono":"NIEzwrócono");
+var kamizelka = wypozyczeniaWModal[i].sprzet_kamizelka +"/"+ (CB[3].disabled ? "zwrócono":"NIEzwrócono");
+var kask = wypozyczeniaWModal[i].sprzet_kask +"/"+ (CB[4].disabled ? "zwrócono":"NIEzwrócono");
+var wioslo = wypozyczeniaWModal[i].sprzet_wioslo +"/"+ (CB[1].disabled ? "zwrocóno":"NIEzwrócono");
+console.log("wioslo " + wioslo + " CB " + );
 var sprzet = new _Sprzet()
 var komunikat = "Zwrócono Sprzęt";
 var reload = true;
 var sciezka = db.doc("wypozyczenia/"+ wypozyczeniaWModal[i].id);
+
 sciezka.set({
 data_zwrotu : _NOW.short,
 osoba_przyjmujaca : document.getElementById("in_magazynierzy").value,
 koszt_rzeczywisty : _kalkulatorKosztu(wypozyczeniaWModal[i].data_wydania,_NOW.short,sprzet),
+sprzet_fartuch : fartuch,
+sprzet_kajak : kajak,
+sprzet_kamizelka : kamizelka,
+sprzet_kask : kask,
+sprzet_wioslo : wioslo,
 uwagi :  wypozyczeniaWModal[i].uwagi + " | " +  _NOW.short + " " + getUserName() + "- '" +  TA + "'",
 status : "zwrocono/"+getUserName()
 },{merge: true})
