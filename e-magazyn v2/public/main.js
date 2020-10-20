@@ -400,11 +400,11 @@ document.getElementById("loading").style.display = "none";
 }
 }
 
-function _wczytajDane(resolve,tablica,skad,kryterium,szukana){
+function _wczytajDane(resolve,tablica,skad,kryterium,szukana,limit){
 return new Promise(czekaj => {
 var i = 0;
 //console.log("poszukiwany dokument : skad - " + skad + " kryterium - " + kryterium + " szukana - " + szukana  )
-const ref = db.collection(skad).where(kryterium,"==", szukana)// kolejne kryteria to po prostu .where()//
+const ref = db.collection(skad).where(kryterium,"==", szukana).limit(limit)// kolejne kryteria to po prostu .where()//
 .withConverter(wypozyczenieConverter)
 .get().then(function(querySelector) {
 querySelector.forEach(function(doc){

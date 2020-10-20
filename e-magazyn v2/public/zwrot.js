@@ -25,7 +25,7 @@ window.tabHistoria =[];
 const szukana = "aktywne/" + getUserName();
 const headerRowAktywne = document.getElementById("headerRowAktywne");
 resolve('resolved')
-_wczytajDane(resolve,tabWypozyczenie,"wypozyczenia","status",szukana).then(() => {
+_wczytajDane(resolve,tabWypozyczenie,"wypozyczenia","status",szukana,99).then(() => {
 _wyswietlTabliceWTabeli(headerRowAktywne,tabWypozyczenie,tabelaAktywnychWypozyczen,"",
                         "checkBoxAktywne",
                         "data_wydania",
@@ -40,23 +40,6 @@ _wyswietlTabliceWTabeli(headerRowAktywne,tabWypozyczenie,tabelaAktywnychWypozycz
                         "uwagi"
                         );
 resolve("resolved");
-});
-_wczytajDane(resolve,tabHistoria,"wypozyczenia","status","zwrocono/"+getUserName()).then(() => {
-_wyswietlTabliceWTabeli(headerRowHistoria,tabHistoria,tabelaHistoriaWypozyczen,"",
-                        "Lp",
-                        "data_wydania",
-                        "osoba_wydajaca",
-                        "osoba_przyjmujaca",
-                        "sprzet_kajak",
-                        "sprzet_wioslo",
-                        "sprzet_fartuch",
-                        "sprzet_kamizelka",
-                        "sprzet_kask",
-                        "data_planowanegoZwrotu",
-                        "data_zwrotu",
-                        "status",
-                        "uwagi"
-                        );
 });
 console.log(resolve);
 }else{
@@ -166,6 +149,28 @@ alert("musisz podać osobę która otworzyła magazyn");
 }
 }
 
+function Historia(){
+
+return new Promise(resolve => {
+_wczytajDane(resolve,tabHistoria,"wypozyczenia","status","zwrocono/"+getUserName(),5).then(() => {
+_wyswietlTabliceWTabeli(headerRowHistoria,tabHistoria,tabelaHistoriaWypozyczen,"",
+                        "Lp",
+                        "data_wydania",
+                        "osoba_wydajaca",
+                        "osoba_przyjmujaca",
+                        "sprzet_kajak",
+                        "sprzet_wioslo",
+                        "sprzet_fartuch",
+                        "sprzet_kamizelka",
+                        "sprzet_kask",
+                        "data_planowanegoZwrotu",
+                        "data_zwrotu",
+                        "status",
+                        "uwagi"
+                        );
+});
+})
+}//brakuje ogranicznika do 5 wypozyczeń
 //^^NOWA WERSJA^^
 /*
 
