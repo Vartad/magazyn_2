@@ -68,6 +68,37 @@
     <br>
     <button class="button button1" id="BtnZwrotModal" onclick="zwrotModal()" >Zwróć wybrany sprzęt</button>
 
+    <form class  method="post" id="formHistoriaWypozyczen" action="">
+        <fieldset>
+            <div align="center">
+                <label>historia wypożyczeń :</label><br>
+                <table class="table table-hover" id="tabelaHistoriaWypozyczen">
+                    <thead>
+                    <tr id="headerRowHistoria">
+                        <th>Lp.</th>
+                        <th>Data wyp.</th>
+                        <th>Os. wydajaca</th>
+                        <th>Os. przyjmujaca</th>
+                        <th>Kajak</th>
+                        <th>Wiosło</th>
+                        <th>Fartuch</th>
+                        <th>Kamizelka</th>
+                        <th>Kask</th>
+                        <th>Planowana data zw.</th>
+                        <th>Data zw.</th>
+                        <th>koszt</th>
+                        <th>Status</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </fieldset>
+    </form> <!--formAktywnychWypozyczen-->
+
 
     <!-- MODAL ----------------------------------------------- -->
     <div id="modalZwrot" class="modal">

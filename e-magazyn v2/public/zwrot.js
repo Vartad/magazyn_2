@@ -20,9 +20,11 @@ return new Promise(resolve => {
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
 window.tabelaAktywnychWypozyczen = document.getElementById('tabelaAktywnychWypozyczen');
-window.tabWypozyczenie = []
+window.tabWypozyczenie = [];
+window.tabHistoria =[];
 const szukana = "aktywne/" + getUserName();
 const headerRowAktywne = document.getElementById("headerRowAktywne");
+resolve('resolved')
 _wczytajDane(resolve,tabWypozyczenie,"wypozyczenia","status",szukana).then(() => {
 _wyswietlTabliceWTabeli(headerRowAktywne,tabWypozyczenie,tabelaAktywnychWypozyczen,"",
                         "checkBoxAktywne",
@@ -39,7 +41,24 @@ _wyswietlTabliceWTabeli(headerRowAktywne,tabWypozyczenie,tabelaAktywnychWypozycz
                         );
 resolve("resolved");
 });
-
+_wczytajDane(resolve,tabHistoria,"wypozyczenia","status","zwrocono/"+getUserName()).then(() => {
+_wyswietlTabliceWTabeli(headerRowHistoria,tabHistoria,tabelaHistoriaWypozyczen,"",
+                        "Lp",
+                        "data_wydania",
+                        "osoba_wydajaca",
+                        "osoba_przyjmujaca",
+                        "sprzet_kajak",
+                        "sprzet_wioslo",
+                        "sprzet_fartuch",
+                        "sprzet_kamizelka",
+                        "sprzet_kask",
+                        "data_planowanegoZwrotu",
+                        "data_zwrotu",
+                        "status",
+                        "uwagi"
+                        );
+});
+console.log(resolve);
 }else{
 console.log("niezalogowanyś");
 }
@@ -93,7 +112,7 @@ function btnModalZwracamSprzet(){
 var CB = document.forms[1]
 _pokazTablice(CB);
 console.log("AAA : " + document.getElementById("TA1").value) // dziala
-
+if(document.getElementById("in_magazynierzy").value!=""){
 for(var i =0;i<wypozyczeniaWModal.length;i++){
 console.log("zapis i " + i);
 console.log("id : " + wypozyczeniaWModal[i].id)
@@ -102,13 +121,18 @@ console.log("TA name : "+ "TA"+Number(i+1));
 var TA = document.getElementById("TA"+Number(i+1)).value;
 console.log("TA value " + TA);
 //sprzet
-var fartuch = wypozyczeniaWModal[i].sprzet_fartuch +"/"+ (CB[2].disabled ? "zwrócono":"NIEzwrócono");
-var kajak = wypozyczeniaWModal[i].sprzet_kajak +"/"+ (CB[0].disabled ? "zwrócono":"NIEzwrócono");
-var kamizelka = wypozyczeniaWModal[i].sprzet_kamizelka +"/"+ (CB[3].disabled ? "zwrócono":"NIEzwrócono");
-var kask = wypozyczeniaWModal[i].sprzet_kask +"/"+ (CB[4].disabled ? "zwrócono":"NIEzwrócono");
-var wioslo = wypozyczeniaWModal[i].sprzet_wioslo +"/"+ (CB[1].disabled ? "zwrocóno":"NIEzwrócono");
-console.log("wioslo " + wioslo + " CB " + );
-var sprzet = new _Sprzet()
+var L = 6;
+var fartuch = wypozyczeniaWModal[i].sprzet_fartuch + (CB[3+i*L].disabled ? "":(CB[3+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
+var kajak = wypozyczeniaWModal[i].sprzet_kajak + (CB[1+i*L].disabled ? "":(CB[1+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
+var kamizelka = wypozyczeniaWModal[i].sprzet_kamizelka + (CB[4+i*L].disabled ? "":(CB[4+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
+var kask = wypozyczeniaWModal[i].sprzet_kask + (CB[5+i*L].disabled ? "":(CB[5+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
+var wioslo = wypozyczeniaWModal[i].sprzet_wioslo + (CB[2+i*L].disabled ? "": (CB[2+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
+console.log("wioslo " + wioslo + " CB " );
+var sprzet = new _Sprzet(fartuch,
+                         kajak,
+                         kamizelka,
+                         kask,
+                         wioslo);
 var komunikat = "Zwrócono Sprzęt";
 var reload = true;
 var sciezka = db.doc("wypozyczenia/"+ wypozyczeniaWModal[i].id);
@@ -126,7 +150,7 @@ uwagi :  wypozyczeniaWModal[i].uwagi + " | " +  _NOW.short + " " + getUserName()
 status : "zwrocono/"+getUserName()
 },{merge: true})
     .then(()=>{
-    alert(komunikat);
+for(var j =0;j==0;j++){alert(komunikat)};
     console.log("Document successfully written")
     if(reload == true){
         location.reload();
@@ -136,6 +160,9 @@ status : "zwrocono/"+getUserName()
         console.error("Error writing document: ", error);
     });
 
+}
+}else{
+alert("musisz podać osobę która otworzyła magazyn");
 }
 }
 

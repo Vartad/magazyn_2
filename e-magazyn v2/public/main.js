@@ -426,6 +426,7 @@ resolve("resolved");
   });//forEach;//then
 czekaj("resolved");
 resolve("resolved");
+return resolve;
 }
 
 function _wyswietlTabliceWTabeli(headerRow,tablica,tabela,cbName){
