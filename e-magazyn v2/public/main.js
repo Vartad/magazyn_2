@@ -400,12 +400,12 @@ document.getElementById("loading").style.display = "none";
 }
 }
 
-function _wczytajDane(resolve,tablica,skad,kryterium,szukana,limit){
+function _wczytajDane(converter,resolve,tablica,skad,kryterium,szukana,limit){
 return new Promise(czekaj => {
 var i = 0;
 //console.log("poszukiwany dokument : skad - " + skad + " kryterium - " + kryterium + " szukana - " + szukana  )
 const ref = db.collection(skad).where(kryterium,"==", szukana).limit(limit)// kolejne kryteria to po prostu .where()//
-.withConverter(wypozyczenieConverter)
+.withConverter(converter)
 .get().then(function(querySelector) {
 querySelector.forEach(function(doc){
 if(doc.exists){
@@ -430,7 +430,7 @@ return resolve;
 }
 
 function _wyswietlTabliceWTabeli(headerRow,tablica,tabela,cbName){
-var argNb = 4;
+var argNb = 5; // nr pierwszego argumentu bedacego sprzetem
 var cell = [];
 var new_tbody = document.createElement("tbody");
 tabela.innerHTML = ""
@@ -570,7 +570,7 @@ console.log(array + " length : " + array.length);
  console.log("i " + i + " - " + array[i].checked);
  }
  }
-
+/*
 function _zapiszDane(sciezka,obiekt,komunikat,reload){
      sciezka.set(obiekt,{merge: true})
     .then(()=>{
@@ -590,4 +590,4 @@ function _zapiszDane(sciezka,obiekt,komunikat,reload){
       .set(new _Wypozyczenie("Los Angeles", "CA", "USA"));
     */
 }
-
+*/

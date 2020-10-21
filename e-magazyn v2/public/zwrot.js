@@ -19,13 +19,19 @@ return new Promise(resolve => {
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
+ // window._user = new _User(); // potrzebne wczytywanie danych ktore zutuje na wybrany rodzaj obiektu
+    //na razie rzutuje tylko na _Wypozyczenie
+//  _wczytajDane(resolve,_godzinki,"uzytkownicy","Emial",getUserEmail(),1).then(()=>{
+ // console.log("_godzinki " + _godzinki);
+ // );
+
 window.tabelaAktywnychWypozyczen = document.getElementById('tabelaAktywnychWypozyczen');
 window.tabWypozyczenie = [];
 window.tabHistoria =[];
 const szukana = "aktywne/" + getUserName();
 const headerRowAktywne = document.getElementById("headerRowAktywne");
 resolve('resolved')
-_wczytajDane(resolve,tabWypozyczenie,"wypozyczenia","status",szukana,99).then(() => {
+_wczytajDane(wypozyczenieConverter,resolve,tabWypozyczenie,"wypozyczenia","status",szukana,99).then(() => {
 _wyswietlTabliceWTabeli(headerRowAktywne,tabWypozyczenie,tabelaAktywnychWypozyczen,"",
                         "checkBoxAktywne",
                         "data_wydania",
@@ -92,7 +98,7 @@ span.onclick = function() {
 }
 
 function btnModalZwracamSprzet(){
-var CB = document.forms[1]
+var CB = document.forms[2]
 _pokazTablice(CB);
 console.log("AAA : " + document.getElementById("TA1").value) // dziala
 if(document.getElementById("in_magazynierzy").value!=""){
@@ -100,26 +106,25 @@ for(var i =0;i<wypozyczeniaWModal.length;i++){
 console.log("zapis i " + i);
 console.log("id : " + wypozyczeniaWModal[i].id)
 
-console.log("TA name : "+ "TA"+Number(i+1));
 var TA = document.getElementById("TA"+Number(i+1)).value;
 console.log("TA value " + TA);
 //sprzet
 var L = 6;
+console.log("i " + i + " L " + L);
 var fartuch = wypozyczeniaWModal[i].sprzet_fartuch + (CB[3+i*L].disabled ? "":(CB[3+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
 var kajak = wypozyczeniaWModal[i].sprzet_kajak + (CB[1+i*L].disabled ? "":(CB[1+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
 var kamizelka = wypozyczeniaWModal[i].sprzet_kamizelka + (CB[4+i*L].disabled ? "":(CB[4+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
 var kask = wypozyczeniaWModal[i].sprzet_kask + (CB[5+i*L].disabled ? "":(CB[5+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
 var wioslo = wypozyczeniaWModal[i].sprzet_wioslo + (CB[2+i*L].disabled ? "": (CB[2+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
 console.log("wioslo " + wioslo + " CB " );
-var sprzet = new _Sprzet(fartuch,
-                         kajak,
-                         kamizelka,
-                         kask,
-                         wioslo);
+var sprzet = new _Sprzet(fartuch,kajak,kamizelka,kask,wioslo);
 var komunikat = "Zwrócono Sprzęt";
 var reload = true;
-var sciezka = db.doc("wypozyczenia/"+ wypozyczeniaWModal[i].id);
-
+var sciezka = db.doc("uzytkownicy/"+ getUserName());
+sciezka.set({
+godzinki : _godzinki
+},{merge: true})
+sciezka = db.doc("wypozyczenia/"+ wypozyczeniaWModal[i].id);
 sciezka.set({
 data_zwrotu : _NOW.short,
 osoba_przyjmujaca : document.getElementById("in_magazynierzy").value,
@@ -134,7 +139,7 @@ status : "zwrocono/"+getUserName()
 },{merge: true})
     .then(()=>{
 for(var j =0;j==0;j++){alert(komunikat)};
-    console.log("Document successfully written")
+    console.log("Wypozyczenie successfully written")
     if(reload == true){
         location.reload();
     }
@@ -157,14 +162,14 @@ _wyswietlTabliceWTabeli(headerRowHistoria,tabHistoria,tabelaHistoriaWypozyczen,"
                         "Lp",
                         "data_wydania",
                         "osoba_wydajaca",
-                        "osoba_przyjmujaca",
                         "sprzet_kajak",
                         "sprzet_wioslo",
                         "sprzet_fartuch",
                         "sprzet_kamizelka",
                         "sprzet_kask",
-                        "data_planowanegoZwrotu",
                         "data_zwrotu",
+                        "osoba_przyjmujaca",
+                        "koszt_rzeczywisty",
                         "status",
                         "uwagi"
                         );
