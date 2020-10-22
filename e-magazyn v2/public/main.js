@@ -276,6 +276,27 @@ return this.uwagi;
 }
 } //KompletDanych
 
+class _User{
+constructor(
+Email,
+aktywneWypozyczenia,
+dostep,
+godzinki,
+imie,
+nazwisko,
+skladka
+            ) {
+//this.id = id;
+this.Email = Email;   //1
+this.aktywneWypozyczenia = aktywneWypozyczenia;                       //2
+this.dostep = dostep;                         //3
+this.godzinki = godzinki;                         //4
+this.imie = imie;                 //5
+this.nazwisko = nazwisko;             //6
+this.skladka = skladka;             //7
+}
+}
+
 function _convertDate(date,format){
 let current_datetime = date;
 let formatted_date;
@@ -401,6 +422,7 @@ document.getElementById("loading").style.display = "none";
 }
 
 function _wczytajDane(converter,resolve,tablica,skad,kryterium,szukana,limit){
+console.log("converter = " + converter);
 return new Promise(czekaj => {
 var i = 0;
 //console.log("poszukiwany dokument : skad - " + skad + " kryterium - " + kryterium + " szukana - " + szukana  )
@@ -430,7 +452,7 @@ return resolve;
 }
 
 function _wyswietlTabliceWTabeli(headerRow,tablica,tabela,cbName){
-var argNb = 5; // nr pierwszego argumentu bedacego sprzetem
+var argNb = 4; // nr pierwszego argumentu bedacego sprzetem
 var cell = [];
 var new_tbody = document.createElement("tbody");
 tabela.innerHTML = ""
@@ -539,7 +561,32 @@ fromFirestore: function(snapshot, options){
         data.sprzet_wioslo,
         data.status,
         data.uwagi)
+    }
+}
 
+var userConverter = {
+toFirestore: function(user){
+ return {
+            Email : user.Email,
+            aktywneWypozyczenia : user.aktywneWypozyczenia,
+            dostep : user.dostep,
+            godzinki : user.godzinki,
+            imie : user.imie,
+            nazwisko : user.nazwisko,
+            skladka : user.skladka
+            }
+},
+fromFirestore: function(snapshot, options){
+        const data = snapshot.data(options);
+        return new _User(
+        data.Email,
+        data.aktywneWypozyczenia,
+        data.dostep,
+        data.godzinki,
+        data.imie,
+        data.nazwisko,
+        data.skladka
+        )
     }
 }
 
@@ -588,6 +635,6 @@ function _zapiszDane(sciezka,obiekt,komunikat,reload){
     // Set with cityConverter
       .withConverter(wypozyczenieConverter)
       .set(new _Wypozyczenie("Los Angeles", "CA", "USA"));
-    */
+
 }
 */

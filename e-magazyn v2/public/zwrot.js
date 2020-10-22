@@ -19,11 +19,13 @@ return new Promise(resolve => {
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
- // window._user = new _User(); // potrzebne wczytywanie danych ktore zutuje na wybrany rodzaj obiektu
-    //na razie rzutuje tylko na _Wypozyczenie
-//  _wczytajDane(resolve,_godzinki,"uzytkownicy","Emial",getUserEmail(),1).then(()=>{
- // console.log("_godzinki " + _godzinki);
- // );
+  window.user = []; // potrzebne wczytywanie danych ktore zrzutuje na wybrany rodzaj obiektu
+  var mail = getUserEmail();
+  _wczytajDane(userConverter,resolve,user,"uzytkownicy","Email",mail,1).then(()=>{
+console.log("iserMail " + user[0].Email);
+window._godzinki = user[0].godzinki;
+  }
+)
 
 window.tabelaAktywnychWypozyczen = document.getElementById('tabelaAktywnychWypozyczen');
 window.tabWypozyczenie = [];
@@ -120,9 +122,14 @@ console.log("wioslo " + wioslo + " CB " );
 var sprzet = new _Sprzet(fartuch,kajak,kamizelka,kask,wioslo);
 var komunikat = "Zwrócono Sprzęt";
 var reload = true;
+console.log("Email " + _godzinki);
+console.log("user.godzinki - " + _godzinki + " tabWypozyczenie[i].koszt_planowany //// " + wypozyczeniaWModal[i].koszt_planowany + " obliczkoszt " + wypozyczeniaWModal[i].obliczKoszt )
+var godzinki = _godzinki + wypozyczeniaWModal[i].koszt_planowany - wypozyczeniaWModal[i].obliczKoszt;
+console.log("godzinki = " + godzinki);
+/*
 var sciezka = db.doc("uzytkownicy/"+ getUserName());
 sciezka.set({
-godzinki : _godzinki
+godzinki : godzinki
 },{merge: true})
 sciezka = db.doc("wypozyczenia/"+ wypozyczeniaWModal[i].id);
 sciezka.set({
@@ -147,7 +154,7 @@ for(var j =0;j==0;j++){alert(komunikat)};
     .catch(function(error) {
         console.error("Error writing document: ", error);
     });
-
+//*/
 }
 }else{
 alert("musisz podać osobę która otworzyła magazyn");
@@ -157,7 +164,7 @@ alert("musisz podać osobę która otworzyła magazyn");
 function Historia(){
 
 return new Promise(resolve => {
-_wczytajDane(resolve,tabHistoria,"wypozyczenia","status","zwrocono/"+getUserName(),5).then(() => {
+_wczytajDane(wypozyczenieConverter,resolve,tabHistoria,"wypozyczenia","status","zwrocono/"+getUserName(),5).then(() => {
 _wyswietlTabliceWTabeli(headerRowHistoria,tabHistoria,tabelaHistoriaWypozyczen,"",
                         "Lp",
                         "data_wydania",
@@ -175,7 +182,7 @@ _wyswietlTabliceWTabeli(headerRowHistoria,tabHistoria,tabelaHistoriaWypozyczen,"
                         );
 });
 })
-}//brakuje ogranicznika do 5 wypozyczeń
+}
 //^^NOWA WERSJA^^
 /*
 
