@@ -18,28 +18,29 @@
     - ogloszenia
         - analiza wypozyczen sprzetowych.
         - analiza sprzetu
-
+    -logowanie za pomoca maila
+    -rezerwacja sprzetu i jego uwzglednienie przy wypozyczaniu
+    -baza sprzetowa
+    - zrobic interfejs logowania. dziala zakladanie konta i logowanie ale nie da sie
+            przejsc dalej ani uzytkowac strony
+    -powiadomienia pop-up dla stale zalogowanych (monitorowanie zmian)
 
 
 - TERAZ
-    - zrobic interfejs logowania. dziala zakladanie konta i logowanie ale nie da sie
-        przejsc dalej ani uzytkowac strony
-    -logowanie za pomoca maila
-    -naprawic kalkulator kosztu w wypozyczeniu
-    -naprawic kalkulator koszt w zwrocie
-    -strona godzinkowa (done)
+    - nie dziala radio button przy sprawdzaniu oddanego sprzetu
+
+    - poprawic CSS wyswietlania tabel na telefonie
+    - poprawic scroll przy wypozyczeniu
     -strona rozpatrywania godzinek
     -strona rozpatrywania wpozyczen
     -loading screen ( dopracowac wyglad, dziala)
     -modale - blokuja sie przezco nie mozna np kliknac przycisku na dole
     -ogolnie css
-    -posprzatac kod, wszytsko poza wypozycz.js
+    -posprzatac kod (czesciowo jest)
     -ogarnac spsob wyswietlenia dodanyc opcji dla uzytkownikow
         o wiekszych prawach (dodatkowy pasek przycisków ?)
-    -ogarnac sposob powiadomienia o dolaczeniu nowego uzytkonika
-    -powiadomienia pop-up dla stale zalogowanych (monitorowanie zmian)
+    -ogarnac sposob powiadomienia o dolaczeniu nowego uzytkonika (mail do admina itp)
     - sprawdzenie mozliwosci oszukania systemu przez wedrowanie po stronach
         teraz dostep oraz godzinki sa sprawdzane tylko na zakladce konto
-
-
-- POTEM - okno typu "modal" wyswietlajace prosbe o zatwierdzenie poprawnosci wybranego sprzetu
+    - sprawdzenie czy wybrana opcja z listy sie na niej znajduje
+    - pobieranie danych potrzebnych na stronie prosto z bazy

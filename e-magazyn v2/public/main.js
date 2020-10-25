@@ -481,6 +481,7 @@ cell[j-argNb].innerHTML = arguments[j];
    if(arguments[j].includes("radio")){
    inputType =i + ": <input type='radio'>";
       cell[j-argNb].innerHTML = inputType;
+      cell[j-argNb].id = "radio"
       //cell[j-argNb].class = arguments[j];
       //console.log("cell.class : "+ cell[j-argNb].class);
    }
