@@ -422,7 +422,7 @@ document.getElementById("loading").style.display = "none";
 }
 
 function _wczytajDane(converter,resolve,tablica,skad,kryterium,szukana,limit){
-console.log("converter = " + converter);
+//console.log("converter = " + converter);
 return new Promise(czekaj => {
 var i = 0;
 //console.log("poszukiwany dokument : skad - " + skad + " kryterium - " + kryterium + " szukana - " + szukana  )
@@ -480,22 +480,22 @@ cell[j-argNb].innerHTML = arguments[j];
    }
    if(arguments[j].includes("Lp")){inputType = i; }
    else{
-   console.log("nie rozpoznano typu input");
+   //console.log("nie rozpoznano typu input");
    }
   // console.log("arguments[j] " + arguments[j]  + " inputType " + inputType);
    cell[j-argNb].innerHTML = inputType;
    cell[j-argNb].class = arguments[j];
-   console.log("ID : "+ cell[j-argNb].class);
+  // console.log("ID : "+ cell[j-argNb].class);
 
    if(arguments[j].includes("textArea")){
-      console.log("textarea")
+     // console.log("textarea")
       cell[j-argNb].innerHTML = "";
      // inputType = "<input type='textArea'>"
       var textArea = document.createElement("input");
       textArea.type = "textarea";
       textArea.id = "TA"+i;
       cell[j-argNb].appendChild(textArea);
-      console.log("id NAME : "+ textArea.id)
+     // console.log("id NAME : "+ textArea.id)
      // cell[j-argNb].name
       }
 
@@ -509,11 +509,11 @@ cell[j-argNb].innerHTML = arguments[j];
             }
         //inputType = "<input type='checkBox'>";
         cell[j-argNb].appendChild(checkbox);
-        console.log("argument[j] = " + arguments[j] + i);
+        //console.log("argument[j] = " + arguments[j] + i);
         // cell[j-argNb].name = arguments[3] ;
         //console.log("id " + cell[j-argNb].id);
         }
-        cell[j-argNb].innerHTML += " " + _Wypozyczenie.daj(tablica[i-1],arguments[j] );
+        cell[j-argNb].innerHTML += " " + _Wypozyczenie.daj(tablica[i-1],arguments[j]);
 }
 }
 
@@ -527,9 +527,9 @@ toFirestore: function(wypozyczenie){
             data_planowanegoZwrotu : wypozyczenie.data_planowanegoZwrotu,
             data_wydania : wypozyczenie.data_wydania,
             data_zwrotu : wypozyczenie.data_zwrotu,
+            koszt_rzeczywisty : wypozyczenie.koszt_rzeczywisty,
             koszt_dzien : wypozyczenie.koszt_dzien,
             koszt_planowany : wypozyczenie.koszt_planowany,
-            koszt_rzeczywisty : wypozyczenie.koszt_rzeczywisty,
             osoba_przyjmujaca : wypozyczenie.osoba_przyjmujaca,
             osoba_wydajaca : wypozyczenie.osoba_wydajaca,
             osoba_wypozyczajaca : wypozyczenie.osoba_wypozyczajaca,
@@ -548,9 +548,9 @@ fromFirestore: function(snapshot, options){
         data.data_planowanegoZwrotu,
         data.data_wydania,
         data.data_zwrotu,
+        data.koszt_rzeczywisty,
         data.koszt_dzien,
         data.koszt_planowany,
-        data.koszt_rzeczywisty,
         data.osoba_przyjmujaca,
         data.osoba_wydajaca,
         data.osoba_wypozyczajaca,
@@ -612,9 +612,9 @@ return indeksyZaznaczonych;
 }
 
 function _pokazTablice (array){
-console.log(array + " length : " + array.length);
+//console.log(array + " length : " + array.length);
  for(var i =0;i<array.length;i++){
- console.log("i " + i + " - " + array[i].checked);
+// console.log("i " + i + " - " + array[i].checked);
  }
  }
 /*

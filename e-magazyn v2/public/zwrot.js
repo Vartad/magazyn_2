@@ -22,13 +22,14 @@ firebase.auth().onAuthStateChanged(function(user) {
   window.user = []; // potrzebne wczytywanie danych ktore zrzutuje na wybrany rodzaj obiektu
   var mail = getUserEmail();
   _wczytajDane(userConverter,resolve,user,"uzytkownicy","Email",mail,1).then(()=>{
-console.log("iserMail " + user[0].Email);
+//console.log("iserMail " + user[0].Email);
 window._godzinki = user[0].godzinki;
   }
 )
 
 window.tabelaAktywnychWypozyczen = document.getElementById('tabelaAktywnychWypozyczen');
 window.tabWypozyczenie = [];
+
 window.tabHistoria =[];
 const szukana = "aktywne/" + getUserName();
 const headerRowAktywne = document.getElementById("headerRowAktywne");
@@ -49,7 +50,8 @@ _wyswietlTabliceWTabeli(headerRowAktywne,tabWypozyczenie,tabelaAktywnychWypozycz
                         );
 resolve("resolved");
 });
-console.log(resolve);
+//console.log(resolve);
+
 }else{
 console.log("niezalogowanyś");
 }
@@ -102,59 +104,60 @@ span.onclick = function() {
 function btnModalZwracamSprzet(){
 var CB = document.forms[2]
 _pokazTablice(CB);
-console.log("AAA : " + document.getElementById("TA1").value) // dziala
+//console.log("AAA : " + document.getElementById("TA1").value) // dziala
 if(document.getElementById("in_magazynierzy").value!=""){
 for(var i =0;i<wypozyczeniaWModal.length;i++){
-console.log("zapis i " + i);
-console.log("id : " + wypozyczeniaWModal[i].id)
+    //console.log("zapis i " + i);
+    //console.log("id : " + wypozyczeniaWModal[i].id)
 
-var TA = document.getElementById("TA"+Number(i+1)).value;
-console.log("TA value " + TA);
-//sprzet
-var L = 6;
-console.log("i " + i + " L " + L);
-var fartuch = wypozyczeniaWModal[i].sprzet_fartuch + (CB[3+i*L].disabled ? "":(CB[3+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
-var kajak = wypozyczeniaWModal[i].sprzet_kajak + (CB[1+i*L].disabled ? "":(CB[1+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
-var kamizelka = wypozyczeniaWModal[i].sprzet_kamizelka + (CB[4+i*L].disabled ? "":(CB[4+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
-var kask = wypozyczeniaWModal[i].sprzet_kask + (CB[5+i*L].disabled ? "":(CB[5+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
-var wioslo = wypozyczeniaWModal[i].sprzet_wioslo + (CB[2+i*L].disabled ? "": (CB[2+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
-console.log("wioslo " + wioslo + " CB " );
-var sprzet = new _Sprzet(fartuch,kajak,kamizelka,kask,wioslo);
-var komunikat = "Zwrócono Sprzęt";
-var reload = true;
-console.log("Email " + _godzinki);
-console.log("user.godzinki - " + _godzinki + " tabWypozyczenie[i].koszt_planowany //// " + wypozyczeniaWModal[i].koszt_planowany + " obliczkoszt " + wypozyczeniaWModal[i].obliczKoszt )
-var godzinki = _godzinki + wypozyczeniaWModal[i].koszt_planowany - wypozyczeniaWModal[i].obliczKoszt;
-console.log("godzinki = " + godzinki);
-/*
-var sciezka = db.doc("uzytkownicy/"+ getUserName());
-sciezka.set({
-godzinki : godzinki
-},{merge: true})
-sciezka = db.doc("wypozyczenia/"+ wypozyczeniaWModal[i].id);
-sciezka.set({
-data_zwrotu : _NOW.short,
-osoba_przyjmujaca : document.getElementById("in_magazynierzy").value,
-koszt_rzeczywisty : _kalkulatorKosztu(wypozyczeniaWModal[i].data_wydania,_NOW.short,sprzet),
-sprzet_fartuch : fartuch,
-sprzet_kajak : kajak,
-sprzet_kamizelka : kamizelka,
-sprzet_kask : kask,
-sprzet_wioslo : wioslo,
-uwagi :  wypozyczeniaWModal[i].uwagi + " | " +  _NOW.short + " " + getUserName() + "- '" +  TA + "'",
-status : "zwrocono/"+getUserName()
-},{merge: true})
-    .then(()=>{
-for(var j =0;j==0;j++){alert(komunikat)};
-    console.log("Wypozyczenie successfully written")
-    if(reload == true){
-        location.reload();
-    }
-    })
-    .catch(function(error) {
-        console.error("Error writing document: ", error);
-    });
-//*/
+    var TA = document.getElementById("TA"+Number(i+1)).value;
+    //console.log("TA value " + TA);
+    //sprzet
+    var L = 6;
+    //console.log("i " + i + " L " + L);
+    var fartuch = wypozyczeniaWModal[i].sprzet_fartuch + (CB[3+i*L].disabled ? "":(CB[3+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
+    var kajak = wypozyczeniaWModal[i].sprzet_kajak + (CB[1+i*L].disabled ? "":(CB[1+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
+    var kamizelka = wypozyczeniaWModal[i].sprzet_kamizelka + (CB[4+i*L].disabled ? "":(CB[4+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
+    var kask = wypozyczeniaWModal[i].sprzet_kask + (CB[5+i*L].disabled ? "":(CB[5+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
+    var wioslo = wypozyczeniaWModal[i].sprzet_wioslo + (CB[2+i*L].disabled ? "": (CB[2+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
+    //console.log("wioslo " + wioslo + " CB " );
+    var sprzet = new _Sprzet(fartuch,kajak,kamizelka,kask,wioslo);
+    var komunikat = "Zwrócono Sprzęt";
+    var reload = true;
+    console.log("_godzinki :" + _godzinki);
+    //wypozyczeniaWModal[i].koszt_planowany = 10;
+    console.log("user.godzinki -" + _godzinki + "-tabWypozyczenie[i].koszt_planowany -" + wypozyczeniaWModal[i].koszt_planowany + "-obliczkoszt-" + _Wypozyczenie.daj(wypozyczeniaWModal[i],"obliczKoszt"))
+    var godzinki = _godzinki + wypozyczeniaWModal[i].koszt_planowany - _Wypozyczenie.daj(wypozyczeniaWModal[i],"obliczKoszt");
+    console.log("godzinki = " + godzinki);
+    _godzinki = godzinki;
+    var sciezka = db.doc("uzytkownicy/"+ getUserName());
+    sciezka.set({
+    godzinki : godzinki
+    },{merge: true})
+    sciezka = db.doc("wypozyczenia/"+ wypozyczeniaWModal[i].id);
+    sciezka.set({
+    data_zwrotu : _NOW.short,
+    osoba_przyjmujaca : document.getElementById("in_magazynierzy").value,
+    koszt_rzeczywisty : _kalkulatorKosztu(wypozyczeniaWModal[i].data_wydania,_NOW.short,sprzet),
+    sprzet_fartuch : fartuch,
+    sprzet_kajak : kajak,
+    sprzet_kamizelka : kamizelka,
+    sprzet_kask : kask,
+    sprzet_wioslo : wioslo,
+    uwagi :  wypozyczeniaWModal[i].uwagi + " | " +  _NOW.short + " " + getUserName() + "- '" +  TA + "'",
+    status : "zwrocono/"+getUserName()
+    },{merge: true})
+        .then(()=>{
+    for(var j =0;j==0;j++){alert(komunikat)};
+        console.log("Wypozyczenie successfully written")
+        if(reload == true){
+            location.reload();
+        }
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+        });
+    //*/
 }
 }else{
 alert("musisz podać osobę która otworzyła magazyn");
