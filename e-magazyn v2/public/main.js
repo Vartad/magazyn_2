@@ -482,7 +482,7 @@ cell[j-argNb].innerHTML = arguments[j];
    inputType =i + ": <input type='radio'>";
       cell[j-argNb].innerHTML = inputType;
       cell[j-argNb].id = "radio"
-      //cell[j-argNb].class = arguments[j];
+      //cell[j-argNb].class = arguments[j]; ok
       //console.log("cell.class : "+ cell[j-argNb].class);
    }
    if(arguments[j].includes("Lp")){inputType = i;
