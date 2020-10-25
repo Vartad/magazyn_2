@@ -266,15 +266,29 @@ cell11.innerHTML = tablica[i].uwagi;
 }
 
 async function wyswietlWydanySprzet(resolve){
-
 console.log("Wydanysprzet ");
-const resultWydany = await wczytajDane(wypozyczeniaWydanySprzet,"wypozyczenia","osoba_wydajaca",getUserName())
+                         //_wczytajDane(converter,resolve,tablica,skad,kryterium,szukana,limit)
+const resultWydany = await _wczytajDane("data_wydania",wypozyczenieConverter,resolve,wypozyczeniaWydanySprzet,"wypozyczenia","osoba_wydajaca",getUserName(),99)
 console.log("resultWydany " + resultWydany);
 if(resultWydany == "resolved"){
 
 const tabela = document.getElementById("tabelaWydanych");
-
-wyswietlTabliceWTabeli(wypozyczeniaWydanySprzet,tabela)
+const headerRowWydany = document.getElementById("headerRowWydany");
+//_wyswietlTabliceWTabeli(headerRow,tablica,tabela,cbName)
+_wyswietlTabliceWTabeli(headerRowWydany,wypozyczeniaWydanySprzet,tabela,"",
+"radio",
+"data_wydania",
+"osoba_wydajaca",
+"sprzet_kajak",
+"sprzet_wioslo",
+"sprzet_fartuch",
+"sprzet_kamizelka",
+"sprzet_kask",
+"data_planowanegoZwrotu",
+"data_zwrotu",
+"status",
+"uwagi"
+)
 }
 
 //resolve('resolved');

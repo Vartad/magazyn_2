@@ -21,8 +21,8 @@ firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
   window.user = []; // potrzebne wczytywanie danych ktore zrzutuje na wybrany rodzaj obiektu
   var mail = getUserEmail();
-  _wczytajDane(userConverter,resolve,user,"uzytkownicy","Email",mail,1).then(()=>{
-//console.log("iserMail " + user[0].Email);
+  _wczytajDane("godzinki",userConverter,resolve,user,"uzytkownicy","Email",mail,1).then(()=>{
+console.log("iserMail " + user[0].Email);
 window._godzinki = user[0].godzinki;
   }
 )
@@ -34,7 +34,7 @@ window.tabHistoria =[];
 const szukana = "aktywne/" + getUserName();
 const headerRowAktywne = document.getElementById("headerRowAktywne");
 resolve('resolved')
-_wczytajDane(wypozyczenieConverter,resolve,tabWypozyczenie,"wypozyczenia","status",szukana,99).then(() => {
+_wczytajDane("data_wydania",wypozyczenieConverter,resolve,tabWypozyczenie,"wypozyczenia","status",szukana,99).then(() => {
 _wyswietlTabliceWTabeli(headerRowAktywne,tabWypozyczenie,tabelaAktywnychWypozyczen,"",
                         "checkBoxAktywne",
                         "data_wydania",
@@ -167,7 +167,7 @@ alert("musisz podać osobę która otworzyła magazyn");
 function Historia(){
 
 return new Promise(resolve => {
-_wczytajDane(wypozyczenieConverter,resolve,tabHistoria,"wypozyczenia","status","zwrocono/"+getUserName(),5).then(() => {
+_wczytajDane("data_zwrotu",wypozyczenieConverter,resolve,tabHistoria,"wypozyczenia","status","zwrocono/"+getUserName(),5).then(() => {
 _wyswietlTabliceWTabeli(headerRowHistoria,tabHistoria,tabelaHistoriaWypozyczen,"",
                         "Lp",
                         "data_wydania",

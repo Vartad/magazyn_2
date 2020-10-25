@@ -421,14 +421,15 @@ document.getElementById("loading").style.display = "none";
 }
 }
 
-function _wczytajDane(converter,resolve,tablica,skad,kryterium,szukana,limit){
+function _wczytajDane(segreguj,converter,resolve,tablica,skad,kryterium,szukana,limit){
 //console.log("converter = " + converter);
 return new Promise(czekaj => {
 var i = 0;
 //console.log("poszukiwany dokument : skad - " + skad + " kryterium - " + kryterium + " szukana - " + szukana  )
-const ref = db.collection(skad).where(kryterium,"==", szukana).limit(limit)// kolejne kryteria to po prostu .where()//
+const ref = db.collection(skad).where(kryterium,"==", szukana).limit(limit).orderBy(segreguj,"desc")// kolejne kryteria to po prostu .where()//
 .withConverter(converter)
-.get().then(function(querySelector) {
+.get()
+.then(function(querySelector) {
 querySelector.forEach(function(doc){
 if(doc.exists){
 tablica[i] = doc.data();
@@ -474,18 +475,25 @@ cell[j-argNb].innerHTML = arguments[j];
    if(arguments[j].includes("checkBox") || arguments[j].includes("radio") || arguments[j].includes("textArea") || arguments[j].includes("Lp") ){
    if(arguments[j].includes("checkBox")){
    inputType =i + ": <input type='checkBox'> ";
+      cell[j-argNb].innerHTML = inputType;
+      cell[j-argNb].class = arguments[j];
     }
    if(arguments[j].includes("radio")){
    inputType =i + ": <input type='radio'>";
+      cell[j-argNb].innerHTML = inputType;
+      //cell[j-argNb].class = arguments[j];
+      //console.log("cell.class : "+ cell[j-argNb].class);
    }
-   if(arguments[j].includes("Lp")){inputType = i; }
+   if(arguments[j].includes("Lp")){inputType = i;
+    cell[j-argNb].innerHTML = inputType;
+          cell[j-argNb].class = arguments[j];
+    }
    else{
    //console.log("nie rozpoznano typu input");
    }
   // console.log("arguments[j] " + arguments[j]  + " inputType " + inputType);
-   cell[j-argNb].innerHTML = inputType;
-   cell[j-argNb].class = arguments[j];
-  // console.log("ID : "+ cell[j-argNb].class);
+
+
 
    if(arguments[j].includes("textArea")){
      // console.log("textarea")
