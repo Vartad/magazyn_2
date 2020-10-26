@@ -425,6 +425,10 @@ function _wczytajDane(segreguj,converter,resolve,tablica,skad,kryterium,szukana,
 //console.log("converter = " + converter);
 return new Promise(czekaj => {
 var i = 0;
+//var liczbaElementowWtablicy = tablica.length;
+//if(liczbaElementowWtablicy == undefined){liczbaElementowWtablicy = 0};
+//i = liczbaElementowWtablicy + i;
+//console.log("liczbaElementowWtablicy " + liczbaElementowWtablicy)
 //console.log("poszukiwany dokument : skad - " + skad + " kryterium - " + kryterium + " szukana - " + szukana  )
 const ref = db.collection(skad).where(kryterium,"==", szukana).limit(limit).orderBy(segreguj,"desc")// kolejne kryteria to po prostu .where()//
 .withConverter(converter)
@@ -432,6 +436,7 @@ const ref = db.collection(skad).where(kryterium,"==", szukana).limit(limit).orde
 .then(function(querySelector) {
 querySelector.forEach(function(doc){
 if(doc.exists){
+
 tablica[i] = doc.data();
 tablica[i].id = doc.id;
 i += 1;
@@ -479,9 +484,9 @@ cell[j-argNb].innerHTML = arguments[j];
       cell[j-argNb].class = arguments[j];
     }
    if(arguments[j].includes("radio")){
-   inputType =i + ": <input type='radio'>";
+   inputType =i + ": <input type='radio' name='radioWydanySprzet'>";
       cell[j-argNb].innerHTML = inputType;
-      cell[j-argNb].id = "radio"
+      //cell[j-argNb].name = "radioWydanySprzet"
       //cell[j-argNb].class = arguments[j]; ok
       //console.log("cell.class : "+ cell[j-argNb].class);
    }
@@ -507,7 +512,6 @@ cell[j-argNb].innerHTML = arguments[j];
      // console.log("id NAME : "+ textArea.id)
      // cell[j-argNb].name
       }
-
    }else{
    if(arguments[3] != "" && arguments[j].includes("sprzet")){
    var checkbox = document.createElement("input");
@@ -522,7 +526,12 @@ cell[j-argNb].innerHTML = arguments[j];
         // cell[j-argNb].name = arguments[3] ;
         //console.log("id " + cell[j-argNb].id);
         }
+        if(arguments[j] == "status"){
+        var status = _Wypozyczenie.daj(tablica[i-1],arguments[j]).split('/')[0];
+        cell[j-argNb].innerHTML += " " + status;
+        }else{
         cell[j-argNb].innerHTML += " " + _Wypozyczenie.daj(tablica[i-1],arguments[j]);
+}
 }
 }
 

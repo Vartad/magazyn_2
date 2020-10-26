@@ -22,7 +22,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   window.user = []; // potrzebne wczytywanie danych ktore zrzutuje na wybrany rodzaj obiektu
   var mail = getUserEmail();
   _wczytajDane("godzinki",userConverter,resolve,user,"uzytkownicy","Email",mail,1).then(()=>{
-console.log("iserMail " + user[0].Email);
+console.log("userMail " + user[0].Email);
 window._godzinki = user[0].godzinki;
   }
 )
@@ -115,11 +115,11 @@ for(var i =0;i<wypozyczeniaWModal.length;i++){
     //sprzet
     var L = 6;
     //console.log("i " + i + " L " + L);
-    var fartuch = wypozyczeniaWModal[i].sprzet_fartuch + (CB[3+i*L].disabled ? "":(CB[3+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
-    var kajak = wypozyczeniaWModal[i].sprzet_kajak + (CB[1+i*L].disabled ? "":(CB[1+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
+    var fartuch = wypozyczeniaWModal[i].sprzet_fartuch + (CB[3+i*L].disabled ? "":(CB[3+i*L].checked ?"":"/NIEzwrócono"));
+    var kajak = wypozyczeniaWModal[i].sprzet_kajak + (CB[1+i*L].disabled ? "":(CB[1+i*L].checked ?"":"/NIEzwrócono"));
     var kamizelka = wypozyczeniaWModal[i].sprzet_kamizelka + (CB[4+i*L].disabled ? "":(CB[4+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
-    var kask = wypozyczeniaWModal[i].sprzet_kask + (CB[5+i*L].disabled ? "":(CB[5+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
-    var wioslo = wypozyczeniaWModal[i].sprzet_wioslo + (CB[2+i*L].disabled ? "": (CB[2+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
+    var kask = wypozyczeniaWModal[i].sprzet_kask + (CB[5+i*L].disabled ? "":(CB[5+i*L].checked ?"":"/NIEzwrócono"));
+    var wioslo = wypozyczeniaWModal[i].sprzet_wioslo + (CB[2+i*L].disabled ? "": (CB[2+i*L].checked ?"":"/NIEzwrócono"));
     //console.log("wioslo " + wioslo + " CB " );
     var sprzet = new _Sprzet(fartuch,kajak,kamizelka,kask,wioslo);
     var komunikat = "Zwrócono Sprzęt";
@@ -165,9 +165,35 @@ alert("musisz podać osobę która otworzyła magazyn");
 }
 
 function Historia(){
-
+//tabelaHistoriaWypozyczen.getElementsByTagName("tbody")[0].innerHTML = tabelaHistoriaWypozyczen.rows[0].innerHTML;
 return new Promise(resolve => {
-_wczytajDane("data_zwrotu",wypozyczenieConverter,resolve,tabHistoria,"wypozyczenia","status","zwrocono/"+getUserName(),5).then(() => {
+var tabZamkniete = [];
+var tabZwrocono = [];
+var i =5;
+tabHistoria = tabZamkniete;
+_wczytajDane("data_zwrotu",wypozyczenieConverter,resolve,tabZwrocono,"wypozyczenia","status","zwrocono/"+getUserName(),5).then(() => {
+console.log(tabZwrocono)
+i =5- tabZwrocono.length ;
+console.log(" i w Historii " + i);
+_wyswietlTabliceWTabeli(headerRowHistoria,tabZwrocono,tabelaHistoriaWypozyczen,"",
+                        "Lp",
+                        "data_wydania",
+                        "osoba_wydajaca",
+                        "sprzet_kajak",
+                        "sprzet_wioslo",
+                        "sprzet_fartuch",
+                        "sprzet_kamizelka",
+                        "sprzet_kask",
+                        "data_zwrotu",
+                        "osoba_przyjmujaca",
+                        "koszt_rzeczywisty",
+                        "status",
+                        "uwagi"
+                        );
+ })
+_wczytajDane("data_zwrotu",wypozyczenieConverter,resolve,tabZamkniete,"wypozyczenia","status","zamkniete/"+getUserName(),i).then(() => {
+tabHistoria = tabZamkniete.concat(tabZwrocono);
+console.log(tabHistoria);
 _wyswietlTabliceWTabeli(headerRowHistoria,tabHistoria,tabelaHistoriaWypozyczen,"",
                         "Lp",
                         "data_wydania",
@@ -184,7 +210,9 @@ _wyswietlTabliceWTabeli(headerRowHistoria,tabHistoria,tabelaHistoriaWypozyczen,"
                         "uwagi"
                         );
 });
-})
+
+i=0;
+});
 }
 //^^NOWA WERSJA^^
 /*

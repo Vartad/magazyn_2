@@ -44,7 +44,7 @@ resolve('resolved');
 });
 
 }
-
+/*
 var obiektWczytywany = {
 id : "",
 data_planowanegoZwrotu : "",
@@ -195,9 +195,10 @@ fromFirestore: function(snapshot, options){
         data.uwagi)
     }
 }
+*/
 window.wypozyczeniaWydanySprzet =[];
 window.wypozyczeniaOdebranySprzet = [];
-
+/*
 function wczytajDane(tablica,skad,kryterium,szukana){
 return new Promise(czekaj => {
 
@@ -264,14 +265,12 @@ cell10.innerHTML = tablica[i].stat;
 cell11.innerHTML = tablica[i].uwagi;
 }
 }
-
+*/
 async function wyswietlWydanySprzet(resolve){
 console.log("Wydanysprzet ");
-                         //_wczytajDane(converter,resolve,tablica,skad,kryterium,szukana,limit)
 const resultWydany = await _wczytajDane("data_wydania",wypozyczenieConverter,resolve,wypozyczeniaWydanySprzet,"wypozyczenia","osoba_wydajaca",getUserName(),99)
 console.log("resultWydany " + resultWydany);
 if(resultWydany == "resolved"){
-
 const tabela = document.getElementById("tabelaWydanych");
 const headerRowWydany = document.getElementById("headerRowWydany");
 //_wyswietlTabliceWTabeli(headerRow,tablica,tabela,cbName)
@@ -290,22 +289,31 @@ _wyswietlTabliceWTabeli(headerRowWydany,wypozyczeniaWydanySprzet,tabela,"",
 "uwagi"
 )
 }
-
-//resolve('resolved');
-
 }
 
 async function wyswietlOdebranySprzet(resolve){
 console.log("odebranysprzet ");
-
-const resultOdebrany = await wczytajDane(wypozyczeniaOdebranySprzet,"wypozyczenia","osoba_przyjmujaca",getUserName())
-
+                         //_wczytajDane("data_wydania",wypozyczenieConverter,resolve,wypozyczeniaWydanySprzet,"wypozyczenia","osoba_wydajaca",getUserName(),99)
+const resultOdebrany = await _wczytajDane("data_zwrotu",wypozyczenieConverter,resolve,wypozyczeniaOdebranySprzet,"wypozyczenia","osoba_przyjmujaca",getUserName(),99);
 console.log("resultOdebrany " + resultOdebrany);
 if(resultOdebrany == "resolved"){
 const tabela = document.getElementById("tabelaPrzyjetych");
-
-wyswietlTabliceWTabeli(wypozyczeniaOdebranySprzet,tabela)
-console.log("tablica " + wypozyczeniaOdebranySprzet.koszt_dzien)
+const headerRowZwrocony = document.getElementById("headerRowZwrocony");
+_wyswietlTabliceWTabeli(headerRowZwrocony,wypozyczeniaOdebranySprzet,tabela,"",
+"radio",
+"data_wydania",
+"osoba_wydajaca",
+"sprzet_kajak",
+"sprzet_wioslo",
+"sprzet_fartuch",
+"sprzet_kamizelka",
+"sprzet_kask",
+"data_planowanegoZwrotu",
+"data_zwrotu",
+"status",
+"uwagi"
+)
+//console.log("tablica " + wypozyczeniaOdebranySprzet.koszt_dzien)
 }
 resolve('resolved');
 }
@@ -316,11 +324,7 @@ resolve('resolved');
 function modal(tablica){
 var modal = document.getElementById("modal");
 modal.style.display="block";
-
-
-// Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
-// When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   modal.style.display = "none";
   // When the user clicks anywhere outside of the modal, close it
@@ -330,6 +334,7 @@ span.onclick = function() {
     }
 }
 }
+
 window._wybranaTablica
 if(tablica == "wypozyczeniaWydanySprzet"){
 tablica = wypozyczeniaWydanySprzet;
@@ -345,32 +350,37 @@ console.log("wybrano tablice odebranego sprzetu");
 
 for(var i=1;i<dane.length;i++){
 if(dane[i].checked == true){
-console.log(dane[i].checked)
+//console.log(dane[i].checked)
 window.wybraneRadio = i;
 console.log("wybraneRadio = " + wybraneRadio)
-window.wybraneID = tablica[i].id;
+window.wybraneID = tablica[i-1].id; //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 }
-console.log(i + " " + dane[i].checked + " id : "+ tablica[i].id);
+//console.log(i + " " + dane[i].checked + " id : "+ tablica[i].id);
 }
 
 wypelnijFormEdycji(tablica)
 } //modal
 
 function zatwierdz(radio,tablica,komunikat){
+komunikat =+ "/" + getUserName();
 if(tablica == "wypozyczeniaWydanySprzet"){
 tablica = wypozyczeniaWydanySprzet;
 var dane = document.forms[0]; // pobiera pierwszy z formsow na stronie
-}else{
+console.log(dane);
+}
+else{
 tablica = wypozyczeniaOdebranySprzet;
 var dane = document.forms[1]; // pobiera pierwszy z formsow na stronie
 }
 
 for(var i=1;i<dane.length;i++){
 if(dane[i].checked == true){
-console.log(dane[i].checked)
-var wybraneID = tablica[i].id;
+console.log(" i : " + i + " checked : " + dane[i].checked);
+console.log("tablica " + tablica);
+var wybraneID = tablica[i-1].id;
+var iWybrane = i-1;
 }
-console.log(i + " " + dane[i].checked + " id : "+ tablica[i].id);
+//console.log(i + " " + dane[i].checked + " id : "+ tablica[i].id);
 }
 
 if(tablica == wypozyczeniaWydanySprzet){
@@ -379,19 +389,16 @@ var osoba_wydajaca = getUserName() + "/" + komunikat;
 ref = "wypozyczenia/" + wybraneID;
   var Sciezka = db.doc(ref);
   Sciezka.set({
-
 osoba_wydajaca : osoba_wydajaca
-
   },{merge: true});
 }else{
 var osoba_przyjmujaca = getUserName() + "/" + komunikat;
 ref = "wypozyczenia/" + wybraneID;
   var Sciezka = db.doc(ref);
+  var status = "zamkniete/" + tablica[iWybrane].osoba_wypozyczajaca;
   Sciezka.set({
-
 osoba_przyjmujaca : osoba_przyjmujaca,
-status : "zamkniete"
-
+status : status
   },{merge: true});
   var aktywneWypozyczenia = Number(sessionStorage.getItem("aktywneWypozyczenia")) -1;
   ref = "uzytkownicy/" + getUserName();
@@ -402,8 +409,6 @@ status : "zamkniete"
 
       },{merge: true});
 }
-
-
 
 }
 
@@ -512,8 +517,8 @@ var koszt_planowany = document.getElementById("koszt_planowany");
 var koszt_rzeczywisty = document.getElementById("koszt_rzeczywisty");
 var status = document.getElementById("status");
 var uwagi = document.getElementById("uwagi");
- var i = wybraneRadio;
- console.log("wybrane radio = " + wybraneRadio)
+ var i = wybraneRadio -1;
+ console.log("wybrane radio = " + wybraneRadio + " i : " + i);
 osoba_wypozyczajaca.value = tablica[i].osoba_wypozyczajaca;
 osoba_wydajaca.value = tablica[i].osoba_wydajaca;
 osoba_przyjmujaca.value = tablica[i].osoba_przyjmujaca;
