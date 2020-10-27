@@ -47,6 +47,36 @@ function isUserSignedIn() { return !!firebase.auth().currentUser; }// Returns tr
 
 //^^ FIREBASE SETUP AND BASIC FUNCTIONS^^
 
+function _navBar(dostep){
+console.log("dostep : " + dostep);
+var btnWidth;
+const navBarBtns = document.querySelectorAll(".navBarBtn");
+switch(dostep){
+case "admin" :
+btnWidth=100/7+"%";
+break;
+case "user" :
+btnWidth=100/6+"%";
+document.getElementById("dropDown").style.display = "none";
+break;
+default:
+ {
+document.getElementById("page").style.display = "none"
+ alert("Nie posiadasz żadnych praw");
+ }
+}
+
+navBarBtns.forEach(element =>{
+element.style.width = btnWidth;
+})
+document.getElementById("dropDown").style.width = btnWidth;
+if(dostep == "admin"){
+//document.getElementById("btn_rozpatrzWypozyczenia").style.display = "block";
+}else{
+//document.getElementById("btn_rozpatrzWypozyczenia").style.display = "none";
+}
+}
+
   var _today = new Date().toISOString().split('T')[0];
 
 function mainNOW(){
@@ -397,6 +427,7 @@ if ( result == "resolved"){
 //console.log("zaladowano");
 document.getElementById("page").style.display = "block";
 document.getElementById("loading").style.display = "none";
+_navBar(sessionStorage.getItem("dostep"));
 }
 }
 

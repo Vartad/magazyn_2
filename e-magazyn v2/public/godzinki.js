@@ -37,7 +37,7 @@ var username = getUserName()
     var opis = document.getElementById("ta").value;
     var godzinki_wnioskowane = document.getElementById("godzinkiIleChce").value;
     var status = "rozpatrywane";
-    var ref = "godzinkiWnioski/" + _NOW.long + "-" + username;
+    var ref = "godzinkiWnioski/" + _NOW.long + "-" + getUserName();
     //ZAPIS
     if(data_wykonania != "" && osoba_pomagana !="" && opis !="" && godzinki_wnioskowane !=""){
     var sciezka = db.doc(ref);

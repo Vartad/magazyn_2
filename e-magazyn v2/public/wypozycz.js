@@ -1,5 +1,6 @@
 
 function zaladujStrone(){
+
 var user = firebase.auth().currentUser;
   var datepicker = document.getElementsByName("dataOddania")[0].setAttribute('min', _today); //Finding today's date and setting min value of datepicker
 //KAJAKI DATALIST
@@ -26,7 +27,6 @@ wypelnij(dl_kamizelki,in_kamizelki,'Docs/kamizelki.json',"kamizelkę");
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-document.getElementById("user-name").innerHTML=firebase.auth().currentUser.displayName;
    console.log("user-name is : " + firebase.auth().currentUser.displayName);
    resolve('resolved');
   } else {

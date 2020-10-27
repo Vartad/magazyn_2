@@ -7,7 +7,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="Styles/WebApp.css">
-
     <style>
         #page{
             display: none;
@@ -19,28 +18,30 @@
 </head>
 <body onload="zaladuj()">
 <div id="page">
-<div id="user-container">
-    <div  id="user-pic"></div>
+<div >
+    <h2  align="center">Bystrzacki <strong>e-Magazyn</strong></h2>
 </div>
-<div class="w3-container">
-    <h2 class="w3-container" align="center">Bystrzacki <strong>e-Magazyn</strong></h2>
-    <div id="user-name">Imie</div>
-</div>
-<div class="w3-container">
-<div class=" w3-bar w3-border w3-deep-orange w3-center w3-round-xlarge ">
-    <a onclick="signOut()" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-hover-red">wyloguj</a>
-    <a href="konto.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-orange w3-hover-red">Konto</a>
-    <a id="opcjaWypozycz" href="wypozycz.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-hover-red">Wypożycz</a>
-    <a href="zwrot.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-hover-red">Zwróć</a>
-    <a href="godzinki.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-hover-red">Godzinki</a>
-</div>
-    <div>
-        <a calss="button" id="btn_rozpatrzWypozyczenia" href="rozpatrzWypozyczenia.html">Rozpatrz Wypozyczenia</a>
+<div class="navbar">
+    <a id="opcjaKonto" href="konto.html"  class="navBarBtn w3-bar-item w3-button w3-mobile w3-orange w3-hover-red">Konto</a>
+    <a id="opcjaWypozycz" href="wypozycz.html"  class="navBarBtn w3-bar-item w3-button w3-mobile w3-hover-red">Wypożycz</a>
+    <a id="opcjaRezerwacja" target="_blank" href="https://docs.google.com/spreadsheets/d/1_PhfUOBNW1CjLIheRXXEgTOnw0ubzfOh0v9GTYtbeRc/edit#gid=460417102" class="navBarBtn w3-bar-item w3-button w3-mobile w3-hover-red">Rezerwuj</a>
+    <a id="opcjaZwrot" href="zwrot.html"  class="navBarBtn w3-bar-item w3-button w3-mobile w3-hover-red">Zwróć</a>
+    <a id="opcjaGodzinki" href="godzinki.html" class="navBarBtn w3-bar-item w3-button w3-mobile w3-hover-red">Godzinki</a>
+    <a id="opcjaWyloguj" onclick="signOut()" class="navBarBtn w3-bar-item w3-button w3-mobile w3-hover-red" >wyloguj</a>
+    <div id="dropDown" class="navBarBtn dropdown w3-bar-item w3-button w3-mobile w3-hover-red">
+        <href class="dropbtn w3-bar-item w3-button w3-mobile w3-hover-red" >Więcej
+            <i class="fa fa-caret-down"></i>
+        </href>
+        <div class="dropdown-content">
+            <a id="opcjaRozpatrzWypozyczenia" href="rozpatrzWypozyczenia.html">Rozpatrz wypozyczenia</a>
+            <a id="opcjaRozpatrzGodzinki"  href="rozpatrzGodzinki.html">Rozpatrz godzinki</a>
+        </div>
     </div>
+</div>
     <p calss="uwaga" id="skladka"><strong>Masz nieopłaconą składkę, nie możesz wypożyczać sprzętu dopóki jej nie opłacisz.</strong></p>
 
     <p class="w3-container">masz <span id="liczbaGodzinek">ND</span> godzinek</p>
-<p class="w3-container">Zgłoś błąd aplikacji, klub otwarty, rezerwacja kajkow, link do strony</p>
+<p class="w3-container">Zgłoś błąd aplikacji, klub otwarty</p>
     <div class="w3-deep-orange w3-container w3-round-xlarge">
         <p align="right">V.1.0.0</p>
     </div>

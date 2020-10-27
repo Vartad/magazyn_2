@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        #page{
+            display: none;
+        }
+        #loading{
+            display: block;
+        }
+    </style>
+
     <meta charset="UTF-8">
     <title>e-magazyn/Wypożyczenie</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -8,42 +17,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="Styles/WebApp.css">
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="Styles/WebApp.css">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
 </head>
 <body onload="zaladuj()">
 <div id="page">
 
-
 <h2 align="center">Bystrzacki<strong> e-Magazyn</strong></h2>
-<a id="user-name">Imie</a>
-    <div class="w3-container">
-        <div class="w3-bar w3-border w3-deep-orange w3-center w3-round-xlarge">
-            <a onclick="signOut()" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-hover-red">wyloguj</a>
-            <a href="konto.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-hover-red">Konto</a>
-            <a href="wypozycz.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-orange w3-hover-red">Wypożycz</a>
-            <a href="zwrot.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-hover-red">Zwróć</a>
-            <a href="godzinki.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-hover-red">Godzinki</a>
+        <div class="navbar">
+            <a id="opcjaKonto" href="konto.html"  class="navBarBtn w3-bar-item w3-button w3-mobile w3-hover-red">Konto</a>
+            <a id="opcjaWypozycz" href="wypozycz.html"  class="navBarBtn w3-bar-item w3-button w3-mobile w3-hover-red">Wypożycz</a>
+            <a id="opcjaRezerwacja" target="_blank" href="https://docs.google.com/spreadsheets/d/1_PhfUOBNW1CjLIheRXXEgTOnw0ubzfOh0v9GTYtbeRc/edit#gid=460417102" class="navBarBtn w3-bar-item w3-button w3-mobile w3-hover-red">Rezerwuj</a>
+            <a id="opcjaZwrot" href="zwrot.html"  class="navBarBtn w3-bar-item w3-button w3-mobile w3-hover-red">Zwróć</a>
+            <a id="opcjaGodzinki" href="godzinki.html" class="navBarBtn w3-bar-item w3-button w3-mobile w3-hover-red">Godzinki</a>
+            <a id="opcjaWyloguj" onclick="signOut()" class="navBarBtn w3-bar-item w3-button w3-mobile w3-hover-red" >wyloguj</a>
+            <div id="dropDown" class="navBarBtn dropdown w3-bar-item w3-button w3-mobile w3-hover-red">
+                <href class="dropbtn w3-bar-item w3-button w3-mobile w3-hover-red" >Więcej
+                    <i class="fa fa-caret-down"></i>
+                </href>
+                <div class="dropdown-content">
+                    <a id="opcjaRozpatrzWypozyczenia" href="rozpatrzWypozyczenia.html">Rozpatrz wypozyczenia</a>
+                    <a id="opcjaRozpatrzGodzinki"  href="rozpatrzGodzinki.html">Rozpatrz godzinki</a>
+                </div>
+            </div>
         </div>
         <br>
-        <br>
-<table class="table table-hover" id="tabelaWypozyczen">
     <form class method="post" id="form_wybierzSprzet" action="">
         <fieldset>
             <legend>Wybierz sprzęt :</legend>
-    <tr>
+            <table class="table table-hover" id="tabelaWypozyczen">
+            <tr>
         <th>
             <label>Osoba wydająca sprzęt : </label>
         </th>
@@ -115,7 +116,6 @@
         <div class="w3-deep-orange w3-container w3-round-xlarge">
             <p align="right">V.1.12.16</p>
         </div> <!-- stopka -->
-    </div>
 
 
  <!-- modal --><div id="modal" class="modal">

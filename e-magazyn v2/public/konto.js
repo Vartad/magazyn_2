@@ -33,14 +33,14 @@ alert("Nie masz jeszcze dostepu do aplikacji, prosba o utworzenie konta zostala 
 signOut();
 resolve('unresolved');
 }else{
-pokazOpcje(sessionStorage.getItem("dostep"))
+//_navBar(sessionStorage.getItem("dostep"))
 if(skladka != "oplacona"){
 document.getElementById("skladka").style.display = "block";
 }else{
 document.getElementById("skladka").style.display = "none";
 }
 }
-sessionStorage.setItem("godzinki",godzinki);
+//sessionStorage.setItem("godzinki",godzinki);
 var liczbaGodzinek = document.getElementById("liczbaGodzinek").innerHTML = godzinki;
 resolve('resolved');
 });//forEach
@@ -58,14 +58,5 @@ resolve('resolved');
 
 });
 
-}
-
-function pokazOpcje(dostep){
-console.log("dostep : " + dostep);
-if(dostep == "admin"){
-document.getElementById("btn_rozpatrzWypozyczenia").style.display = "block";
-}else{
-document.getElementById("btn_rozpatrzWypozyczenia").style.display = "none";
-}
 }
 
