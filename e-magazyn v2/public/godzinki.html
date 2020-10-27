@@ -42,31 +42,6 @@
     <a href="godzinki.html" style="width:20%" class="w3-bar-item w3-button w3-mobile w3-orange w3-hover-red">Godzinki</a>
 
 </div>
-
-        <form class method="post" action="">
-                <div align="center">
-                    <label>Wnioski rozpatrywane : </label><br>
-                    <table class="table table-hover" id="tabelaRozpatrywanychWnioskow">
-                        <thead>
-                        <tr>
-                            <th>Lp.</th>
-                            <th>Data złożenia</th>
-                            <th>Data wykonania</th>
-                            <th>Os. rozpatrująca</th>
-                            <th>Opis</th>
-                            <th>Godzinki</th>
-                            <th>Status</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-        </form>
-    <br>
-
     <form class method="post" action="">
         <fieldset>
             <div align="center">
@@ -96,6 +71,31 @@
         </fieldset>
     </form>
     <button class="button" onclick="wyslijWniosek()" id="btnWyslijWniosek">Wyslij</button>
+    <button class="button" onclick="historia()" id="btnHistoria">Pokaż historię</button>
+
+    <br>
+        <form class method="post" action="">
+                <div align="center">
+                    <label>Wnioski rozpatrywane, ostatnie 6 : </label><br>
+                    <table class="table table-hover" id="tabelaRozpatrywanychWnioskow">
+                        <thead id="headerRowHistoria">
+                        <tr>
+                            <th>Lp.</th>
+                            <th>Data złożenia</th>
+                            <th>Data wykonania</th>
+                            <th>Os. rozpatrująca</th>
+                            <th>Opis</th>
+                            <th>Godzinki</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </form>
 
 </div>
 

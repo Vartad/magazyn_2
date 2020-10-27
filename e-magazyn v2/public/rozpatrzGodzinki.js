@@ -84,8 +84,6 @@ console.log('pozdro')
 
 }
 
-
-
 function zaladuj(){
 document.getElementById("page").style.display = "none";
 document.getElementById("loading").style.display = "block";

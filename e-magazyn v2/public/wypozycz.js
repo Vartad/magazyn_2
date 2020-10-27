@@ -145,7 +145,6 @@ var sciezka = db.doc("wypozyczenia/"+ getUserName() +" "+ _NOW.long);
 
 }catch(error){
 console.error(error);
-
 }//        ***zapis wypozyczenia do chmury***
 
 

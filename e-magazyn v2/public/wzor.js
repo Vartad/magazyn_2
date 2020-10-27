@@ -27,8 +27,6 @@ console.log('pozdro')
 
 }
 
-
-
 function zaladuj(){
 document.getElementById("page").style.display = "none";
 document.getElementById("loading").style.display = "block";
@@ -43,3 +41,13 @@ document.getElementById("page").style.display = "block";
 document.getElementById("loading").style.display = "none";
 }
 }
+
+function zapis(){
+if(sessionStorage.getItem("godzinki") - wypozyczenie.koszt_planowany >= 0){
+
+
+}
+
+.catch(function(error){
+  console.log("bład podczas wczytywania dokumentu " + error)
+  });//forEach;//then

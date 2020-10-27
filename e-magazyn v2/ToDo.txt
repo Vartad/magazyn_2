@@ -27,8 +27,9 @@
 
 
 - TERAZ
-    - nie dziala radio button przy sprawdzaniu oddanego sprzetu
-
+    - jezeli zostana zmienione daty podczas edycji to powinny byc przeliczone koszty!
+    - po edycji wypozyczenia powinny byc sprawdzane pozostale informacje czy sa poprawne
+    - nie dziala poprawnie przycisk edycji
     - poprawic CSS wyswietlania tabel na telefonie
     - poprawic scroll przy wypozyczeniu
     -strona rozpatrywania godzinek

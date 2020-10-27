@@ -35,7 +35,7 @@ const szukana = "aktywne/" + getUserName();
 const headerRowAktywne = document.getElementById("headerRowAktywne");
 resolve('resolved')
 _wczytajDane("data_wydania",wypozyczenieConverter,resolve,tabWypozyczenie,"wypozyczenia","status",szukana,99).then(() => {
-_wyswietlTabliceWTabeli(headerRowAktywne,tabWypozyczenie,tabelaAktywnychWypozyczen,"",
+_wyswietlTabliceWTabeli(_Wypozyczenie,headerRowAktywne,tabWypozyczenie,tabelaAktywnychWypozyczen,"",
                         "checkBoxAktywne",
                         "data_wydania",
                         "osoba_wydajaca",
@@ -68,7 +68,7 @@ var tabelaModal = document.getElementById("tabelaZwrotuModal");
 var modal = document.getElementById("modalZwrot");
 window.wypozyczeniaWModal = _zaznaczoneZPodanegoForms(0,tabWypozyczenie);
 
-_wyswietlTabliceWTabeli(headerRowModal,wypozyczeniaWModal,tabelaModal,"Modal",
+_wyswietlTabliceWTabeli(_Wypozyczenie,headerRowModal,wypozyczeniaWModal,tabelaModal,"Modal",
                         //"checkBoxAktywne",
                         //"data_wydania",
                         //"osoba_wydajaca",
@@ -130,6 +130,7 @@ for(var i =0;i<wypozyczeniaWModal.length;i++){
     var godzinki = _godzinki + wypozyczeniaWModal[i].koszt_planowany - _Wypozyczenie.daj(wypozyczeniaWModal[i],"obliczKoszt");
     console.log("godzinki = " + godzinki);
     _godzinki = godzinki;
+    //ZAPIS
     var sciezka = db.doc("uzytkownicy/"+ getUserName());
     sciezka.set({
     godzinki : godzinki
@@ -172,10 +173,10 @@ var tabZwrocono = [];
 var i =5;
 tabHistoria = tabZamkniete;
 _wczytajDane("data_zwrotu",wypozyczenieConverter,resolve,tabZwrocono,"wypozyczenia","status","zwrocono/"+getUserName(),5).then(() => {
-console.log(tabZwrocono)
+//console.log(tabZwrocono)
 i =5- tabZwrocono.length ;
-console.log(" i w Historii " + i);
-_wyswietlTabliceWTabeli(headerRowHistoria,tabZwrocono,tabelaHistoriaWypozyczen,"",
+//console.log(" i w Historii " + i);
+_wyswietlTabliceWTabeli(_Wypozyczenie,headerRowHistoria,tabZwrocono,tabelaHistoriaWypozyczen,"",
                         "Lp",
                         "data_wydania",
                         "osoba_wydajaca",
@@ -190,11 +191,11 @@ _wyswietlTabliceWTabeli(headerRowHistoria,tabZwrocono,tabelaHistoriaWypozyczen,"
                         "status",
                         "uwagi"
                         );
- })
+ }).then(() => {
 _wczytajDane("data_zwrotu",wypozyczenieConverter,resolve,tabZamkniete,"wypozyczenia","status","zamkniete/"+getUserName(),i).then(() => {
 tabHistoria = tabZamkniete.concat(tabZwrocono);
-console.log(tabHistoria);
-_wyswietlTabliceWTabeli(headerRowHistoria,tabHistoria,tabelaHistoriaWypozyczen,"",
+//console.log(tabHistoria);
+_wyswietlTabliceWTabeli(_Wypozyczenie,headerRowHistoria,tabHistoria,tabelaHistoriaWypozyczen,"",
                         "Lp",
                         "data_wydania",
                         "osoba_wydajaca",
@@ -210,8 +211,7 @@ _wyswietlTabliceWTabeli(headerRowHistoria,tabHistoria,tabelaHistoriaWypozyczen,"
                         "uwagi"
                         );
 });
-
-i=0;
+});
 });
 }
 //^^NOWA WERSJA^^
