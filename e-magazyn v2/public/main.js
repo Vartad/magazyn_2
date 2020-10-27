@@ -47,6 +47,26 @@ function isUserSignedIn() { return !!firebase.auth().currentUser; }// Returns tr
 
 //^^ FIREBASE SETUP AND BASIC FUNCTIONS^^
 
+function zaladuj(){
+document.getElementById("page").style.display = "none";
+document.getElementById("loading").style.display = "block";
+loading();
+}
+
+async function loading (){
+
+const result = await zaladujStrone();
+//console.log('loading result :' + result);
+if ( result == "resolved"){
+//console.log("zaladowano");
+document.getElementById("page").style.display = "block";
+document.getElementById("loading").style.display = "none";
+
+_navBar(sessionStorage.getItem("dostep"));
+
+}
+}
+
 function _navBar(dostep){
 console.log("dostep : " + dostep);
 var btnWidth;
@@ -62,7 +82,8 @@ break;
 default:
  {
 document.getElementById("page").style.display = "none"
- alert("Nie posiadasz żadnych praw");
+ alert("jesteś niezalogowany");
+ document.location.href=("index.html")
  }
 }
 
@@ -410,24 +431,6 @@ if(cos== undefined) {
 return cos = "";
 }else{
 return cos;
-}
-}
-
-function zaladuj(){
-document.getElementById("page").style.display = "none";
-document.getElementById("loading").style.display = "block";
-loading();
-}
-
-async function loading (){
-
-const result = await zaladujStrone();
-//console.log('loading result :' + result);
-if ( result == "resolved"){
-//console.log("zaladowano");
-document.getElementById("page").style.display = "block";
-document.getElementById("loading").style.display = "none";
-_navBar(sessionStorage.getItem("dostep"));
 }
 }
 

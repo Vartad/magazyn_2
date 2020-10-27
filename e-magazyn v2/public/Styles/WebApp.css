@@ -147,6 +147,23 @@ border-radius: 16px;
 }
 
 .navBarBtn{
+}
+
+.stopka{
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.table{
 
 }
 
+.table-hover{
+
+}
+/*
+tr td:hover {#f2f2f2:; #C0C0C0:;} * Highlights row**/
+
+tr:hover {background-color:#000; color:#ff0000;} <!-- row hover podswietlenie tekstu,
+tr td:hover {background-color:#CCC; color:#fff;}  <!-- individual cell hover
