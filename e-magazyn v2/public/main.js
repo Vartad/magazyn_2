@@ -480,11 +480,11 @@ tabela.appendChild(headerRow);
 //console.log("liczbaWierszy : " + tabela.rows.length)
 for(var i=1;i<=tablica.length;i++ ){ //petla wierszy
  row = tabela.insertRow();
-for(var j=0;j<=arguments.length-3;j++){ //petla dodajaca kolumny
+for(var j=0;j<=arguments.length-argNb-1;j++){ //petla dodajaca kolumny
 cell[j]  = row.insertCell();
 } //petla dodajaca kolumny
 //console.log("wiersz : " + i);
-
+var liczbaKolumn;
 for( var j=argNb;j<arguments.length;j++){ //petla kolumn
 //console.log("kolumna : " + j);
 if(typeof arguments[j] == "number"){
@@ -508,7 +508,7 @@ cell[j-argNb].innerHTML = arguments[j];
           cell[j-argNb].class = arguments[j];
     }
    else{
-   //console.log("nie rozpoznano typu input");
+   console.log("nie rozpoznano typu input");
    }
   // console.log("arguments[j] " + arguments[j]  + " inputType " + inputType);
    if(arguments[j].includes("textArea")){

@@ -45,66 +45,66 @@
             <legend>Wybierz sprzęt :</legend>
             <table class="table table-hover" id="tabelaWypozyczen">
             <tr>
-        <th>
+        <td>
             <label>Osoba wydająca sprzęt : </label>
-        </th>
-        <th>
+        </td>
+        <td>
             <input list="dl_magazynierzy" id="in_magazynierzy">
             <datalist id="dl_magazynierzy"></datalist>
-        </th>
+        </td>
     </tr>
             <tr>
-            <th><label>Kajak : </label>
-            </th>
-            <th>
+            <td><label>Kajak : </label>
+            </td>
+            <td>
                 <input type="text" list="dl_kajaki" id="in_kajaki" placeholder="kajaki">
                 <datalist id="dl_kajaki"></datalist>
-            </th>
+            </td>
             </tr>
             <tr>
-            <th>
+            <td>
                 <label>Wiosło : </label>
-            </th>
-            <th>
+            </td>
+            <td>
                 <input type="text" list="dl_wiosla" id="in_wiosla" placeholder="wiosla">
                 <datalist id="dl_wiosla"></datalist>
-            </th>
+            </td>
             </tr>
             <tr>
-            <th>
+            <td>
                 <label>Kask : </label>
-            </th>
-            <th>
+            </td>
+            <td>
                 <input list="dl_kaski" id="in_kaski">
                 <datalist id="dl_kaski"></datalist>
-            </th>
+            </td>
             </tr>
             <tr>
-            <th>
+            <td>
                 <label>Fartuch : </label>
-            </th>
-            <th>
+            </td>
+            <td>
                 <input list="dl_fartuchy" id="in_fartuchy">
                 <datalist id="dl_fartuchy">
                 </datalist>
-            </th>
+            </td>
             </tr>
             <tr>
-            <th>
+            <td>
                 <label>Kamizelka : </label>
-            </th>
-            <th>
+            </td>
+            <td>
                 <input list="dl_kamizelki" id="in_kamizelki">
                 <datalist id="dl_kamizelki"></datalist>
-            </th>
+            </td>
             </tr>
             <tr>
-                <th>
+                <td>
                     <label for="data_planowanegoOddania">Planowany zwrot sprzętu :</label>
-                </th>
-                <th>
+                </td>
+                <td>
                     <input type="date" id="data_planowanegoOddania" name="dataOddania"></input>
-                </th>
+                </td>
             </tr>
 </table>
             </fieldset>
@@ -125,48 +125,50 @@
                 <p align="center">Czy chcesz wypożyczyć poniższy sprzęt?</p>
                 <table class="table table-hover" id="tabelaSprawdzian">
                     <tr>
-                        <th>Osoba wydająca sprzęt :</th>
-                        <th><a id="wybranyMagazynier"></a></th>
+                        <td>Osoba wydająca sprzęt :</td>
+                        <td><a id="wybranyMagazynier"></a></td>
                     </tr>
                     <tr>
-                        <th><a>Kajak : </a></th>
-                        <th><a id="wybranyKajak" ></a></th>
+                        <td><a>Kajak : </a></td>
+                        <td><a id="wybranyKajak" ></a></td>
                     </tr>
                     <tr>
-                        <th><a>Wiosło :</a></th>
-                        <th><a id="wybraneWioslo"></a></th>
+                        <td><a>Wiosło :</a></td>
+                        <td><a id="wybraneWioslo"></a></td>
                     </tr>
                     <tr>
-                        <th><a>Kask :</a></th>
-                        <th><a id="wybranyKask"></a></th>
+                        <td><a>Kask :</a></td>
+                        <td><a id="wybranyKask"></a></td>
                     </tr>
                     <tr>
-                        <th><a>Fartuch :</a></th>
-                        <th><a id="wybranyFartuch"></a></th>
+                        <td><a>Fartuch :</a></td>
+                        <td><a id="wybranyFartuch"></a></td>
                     </tr>
                     <tr>
-                        <th><a>Kamizelka :</a></th>
-                        <th><a id="wybranaKamizelka"></a></th>
+                        <td><a>Kamizelka :</a></td>
+                        <td><a id="wybranaKamizelka"></a></td>
                     </tr>
                     <tr>
-                        <th><a>Planowany zwrot sprzętu :</a></th>
-                        <th><a id="wybranaData"></a></th>
+                        <td><a>Planowany zwrot sprzętu :</a></td>
+                        <td><a id="wybranaData"></a></td>
                     </tr>
                     <tr>
-                        <th>Koszt wypożyczenia za jeden dzień : </th>
-                        <th><a id="kosztWypozyczeniaDzien"></a></th>
+                        <td>Koszt wypożyczenia za jeden dzień : </td>
+                        <td><a id="kosztWypozyczeniaDzien"></a></td>
                     </tr>
                     <tr>
-                        <th>Koszt wypożyczenia :</th>
-                        <th><a id="kosztWypozyczenia"></a></th>
+                        <td>Koszt wypożyczenia :</td>
+                        <td><a id="kosztWypozyczenia"></a></td>
+                    </tr>
+                    <tr>
+                        <td><label for="uwagi">Uwagi : </label></td>
+                        <td>                    <textarea id="uwagi" class="form-control" rows="5" ></textarea>
+                            </a></td>
                     </tr>
 
 </tr>
                 </table>
-                <div class="form-group">
-                    <label for="uwagi">Uwagi : </label>
-                    <textarea id="uwagi" class="form-control" rows="5" ></textarea>
-                </div>
+
                 <button class="button button1" id="zapiszDoBazy" onclick="storeData()">Tak, wypożyczam</button>
             </div>
 

@@ -1,3 +1,6 @@
+ linki:
+ http://www.unm.edu/~tbeach/IT145/color.html
+
  - CEL
     - mozliwosc wypozyczenia sprzetu
         - mozliwosc grupowego wypozyczenia na splyw kursowy
@@ -27,6 +30,7 @@
 
 
 - TERAZ
+    - w wypozyczeniu pluje sie o niewystarczajaco godzinek
     - jezeli zostana zmienione daty podczas edycji to powinny byc przeliczone koszty!
     - po edycji wypozyczenia powinny byc sprawdzane pozostale informacje czy sa poprawne
     - nie dziala poprawnie przycisk edycji

@@ -155,15 +155,53 @@ border-radius: 16px;
   width: 100%;
 }
 
-.table{
-
+table{
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  border-radius:16px;
+  -moz-border-radius:16px;
+  width: 100%;
 }
 
-.table-hover{
+table td, th {
+  border: 1px solid #ddd;
+  padding: 8px;
 
+  text-align: center;
+  vertical-align: middle;
 }
+
+table tr:nth-child(even){background-color: #f2f2f2;}
+
+table tr:hover {background-color: #ddd;}
+
+table th {
+
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #FF9900;
+  color: white;
+}
+
+textarea { height: auto;
+           width: auto;
+            }
+
 /*
-tr td:hover {#f2f2f2:; #C0C0C0:;} * Highlights row**/
+td:first-child, th:first-child {
+     border-left: none;
+}
 
+
+
+/*
+.table-hover{
+border-collapse: collapse;
+}
+żółty = #FFFF00
+tr td:hover {#f2f2f2:; #C0C0C0:;} * Highlights row**/
+/*
 tr:hover {background-color:#000; color:#ff0000;} <!-- row hover podswietlenie tekstu,
 tr td:hover {background-color:#CCC; color:#fff;}  <!-- individual cell hover
+*/
