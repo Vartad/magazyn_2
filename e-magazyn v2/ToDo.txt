@@ -1,7 +1,7 @@
 #linki:
- http://www.unm.edu/~tbeach/IT145/color.html
+  http://www.unm.edu/~tbeach/IT145/color.html
 #Ogólne komentarze: 
-zeby wydac strone nalezy przejsc do folderu z katalogiem public i tam uzyc polecenia deploy
+  zeby wydac strone nalezy przejsc do folderu z katalogiem public i tam uzyc polecenia deploy
 
 #CEL:
     - przeniesc baze na MySQL - z AGH dostalismy dla KKS
