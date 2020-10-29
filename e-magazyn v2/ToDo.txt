@@ -9,12 +9,9 @@
     - mozliwosc wypozyczenia sprzetu
         - mozliwosc grupowego wypozyczenia na splyw kursowy
         - sprzet wraz z opisem i zdjeciem
+        - grupowe zwracanie sprzetu p osplywie za pomoca systemu
     - zwrotu sprzetu
     - zgloszenia sie po godzinki
-        - sprawdzenia kto co wzial
-        - sprawdzanie kto wydawal sprzet
-        - sprawdzenie kto przyjmowal sprzet
-        - przyznania godzinek
     - automatyczne podliczanie godzinek
         - uwzglednienie znizek np jako instruktor
     - sprawdzenia historii wypozyczen
@@ -38,6 +35,12 @@
     - ogloszenia 
     - komunikator
     - info  oformacie uzywanych dat
+    - mozliowsc szybkiego wypozyczenia i zatwierdzenia z jednego telefonu?
+    - kalendarz z wydarzeniami na stronie konta.
+     pop up z ogloszeniami oraz oczekujacymi wnioskami do rozpatrzenia
+    - baza dokumentowa
+    - idea box
+    - system rozliczen
     
 #TERAZ
     #JS/HTML:
