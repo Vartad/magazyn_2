@@ -1,7 +1,11 @@
- linki:
+#linki:
  http://www.unm.edu/~tbeach/IT145/color.html
+#Ogólne komentarze: 
+zeby wydac strone nalezy przejsc do folderu z katalogiem public i tam uzyc polecenia deploy
 
- - CEL
+#CEL:
+    - przeniesc baze na MySQL - z AGH dostalismy dla KKS
+    - podpowiedzi/pomoc/FAQ
     - mozliwosc wypozyczenia sprzetu
         - mozliwosc grupowego wypozyczenia na splyw kursowy
         - sprzet wraz z opisem i zdjeciem
@@ -27,31 +31,58 @@
     - zrobic interfejs logowania. dziala zakladanie konta i logowanie ale nie da sie
             przejsc dalej ani uzytkowac strony
     -powiadomienia pop-up dla stale zalogowanych (monitorowanie zmian)
-
-
-- TERAZ
+    - baza sprzetowa z analiza
+    - przeniesc info o godzinkach na kazda strone umieszczajac w naglowku(zwieksza liczbe odczytow)
+      - pierdoly :
+          - info o otwartym klubie
+    - ogloszenia 
+    - komunikator
+    - info  oformacie uzywanych dat
+    
+#TERAZ
+    #JS/HTML:
+    - informacje o edycji wypozyczen wnioskow powinno isc do wszystich zainteresowanych
+    - skonczyc rozpatrywanie wnioskow godzinkowych, po rozpatrzenu przez pomagajacego wniosek musi isc do prezesa.
+    - znalezc inne rozwiazanie do wyswietlania uwag
+    - w modalu wypozyczenia TA jest zbyt duzy, powinien sie zawsze dodstosowywac do maxymalnych mozliwosci
+    - uatrakcyjnic zakladke konto - pokaz zdjec?
+    - obsluga bledow, mozliwosc ich zglaszania - przycisk w stopce.
+    - ogarnac strone logowania
     - w wypozyczeniu pluje sie o niewystarczajaco godzinek
     - jezeli zostana zmienione daty podczas edycji to powinny byc przeliczone koszty!
     - po edycji wypozyczenia powinny byc sprawdzane pozostale informacje czy sa poprawne
-    - nie dziala poprawnie przycisk edycji
-    - poprawic CSS wyswietlania tabel na telefonie
-    - poprawic scroll przy wypozyczeniu
+    - modal edycji w rozpatrywaniu wypozyczen dziala tylko raz, - nie dziala poprawnie przycisk edycji
     -strona rozpatrywania godzinek
     -strona rozpatrywania wpozyczen
     -loading screen ( dopracowac wyglad, dziala)
-    -modale - blokuja sie przezco nie mozna np kliknac przycisku na dole
-    -ogolnie css
-    -posprzatac kod (czesciowo jest)
-    -ogarnac spsob wyswietlenia dodanyc opcji dla uzytkownikow
-        o wiekszych prawach (dodatkowy pasek przycisków ?)
+    - usunac zbede linki na poczatku kazdego html
     -ogarnac sposob powiadomienia o dolaczeniu nowego uzytkonika (mail do admina itp)
     - sprawdzenie mozliwosci oszukania systemu przez wedrowanie po stronach
-        teraz dostep oraz godzinki sa sprawdzane tylko na zakladce konto
+        teraz dostep oraz godzinki sa sprawdzane tylko na zakladce konto     - pobieranie danych potrzebnych na stronie prosto z bazy
     - sprawdzenie czy wybrana opcja z listy sie na niej znajduje
-    - pobieranie danych potrzebnych na stronie prosto z bazy
-
-bootstrap uzyty do hover-tables :
-
+    - strona 404 nie dziala
+    - ogarnac loading screen
+    - wysrodkowac tabele
+    #CSS:
+    + przyciski
+      - zmienic wyglad przyciskow, za bardzo zlewaja sie z navbarem.
+      - usunac czarna ramke wokol przyciskow po nacisnieciu.
+    + tabele
+      - uatrakcyjnic wyglad tabeli, szczegolnie naglowka
+      - zastosowac we wszystkich tabelach widocznosc lini a nie tak jak jest teraz czyli hover caly na szaro
+      - podczs minimalizacji tabeli powinna sie minimalziowac do dwoch kolumn. po lewej naglowki, po prawej tresc do tego mniejszt tekst
+        w przypadku rozpatrywania tak jak jest w miare ok, moze lepsze w przypadku trzech kolumn na powyzszej zasadzie.
+      - poprawic rozmiar naglowkow w tabelach
+      - wysrodkowanie tabeli w wypozyczeniu
+    - zdefiniowac kolory zgodnie z indentyfikacja Bystrza
+    - czcionki, rozmiar tekstu opisujacego tabele i pozostale tresci na stronie
+    - brakuje odejscia od krawedzi ekranu
+    - tlo nie dziala poprawnie, zajmuje tylko najwieszzego diva
+    - na przycisku "wiecej" powinna znajdowac sie informacja na ktorej zakladce aktualnie jestes 
+    - modale powinny zajmowac wieksza czesc ekranu.
+    - na telefonie wersja na pc jest spoko.
+    
+#bootstrap uzyty do hover-tables :
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
