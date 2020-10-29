@@ -156,6 +156,7 @@ border-radius: 16px;
 }
 
 table{
+display:block;
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   border-radius:16px;
@@ -188,6 +189,25 @@ textarea { height: auto;
            width: auto;
             }
 
+/*XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX*/
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#ffffff;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ffffff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:0px 0px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ffffff;}
+.tg .tg-iwtr{background-color:#34cdf9;color:#ffffff;vertical-align:top;}
+.tg .tg-yzt1{background-color:#efefef;vertical-align:top}
+.tg .tg-cxkv{background-color:#ffffff}
+.tg .tg-bsv2{background-color:#efefef}
+.tg .tg-3we0{background-color:#ffffff;vertical-align:top}
+.tg .tg-yw4l{vertical-align:top}
+@media all and (max-width: 479px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block	;
+  }
 /*
 td:first-child, th:first-child {
      border-left: none;

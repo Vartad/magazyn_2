@@ -541,6 +541,8 @@ cell[j-argNb].innerHTML = arguments[j];
         cell[j-argNb].innerHTML += " " + status;
         }else{
         cell[j-argNb].innerHTML += " " + classType.daj(tablica[i-1],arguments[j]);
+        cell[j-argNb].class ="tg-bsv2";
+        console.log(cell[j-argNb].class);
 }
 }
 }
