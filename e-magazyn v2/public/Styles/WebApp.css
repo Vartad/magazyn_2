@@ -1,17 +1,8 @@
-div {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-}
-input[type=submit] {
-  width: 100%;
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+/*KOLORY
+szary - #f2f2f2 (tlo)
+pomaranczowy - #ff5722 (przyciski)
+zolty - #FF9900 (naglowki tabeli)
+*/
 .button { background-color: #ff5722;
            border: none;
            color: white;
@@ -20,20 +11,26 @@ input[type=submit] {
            text-decoration: none;
            display: inline-block;
            font-size: 16px;
-           margin: 4px 2px;
+           margin: 4px 4px;
            transition-duration: 0.4s;
            cursor: pointer;
            hover: red;
            border-radius: 16px;
-           align: center;
+           align: center;outline:none;
 }
 .button1 {
   background-color: #ff5722;
   color: black;
+  outline:none;
 }
 .button1:hover {
   background-color: red;
   color: white;
+  outline:none;
+}
+
+body{
+background-color:#f2f2f2;
 }
 /* The Modal (background) */
 .modal {
@@ -70,6 +67,7 @@ overflow: auto;/* Enable scroll if needed */
 
 /* Navbar container */
 .navbar {
+           margin: 4px 4px;
 border-radius: 16px;
 background-color: #ff5722;
   overflow: hidden;
@@ -150,36 +148,51 @@ border-radius: 16px;
 }
 
 .stopka{
+           margin: 4px 4px;
   left: 0;
   bottom: 0;
   width: 100%;
 }
 
 table{
+border-collapse:collapse;
+border-spacing:0;
+border-color:#ffffff;
 display:block;
   font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
   border-radius:16px;
   -moz-border-radius:16px;
   width: 100%;
+
 }
 
 table td, th {
-  border: 1px solid #ddd;
-  padding: 8px;
 
+  padding: 8px;
   text-align: center;
   vertical-align: middle;
+  border-style:solid;
+  border-width:1px;
+  overflow:hidden;
+  word-break:normal;
+  border-color:#ffffff;
 }
 
-table tr:nth-child(even){background-color: #f2f2f2;}
+table tr:nth-child(even){background-color: #ffffff;}/*kolor naprzemiennego wiersza tabeli */
 
 table tr:hover {background-color: #ddd;}
 
 table th {
-
-  padding-top: 12px;
-  padding-bottom: 12px;
+ sans-serif;
+ font-size:16px;
+ font-weight:normal;padding:6px 6px;
+ border-style:solid;
+ border-width:1px;
+ overflow:hidden;
+ word-break:normal;
+ border-color:#ffffff;
+  padding-top: 6px;
+  padding-bottom: 6px;
   text-align: center;
   background-color: #FF9900;
   color: white;
@@ -189,10 +202,30 @@ textarea { height: auto;
            width: auto;
             }
 
-/*XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX*/
-.tg  {border-collapse:collapse;border-spacing:0;border-color:#ffffff;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 10px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ffffff;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:0px 0px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ffffff;}
+/*ponizszy kod pozwala na "zalamanie" tabeli*/
+.tg  {  border-collapse:collapse;
+        border-spacing:0;
+        border-color:#ffffff;
+        }
+.tg td{ font-family:Arial, sans-serif;
+        font-size:14px;
+        padding:10px 10px;
+        border-style:solid;
+        border-width:1px;
+        overflow:hidden;
+        word-break:normal;
+        border-color:#ffffff;
+        }
+.tg th{ font-family:Arial, sans-serif;
+        font-size:14px;
+        font-weight:normal;
+        padding:0px 0px;
+        border-style:solid;
+        border-width:1px;
+        overflow:hidden;
+        word-break:normal;
+        border-color:#ffffff;
+}
 .tg .tg-iwtr{background-color:#34cdf9;color:#ffffff;vertical-align:top;}
 .tg .tg-yzt1{background-color:#efefef;vertical-align:top}
 .tg .tg-cxkv{background-color:#ffffff}

@@ -312,8 +312,8 @@ Email,
 aktywneWypozyczenia,
 dostep,
 godzinki,
-imie,
-nazwisko,
+//imie,
+//nazwisko,
 skladka
             ) {
 //this.id = id;
@@ -321,8 +321,8 @@ this.Email = Email;   //1
 this.aktywneWypozyczenia = aktywneWypozyczenia;                       //2
 this.dostep = dostep;                         //3
 this.godzinki = godzinki;                         //4
-this.imie = imie;                 //5
-this.nazwisko = nazwisko;             //6
+//this.imie = imie;                 //5
+//this.nazwisko = nazwisko;             //6
 this.skladka = skladka;             //7
 }
 }
@@ -601,8 +601,8 @@ toFirestore: function(user){
             aktywneWypozyczenia : user.aktywneWypozyczenia,
             dostep : user.dostep,
             godzinki : user.godzinki,
-            imie : user.imie,
-            nazwisko : user.nazwisko,
+            //imie : user.imie,
+            //nazwisko : user.nazwisko,
             skladka : user.skladka
             }
 },
@@ -613,8 +613,8 @@ fromFirestore: function(snapshot, options){
         data.aktywneWypozyczenia,
         data.dostep,
         data.godzinki,
-        data.imie,
-        data.nazwisko,
+        //data.imie,
+        //data.nazwisko,
         data.skladka
         )
     }

@@ -1,6 +1,7 @@
 
 //                      ***ZALADUJ()***
 function zaladujStrone(){
+var historiaForm = document.getElementById("formHistoriaWypozyczen").style.display = "none"
 
 var dl_magazynierzy = document.getElementById('dl_magazynierzy');
 var in_magazynierzy = document.getElementById('in_magazynierzy');
@@ -168,6 +169,7 @@ alert("musisz podać osobę która otworzyła magazyn");
 function Historia(){
 //tabelaHistoriaWypozyczen.getElementsByTagName("tbody")[0].innerHTML = tabelaHistoriaWypozyczen.rows[0].innerHTML;
 return new Promise(resolve => {
+var historiaForm = document.getElementById("formHistoriaWypozyczen").style.display = "block"
 var tabZamkniete = [];
 var tabZwrocono = [];
 var i =5;
