@@ -8,14 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="Styles/WebApp.css">
 
-    <style>
-        #page{
-            display: none;
-        }
-        #loading{
-            display: block;
-        }
-    </style>
 </head>
 <body onload="zaladuj()">
 <div id="page">
@@ -46,7 +38,7 @@
             <div align="center">
                 <label>Wnioski rozpatrywane, ostatnie 6 : </label><br>
                 <table class="table table-hover" id="tabelaRozpatrywanychWnioskow">
-                    <thead id="headerRowHistoria">
+                    <thead id="headerRowWnioski">
                     <tr>
                         <th>Lp.</th>
                         <th>Data złożenia</th>
@@ -54,6 +46,7 @@
                         <th>Godzinki</th>
                         <th>Opis</th>
                         <th>Osoba wnioskująca</th>
+                        <th>Osoba pomagajaca</th>
                         <th>Status</th>
                     </tr>
                     </thead>
@@ -65,7 +58,7 @@
         </form>
     </div>
     <button class="button" onclick="zatwierdzWniosek()" id="zatwierdzWniosek">zatwierdzWniosek</button>
-    <button class="button" onclick="edytujWniosek()" id="edytujWniosek">edytujWniosek</button>
+    <button class="button" onclick="modal()" id="edytujWniosek">edytujWniosek</button>
     <button class="button" onclick="odrzucWniosek()" id="odrzucWniosek">odrzucWniosek</button>
 
     <br>
@@ -82,6 +75,7 @@
         <button class="close">&times;</button>
         <p align="center">Czy chcesz wypożyczyć poniższy sprzęt?</p>
         <table class="table table-hover" id="tabelaSprawdzian">
+            <thead>
             <tr>
                 <th>Osoba wnioskująca :</th>
                 <th><a id="osoba_wnioskujacy"></a></th>
@@ -110,6 +104,9 @@
                 <th><a>status :</a></th>
                 <th><a id="status"></a></th>
             </tr>
+            </thead>
+            <tbody>
+            </tbody>
         </table>
         <button class="button button1" id="zapiszDoBazy" onclick="storeData()">Tak, wypożyczam</button>
     </div>

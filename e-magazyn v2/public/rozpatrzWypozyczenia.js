@@ -1,21 +1,3 @@
-
-/*
-wypozyczenia do rozpatrzenia dziela sie na dwa rodzaje :
-    - rozpoczete, niezakonczone. Wydalem sprzet, musze potwierdzic
-        jego wydanie
-    - zakonczone, oddany sprzet. Odebralem sprzet
-//pobieram wszystkie wypozyczenia aktywne w ktorych jestem jako
-    - osoba_wydajaca
-    - osoba_przyjmujaca
-//moge dokonac w obu przypadkach dwoch akcji:
-    -1- zatwierdzic
-    -2- odrzucic
-    -3- edytowac
-//skutki akcji:
-    ad 1 - poza wpisem do wypozyczenia o zatwierdzeniu, brak innych
-    ad 2 - blokada nowych wypozyczen.
-    ad 3 - zmiana parametrow wypozyczenia, zapis o zmianach i ich autorze.
-    */
 function zaladujStrone(){
 document.getElementById("defaultOpen").click();
 return new Promise(resolve => {
@@ -96,12 +78,10 @@ _wyswietlTabliceWTabeli(_Wypozyczenie,headerRowZwrocony,wypozyczeniaOdebranySprz
 resolve('resolved');
 }
 
-//          ***MODAL***
-// modal czyli pojawiajace sie okienko dialogowe. Tutaj upewniajace sie o poprawnosci wybranego sprzetu do wypozyczenia.
 window._wybranaTablica
 
 function modal(tablica){
-modal = document.getElementById("modal");
+var modal = document.getElementById("modal");
 modal.style.display="block";
 var span = document.getElementsByClassName("close")[0];
 span.onclick = function() {
@@ -113,7 +93,6 @@ span.onclick = function() {
     }
 }
 }
-
 
 if(tablica == "wypozyczeniaWydanySprzet"){
 tablica = wypozyczeniaWydanySprzet;

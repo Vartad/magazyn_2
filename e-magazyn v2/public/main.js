@@ -137,19 +137,22 @@ constructor(
 data_zlozenia,
 data_wykonania,
 data_rozpatrzenia,
-osoba_pomagana,
+osoba_pomocBiorca,
+osoba_wnioskujaca,
 osoba_pomagajaca,
+osoba_rozpatrujaca,
 opis,
 godzinki_wnioskowane,
 godzinki_przyznane,
 status
             ) {
-//this.id = id;
 this.data_zlozenia = data_zlozenia;   //1
 this.data_wykonania = data_wykonania;                       //2
 this.data_rozpatrzenia = data_rozpatrzenia;
-this.osoba_pomagana = osoba_pomagana;                         //3
-this.osoba_pomagajaca = osoba_pomagajaca;                         //4
+this.osoba_pomocBiorca = osoba_pomocBiorca;                         //3
+this.osoba_wnioskujaca = osoba_wnioskujaca;
+this.osoba_pomagajaca = osoba_pomagajaca;//4
+this.osoba_rozpatrujaca = osoba_rozpatrujaca;
 this.opis = opis;                 //5
 this.godzinki_wnioskowane = godzinki_wnioskowane;             //6
 this.godzinki_przyznane = godzinki_przyznane;           //7
@@ -160,8 +163,10 @@ static daj(wypozyczenie,i){
     case "data_zlozenia" : return wypozyczenie.data_zlozenia
     case "data_wykonania" : return wypozyczenie.data_wykonania
     case "data_rozpatrzenia" : return wypozyczenie.data_rozpatrzenia
-    case "osoba_pomagana" : return wypozyczenie.osoba_pomagana
+    case "osoba_pomocBiorca" : return wypozyczenie.osoba_pomocBiorca
+    case "osoba_wnioskujaca " : return osoba_wnioskujaca
     case "osoba_pomagajaca" : return wypozyczenie.osoba_pomagajaca
+    case "osoba_rozpatrujaca" : return wypozyczenie.osoba_rozpatrujaca
     case "opis" : return wypozyczenie.opis
     case "godzinki_wnioskowane" : return wypozyczenie.godzinki_wnioskowane
     case "godzinki_przyznane" : return wypozyczenie.godzinki_przyznane
@@ -170,8 +175,6 @@ static daj(wypozyczenie,i){
     default : {console.log(" zadana wartosc nie istnieje");}
     }
 }
-
-
 }
 
 class _Sprzet{
@@ -577,6 +580,82 @@ cell[j-argNb].innerHTML = arguments[j];
 }
 }
 
+function _wyswietlTabliceWTabeliPionowo(classType,headerRow,tablica,tabela,cbName){
+
+console.log(tablica.length)
+var argNb = 5; // nr pierwszego argumentu bedacego sprzetem
+var cell = [];
+var new_tbody = document.createElement("tbody");
+tabela.innerHTML = ""
+if(tablica.length==0){
+tabela.insertRow().insertCell().innerHTML = "Brak danych do wyświetlenia"
+}else{
+tabela.appendChild(headerRow);
+//console.log("liczbaWierszy : " + tabela.rows.length)
+for(var i=1;i<=arguments.length-argNb+1;i++ ){ //petla wierszy
+ row = tabela.insertRow();
+for(var j=0;j<1;j++){ //petla dodajaca kolumny
+cell[j]  = row.insertCell();
+
+   if(arguments[j].includes("checkBox") || arguments[j].includes("radio") || arguments[j].includes("textArea") || arguments[j].includes("Lp") ){
+   if(arguments[j].includes("checkBox")){
+   inputType =i + ": <input type='checkBox'> ";
+        cell[j].innerHTML = inputType;
+        cell[j].class = arguments[j];
+    }
+   if(arguments[j].includes("radio")){
+   inputType =i + ": <input type='radio' name='radio'>";
+        cell[j].innerHTML = inputType;
+   }
+   if(arguments[j].includes("Lp")){inputType = i;
+        cell[j].innerHTML = inputType;
+        cell[j].class = arguments[j];
+    }
+   else{
+   console.log("nie rozpoznano typu input");
+   }
+  // console.log("arguments[j] " + arguments[j]  + " inputType " + inputType);
+   if(arguments[j].includes("textArea")){
+     // console.log("textarea")
+      cell[j].innerHTML = "";
+     // inputType = "<input type='textArea'>"
+      var textArea = document.createElement("input");
+      textArea.type = "textarea";
+      textArea.id = "TA"+i;
+      cell[j].appendChild(textArea);
+     // console.log("id NAME : "+ textArea.id)
+     // cell[j-argNb].name
+      }
+   }else{
+   if(arguments[argNb-1] != "" && arguments[j].includes("sprzet")){
+   var checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    //checkbox.name = arguments[j] + i;
+            if(_Wypozyczenie.daj(tablica[i-1],arguments[j])==""){
+            checkbox.disabled = true;
+            }
+        //inputType = "<input type='checkBox'>";
+        cell[j-argNb].appendChild(checkbox);
+        //console.log("argument[j] = " + arguments[j] + i);
+        // cell[j-argNb].name = arguments[3] ;
+        //console.log("id " + cell[j-argNb].id);
+        }
+        if(arguments[j] == "status"){
+        var status = _Wypozyczenie.daj(tablica[i-1],arguments[j]).split('/')[0];
+        cell[j-argNb].innerHTML += " " + status;
+        }else{
+        cell[j-argNb].innerHTML += " " + classType.daj(tablica[i-1],arguments[j]);
+        cell[j-argNb].class ="tg-bsv2";
+        console.log(cell[j-argNb].class);
+}
+}
+
+} //petla dodajaca kolumny
+
+}//petla wierszy
+}
+}
+
 var wypozyczenieConverter = {
 toFirestore: function(wypozyczenie){
  return {
@@ -653,8 +732,10 @@ toFirestore: function(wniosek){
             data_zlozenia : wniosek.data_zlozenia,
             data_wykonania : wniosek.data_wykonania,
             data_rozpatrzenia : wniosek.data_rozpatrzenia,
-            osoba_pomagana : wniosek.osoba_pomagana,
+            osoba_pomocBiorca : wniosek.osoba_pomocBiorca,
+            osoba_wnioskujaca : wniosek.osoba_wnioskujaca,
             osoba_pomagajaca : wniosek.osoba_pomagajaca,
+            osoba_rozpatrujaca : wniosek.osoba_rozpatrujaca,
             opis : wniosek.opis,
             godzinki_wnioskowane : wniosek.godzinki_wnioskowane,
             godzinki_przyznane : wniosek.godzinki_przyznane,
@@ -667,8 +748,10 @@ fromFirestore: function(snapshot, options){
         data.data_zlozenia,
         data.data_wykonania,
         data.data_rozpatrzenia,
-        data.osoba_pomagana,
+        data.osoba_pomocBiorca,
+        data.osoba_wnioskujaca,
         data.osoba_pomagajaca,
+        data.osoba_rozpatrujaca,
         data.opis,
         data.godzinki_wnioskowane,
         data.godzinki_przyznane,
@@ -704,89 +787,3 @@ function _pokazTablice (array){
 // console.log("i " + i + " - " + array[i].checked);
  }
  }
-/*
-function _zapiszDane(sciezka,obiekt,komunikat,reload){
-     sciezka.set(obiekt,{merge: true})
-    .then(()=>{
-    alert(komunikat);
-    console.log("Document successfully written")
-    if(reload == true){
-        location.reload();
-    }
-    })
-    .catch(function(error) {
-        console.error("Error writing document: ", error);
-    });
-
-    /*
-    // Set with cityConverter
-      .withConverter(wypozyczenieConverter)
-      .set(new _Wypozyczenie("Los Angeles", "CA", "USA"));
-
-}
-*/
-
-/*
-class _Wypozyczenie{
-constructor(
-data_planowanegoZwrotu,
-data_wydania,
-data_zwrotu,
-koszt_dzien,
-koszt_planowany,
-koszt_rzeczywisty,
-osoba_przyjmujaca,
-osoba_wydajaca,
-osoba_wypozyczajaca,
-status,
-uwagi
-            ) {
-//this.id = id;
-this.data_planowanegoZwrotu = data_planowanegoZwrotu;
-this.data_wydania = data_wydania;
-this.data_zwrotu = data_zwrotu;
-this.koszt_dzien = koszt_dzien;
-this.koszt_planowany = koszt_planowany;
-this.koszt_rzeczywisty = koszt_rzeczywisty;
-this.osoba_przyjmujaca = osoba_przyjmujaca;
-this.osoba_wydajaca = osoba_wydajaca;
-this.osoba_wypozyczajaca = osoba_wypozyczajaca;
-this.status = status;
-this.uwagi = uwagi;
-}
-
-get dataPlanowanegoZwrotu(){
-return this.data_planowanegoZwrotu;
-}
-get dataWydania(){
-return this.data_wydania;
-}
-get dataZwrotu(){
-return this.data_zwrotu;
-}
-get kosztDzien(){
-return this.koszt_dzien;
-}
-get kosztPlanowany(){
-return this.koszt_planowany;
-}
-get kosztRzeczywisty(){
-return this.koszt_rzeczywisty;
-}
-get osobaPrzyjmujaca(){
-return this.osoba_przyjmujaca;
-}
-get osobaWydajaca(){
-return this.osoba_wydajaca;
-}
-get osobaWypozyczajaca(){
-return this.osobaWypozyczajaca;
-}
-get stat(){
-return this.status;
-}
-get uwa(){
-return this.uwagi;
-}
-} //bez sprzetu
-*/

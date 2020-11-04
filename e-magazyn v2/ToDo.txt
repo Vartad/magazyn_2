@@ -44,6 +44,7 @@
     
 #TERAZ
     #JS/HTML:
+    - poprawic kod JS rozpatrzwypozyczenia na obecny "standard"
     - informacje o edycji wypozyczen wnioskow powinno isc do wszystich zainteresowanych
     - skonczyc rozpatrywanie wnioskow godzinkowych, po rozpatrzenu przez pomagajacego wniosek musi isc do prezesa.
     - znalezc inne rozwiazanie do wyswietlania uwag

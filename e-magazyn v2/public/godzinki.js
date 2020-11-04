@@ -5,10 +5,6 @@ var historiaForm = document.getElementById("historia").style.display = "none"
 window.wczytaneWnioski = []
 var datepicker = document.getElementsByName("dataPomagania")[0].setAttribute('max', _today);
 if(isUserSignedIn() ==true ) {
-var imie = document.getElementById("user-name").innerHTML;
-var zdjProfilowe = document.getElementById("user-pic").innerHTML;
-imie = getUserName();
-zdjProfilowe = getProfilePicUrl();
 }
 var status = false;
 
@@ -46,10 +42,13 @@ var username = getUserName()
     var wstaw =  sciezka.set({
     data_zlozenia : _NOW.short,
     data_wykonania : data_wykonania,
-    osoba_wnioskujacy : username,
-    osoba_pomagana : osoba_pomagana,
+    osoba_rozpatrujaca : osoba_pomagana,
+    osoba_wnioskujaca : getUserName(),
+    osoba_pomocBiorca : osoba_pomagana,
+    osoba_pomagajaca : getUserName(),
     opis : opis,
     godzinki_wnioskowane : godzinki_wnioskowane,
+    godzinki_przyznane : "",
     status : status
   })
   alert("wniosek został wysłany");
@@ -71,15 +70,17 @@ var tabela = document.getElementById("tabelaRozpatrywanychWnioskow");
 var k = wczytaneWnioski.length
 console.log("wczytaneWnioski.length " + wczytaneWnioski.length + " i " )
 for(var i =0;i==k;i++){ //nawias
-_wczytajDane("status",godzinkiWniosekConverter,resolve,wczytaneWnioski,"godzinkiWnioski","osoba_wnioskujacy",getUserName(),6).then(()=>{
+_wczytajDane("status",godzinkiWniosekConverter,resolve,wczytaneWnioski,"godzinkiWnioski","osoba_pomagajaca",getUserName(),6).then(()=>{
 console.log("wczytaneWnioski[1] " + wczytaneWnioski[0] + " i " )
 _wyswietlTabliceWTabeli(_GodzinkiWniosek,headerRowHistoria,wczytaneWnioski,tabela,"",
 "Lp",
 "data_zlozenia",
 "data_wykonania",
-"osoba_pomagana",
+"osoba_rozpatrujaca",
+"osoba_pomocBiorca",
 "opis",
 "godzinki_wnioskowane",
+"godzinki_przyznane",
 "status"
 );
  resolve('resolved');
