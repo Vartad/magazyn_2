@@ -17,7 +17,7 @@ wypozyczenia do rozpatrzenia dziela sie na dwa rodzaje :
     ad 3 - zmiana parametrow wypozyczenia, zapis o zmianach i ich autorze.
     */
 function zaladujStrone(){
-
+document.getElementById("defaultOpen").click();
 return new Promise(resolve => {
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {

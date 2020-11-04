@@ -11,7 +11,7 @@ zolty - #FF9900 (naglowki tabeli)
            text-decoration: none;
            display: inline-block;
            font-size: 16px;
-           margin: 4px 4px;
+           margin: 0px 0px;
            transition-duration: 0.4s;
            cursor: pointer;
            hover: red;
@@ -154,10 +154,51 @@ border-radius: 16px;
   width: 100%;
 }
 
+/*TABS*/
+
+  /* Set height of body and the document to 100% to enable "full page tabs" */
+  body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial;
+  }
+
+  /* Style tab links */
+  .tablink {
+     border: none;
+     background: #FF9900;
+               color: white;
+               padding: 12px 32px;
+               text-align: center;
+               text-decoration: none;
+               display: inline-block;
+               font-size: 16px;
+               transition-duration: 0.4s;
+               cursor: pointer;
+               hover: red;
+               border-radius: 16px 16px 0px 0px;
+               align: center;outline:none;
+
+  }
+
+  .tablink:hover {
+    background-color: red;
+  }
+
+  /* Style the tab content (and add height:100% for full page content) */
+  .tabcontent {
+    border-top: 3px solid #ff5722;
+    display: none;
+    padding: 0px 0px;
+    height: 100%;
+  }
+
+/*TABELE*/
+
 table{
 border-collapse:collapse;
 border-spacing:0;
-border-color:#ffffff;
+border-color:#000000;
 display:block;
   font-family: Arial, Helvetica, sans-serif;
   border-radius:16px;
@@ -241,6 +282,7 @@ textarea { height: auto;
   tr {
     display: block	;
   }
+
 /*
 td:first-child, th:first-child {
      border-left: none;

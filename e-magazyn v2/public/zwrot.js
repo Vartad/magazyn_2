@@ -10,8 +10,6 @@ wypelnij(dl_magazynierzy,in_magazynierzy,'Docs/magazynierzy.json',"magazyniera")
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
 
-document.getElementById("user-name").innerHTML=firebase.auth().currentUser.displayName;
-   console.log("user-name is : " + firebase.auth().currentUser.displayName);
   } else {
     document.location.href = "index.html";
   }

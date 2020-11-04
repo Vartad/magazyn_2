@@ -1,5 +1,7 @@
 
-function zaladujStrone(){console.log("pozdro")
+function zaladujStrone(){
+var historiaForm = document.getElementById("historia").style.display = "none"
+
 window.wczytaneWnioski = []
 var datepicker = document.getElementsByName("dataPomagania")[0].setAttribute('max', _today);
 if(isUserSignedIn() ==true ) {
@@ -60,6 +62,7 @@ var username = getUserName()
 }
 
 function historia(){
+var historiaForm = document.getElementById("historia").style.display = "block"
 
 return new Promise(resolve => {
 firebase.auth().onAuthStateChanged(function(user) {

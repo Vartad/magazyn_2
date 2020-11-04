@@ -58,8 +58,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                    </tr>
+                    <tr><td colspan="7">Brak danych do wyświetlenia</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -77,7 +76,6 @@
 
 </div>
 
-
 <!-- modal --><div id="modal" class="modal">
 
     <div class="modal-content">
@@ -85,48 +83,34 @@
         <p align="center">Czy chcesz wypożyczyć poniższy sprzęt?</p>
         <table class="table table-hover" id="tabelaSprawdzian">
             <tr>
-                <th>Osoba wydająca sprzęt :</th>
-                <th><a id="wybranyMagazynier"></a></th>
+                <th>Osoba wnioskująca :</th>
+                <th><a id="osoba_wnioskujacy"></a></th>
             </tr>
             <tr>
-                <th><a>Kajak : </a></th>
-                <th><a id="wybranyKajak" ></a></th>
+                <th><a>osoba pomagana : </a></th>
+                <th><a id="osoba_pomagana" ></a></th>
             </tr>
             <tr>
-                <th><a>Wiosło :</a></th>
-                <th><a id="wybraneWioslo"></a></th>
+                <th><a>opis :</a></th>
+                <th><a id="opis"></a></th>
             </tr>
             <tr>
-                <th><a>Kask :</a></th>
-                <th><a id="wybranyKask"></a></th>
+                <th><a>godzinki wnioskowane :</a></th>
+                <th><a id="godzinki_wnioskowane"></a></th>
             </tr>
             <tr>
-                <th><a>Fartuch :</a></th>
-                <th><a id="wybranyFartuch"></a></th>
+                <th><a>data zlozenia wniosku :</a></th>
+                <th><a id="data_zlozenia"></a></th>
             </tr>
             <tr>
-                <th><a>Kamizelka :</a></th>
-                <th><a id="wybranaKamizelka"></a></th>
+                <th><a>data wykonania :</a></th>
+                <th><a id="data_wykonania"></a></th>
             </tr>
             <tr>
-                <th><a>Planowany zwrot sprzętu :</a></th>
-                <th><a id="wybranaData"></a></th>
-            </tr>
-            <tr>
-                <th>Koszt wypożyczenia za jeden dzień : </th>
-                <th><a id="kosztWypozyczeniaDzien"></a></th>
-            </tr>
-            <tr>
-                <th>Koszt wypożyczenia :</th>
-                <th><a id="kosztWypozyczenia"></a></th>
-            </tr>
-
+                <th><a>status :</a></th>
+                <th><a id="status"></a></th>
             </tr>
         </table>
-        <div class="form-group">
-            <label for="uwagi">Uwagi : </label>
-            <textarea id="uwagi" class="form-control" rows="5" ></textarea>
-        </div>
         <button class="button button1" id="zapiszDoBazy" onclick="storeData()">Tak, wypożyczam</button>
     </div>
 

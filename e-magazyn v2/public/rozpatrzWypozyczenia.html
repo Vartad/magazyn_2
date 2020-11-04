@@ -8,14 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="Styles/WebApp.css">
 
-    <style>
-        #page{
-            display: none;
-        }
-        #loading{
-            display: block;
-        }
-    </style>
 </head>
 <body onload="zaladuj()">
 <div id="page">
@@ -40,7 +32,9 @@
         </div>
     </div>
     <br>
-    <div>
+    <button class="tablink" onclick="openPage('tabWydane',this,'#ff5722')" id="defaultOpen">Wydane</button>
+    <button class="tablink" onclick="openPage('tabOdebrane',this,'#ff5722')">Odebrane</button>
+    <div id="tabWydane" class="tabcontent">
         <form class  method="post" id="tabWydanych" action="">
             <fieldset>
                 <div align="center">
@@ -62,6 +56,7 @@
                             <th>Uwagi</th>
                         </tr>
                         </thead>
+                        <tr><td colspan="12">Brak danych do wyświetlenia</td></tr>
                         <tbody>
                         </tbody>
                     </table>
@@ -69,16 +64,13 @@
                 </div>
             </fieldset>
         </form>
-
+<br>
         <button class="button" onclick="zatwierdz('radioWydanySprzet','wypozyczeniaWydanySprzet')" id="btnZatwierdzWydanie">Zatwierdź wydanie sprzętu</button>
 
         <button class="button" id="btnEdytujWydanie">Edytuj</button>
 
-        <button class="button" onclick="wyslijWniosek()" id="btnOdrzucWydanie">Odrzuć wydanie sprzętu</button>
-
     </div> <!--tabela wydanych-->
-<br>
-    <div>
+    <div id="tabOdebrane" class="tabcontent">
         <form class  method="post" id="tabPrzyjetych" action="">
             <fieldset>
                 <div align="center">
@@ -101,20 +93,19 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <tr><td colspan="12">Brak danych do wyświetlenia</td></tr>
                         </tbody>
                     </table>
                     <br>
                 </div>
             </fieldset>
         </form>
-
+<br>
         <button class="button" onclick="zatwierdz('radioOdebranySprzet','wypozyczeniaOdebranySprzet')" id="btnZatwierdzPrzyjecie">zatwierdź przyjęcie sprzętu</button>
 
         <button class="button" id="btnEdytujPrzyjecie">Edytuj</button>
 
-        <button class="button" onclick="wyslijWniosek()" id="btnOdrzucPrzyjęcie">Odrzuć przyjęcie sprzętu</button>
     </div> <!--tabela przyjetych-->
-
 
     <!-- modal --><div id="modal" class="modal">
 

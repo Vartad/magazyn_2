@@ -104,6 +104,27 @@ function mainNOW(){
 return new Date();
 }
 
+function openPage(pageName, elmnt, color) {
+  // Hide all elements with class="tabcontent" by default */
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Remove the background color of all tablinks/buttons
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+
+  // Show the specific tab content
+  document.getElementById(pageName).style.display = "block";
+
+  // Add the specific color to the button used to open the tab content
+  elmnt.style.backgroundColor = color;
+}
+
 var _NOW = {
 
 short : _convertDate(mainNOW(),"short"),
@@ -471,11 +492,15 @@ return resolve;
 }
 
 function _wyswietlTabliceWTabeli(classType,headerRow,tablica,tabela,cbName){
+
+console.log(tablica.length)
 var argNb = 5; // nr pierwszego argumentu bedacego sprzetem
 var cell = [];
 var new_tbody = document.createElement("tbody");
 tabela.innerHTML = ""
-
+if(tablica.length==0){
+tabela.insertRow().insertCell().innerHTML = "Brak danych do wyświetlenia"
+}else{
 tabela.appendChild(headerRow);
 //console.log("liczbaWierszy : " + tabela.rows.length)
 for(var i=1;i<=tablica.length;i++ ){ //petla wierszy
@@ -549,6 +574,7 @@ cell[j-argNb].innerHTML = arguments[j];
 
 }//petla kolumn
 }//petla wierszy
+}
 }
 
 var wypozyczenieConverter = {

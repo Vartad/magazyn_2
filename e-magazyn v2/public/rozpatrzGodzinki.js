@@ -22,3 +22,5 @@ resolve('resolved');
 console.log('pozdro')
 
 }
+
+
