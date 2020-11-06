@@ -3,6 +3,23 @@ szary - #f2f2f2 (tlo)
 pomaranczowy - #ff5722 (przyciski)
 zolty - #FF9900 (naglowki tabeli)
 */
+
+  .p{
+     sans-serif;
+      font-size:16px;
+      font-weight:normal;padding:6px 6px;
+      border-style:solid;
+      border-width:1px;
+      overflow:hidden;
+      word-break:normal;
+      border-color:#ffffff;
+       padding-top: 6px;
+       padding-bottom: 6px;
+       text-align: center;
+       background-color: #FF9900;
+       color: white;
+  }
+
 .button { background-color: #ff5722;
            border: none;
            color: white;
@@ -282,6 +299,8 @@ textarea { height: auto;
   tr {
     display: block	;
   }
+
+
 
 /*
 td:first-child, th:first-child {

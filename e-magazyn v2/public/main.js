@@ -496,14 +496,10 @@ return resolve;
 
 function _wyswietlTabliceWTabeli(classType,headerRow,tablica,tabela,cbName){
 
-console.log(tablica.length)
 var argNb = 5; // nr pierwszego argumentu bedacego sprzetem
 var cell = [];
-var new_tbody = document.createElement("tbody");
+
 tabela.innerHTML = ""
-if(tablica.length==0){
-tabela.insertRow().insertCell().innerHTML = "Brak danych do wyświetlenia"
-}else{
 tabela.appendChild(headerRow);
 //console.log("liczbaWierszy : " + tabela.rows.length)
 for(var i=1;i<=tablica.length;i++ ){ //petla wierszy
@@ -570,90 +566,45 @@ cell[j-argNb].innerHTML = arguments[j];
         }else{
         cell[j-argNb].innerHTML += " " + classType.daj(tablica[i-1],arguments[j]);
         cell[j-argNb].class ="tg-bsv2";
-        console.log(cell[j-argNb].class);
+    //    console.log(cell[j-argNb].class);
 }
 }
 }
 
 }//petla kolumn
 }//petla wierszy
+
 }
-}
 
-function _wyswietlTabliceWTabeliPionowo(classType,headerRow,tablica,tabela,cbName){
+function _swapTable(tabela){
 
-console.log(tablica.length)
-var argNb = 5; // nr pierwszego argumentu bedacego sprzetem
-var cell = [];
-var new_tbody = document.createElement("tbody");
-tabela.innerHTML = ""
-if(tablica.length==0){
-tabela.insertRow().insertCell().innerHTML = "Brak danych do wyświetlenia"
-}else{
-tabela.appendChild(headerRow);
-//console.log("liczbaWierszy : " + tabela.rows.length)
-for(var i=1;i<=arguments.length-argNb+1;i++ ){ //petla wierszy
- row = tabela.insertRow();
-for(var j=0;j<1;j++){ //petla dodajaca kolumny
-cell[j]  = row.insertCell();
+    var tr= tabela.getElementsByTagName('tr');
+    var th= tabela.getElementsByTagName("th");
+var kol = th.length;
+var row = tr.length;
+    var tbod= tabela;
+    var cell = [];
 
-   if(arguments[j].includes("checkBox") || arguments[j].includes("radio") || arguments[j].includes("textArea") || arguments[j].includes("Lp") ){
-   if(arguments[j].includes("checkBox")){
-   inputType =i + ": <input type='checkBox'> ";
-        cell[j].innerHTML = inputType;
-        cell[j].class = arguments[j];
-    }
-   if(arguments[j].includes("radio")){
-   inputType =i + ": <input type='radio' name='radio'>";
-        cell[j].innerHTML = inputType;
-   }
-   if(arguments[j].includes("Lp")){inputType = i;
-        cell[j].innerHTML = inputType;
-        cell[j].class = arguments[j];
-    }
-   else{
-   console.log("nie rozpoznano typu input");
-   }
-  // console.log("arguments[j] " + arguments[j]  + " inputType " + inputType);
-   if(arguments[j].includes("textArea")){
-     // console.log("textarea")
-      cell[j].innerHTML = "";
-     // inputType = "<input type='textArea'>"
-      var textArea = document.createElement("input");
-      textArea.type = "textarea";
-      textArea.id = "TA"+i;
-      cell[j].appendChild(textArea);
-     // console.log("id NAME : "+ textArea.id)
-     // cell[j-argNb].name
-      }
-   }else{
-   if(arguments[argNb-1] != "" && arguments[j].includes("sprzet")){
-   var checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    //checkbox.name = arguments[j] + i;
-            if(_Wypozyczenie.daj(tablica[i-1],arguments[j])==""){
-            checkbox.disabled = true;
+        for(var i =0;i<kol;i++){
+            newRow = tbod.insertRow();
+            for(var k=0;k<row;k++){
+            cell[k]  = newRow.insertCell();
+            if(k==0){
+            cell[k].innerHTML = th[i].innerHTML;
+            cell[k].className = "p";
+            }else{
+            var td = tr[k].getElementsByTagName("td");
+            cell[k].innerHTML = td[i].innerHTML;
+           // console.log(cell[k].innerHTML)
             }
-        //inputType = "<input type='checkBox'>";
-        cell[j-argNb].appendChild(checkbox);
-        //console.log("argument[j] = " + arguments[j] + i);
-        // cell[j-argNb].name = arguments[3] ;
-        //console.log("id " + cell[j-argNb].id);
-        }
-        if(arguments[j] == "status"){
-        var status = _Wypozyczenie.daj(tablica[i-1],arguments[j]).split('/')[0];
-        cell[j-argNb].innerHTML += " " + status;
-        }else{
-        cell[j-argNb].innerHTML += " " + classType.daj(tablica[i-1],arguments[j]);
-        cell[j-argNb].class ="tg-bsv2";
-        console.log(cell[j-argNb].class);
-}
-}
+            }
+            }
 
-} //petla dodajaca kolumny
+            for(var j=0;j<row;j++){
+            tabela.deleteRow(0)
+            }
 
-}//petla wierszy
-}
+    console.log("dokonano transforamcji tabeli");
 }
 
 var wypozyczenieConverter = {
