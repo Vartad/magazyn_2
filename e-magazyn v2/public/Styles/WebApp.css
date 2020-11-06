@@ -4,6 +4,10 @@ pomaranczowy - #ff5722 (przyciski)
 zolty - #FF9900 (naglowki tabeli)
 */
 
+* {
+ font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
   .p{
      sans-serif;
       font-size:16px;
@@ -18,29 +22,26 @@ zolty - #FF9900 (naglowki tabeli)
        text-align: center;
        background-color: #FF9900;
        color: white;
-  }
+  }/*uzywane w funkcji obracajacej tabele do pionu*/
 
-.button { background-color: #ff5722;
-           border: none;
-           color: white;
-           padding: 16px 32px;
-           text-align: center;
-           text-decoration: none;
-           display: inline-block;
-           font-size: 16px;
-           margin: 0px 0px;
+.button {
+background-color: #ff5722;
+color: black;
+outline:none;
+border: none;
+border-radius: 16px;
+padding: 16px 32px;
+margin: 0px 0px;
+text-align: center;
+text-decoration: none;
+font-size: 16px;
+display: inline-block;
+align: center;
+}
+
+.button:hover {
            transition-duration: 0.4s;
-           cursor: pointer;
            hover: red;
-           border-radius: 16px;
-           align: center;outline:none;
-}
-.button1 {
-  background-color: #ff5722;
-  color: black;
-  outline:none;
-}
-.button1:hover {
   background-color: red;
   color: white;
   outline:none;
@@ -88,7 +89,6 @@ overflow: auto;/* Enable scroll if needed */
 border-radius: 16px;
 background-color: #ff5722;
   overflow: hidden;
-  font-family: Arial;
 }
 
 /* Links inside the navbar */
@@ -177,7 +177,7 @@ border-radius: 16px;
   body, html {
     height: 100%;
     margin: 0;
-    font-family: Arial;
+
   }
 
   /* Style tab links */
@@ -213,19 +213,16 @@ border-radius: 16px;
 /*TABELE*/
 
 table{
+/*
 border-collapse:collapse;
+*/
 border-spacing:0;
 border-color:#000000;
 display:block;
-  font-family: Arial, Helvetica, sans-serif;
-  border-radius:16px;
-  -moz-border-radius:16px;
-  width: 100%;
-
 }
 
 table td, th {
-
+ border-bottom: 2px
   padding: 8px;
   text-align: center;
   vertical-align: middle;
@@ -241,14 +238,16 @@ table tr:nth-child(even){background-color: #ffffff;}/*kolor naprzemiennego wiers
 table tr:hover {background-color: #ddd;}
 
 table th {
- sans-serif;
- font-size:16px;
- font-weight:normal;padding:6px 6px;
  border-style:solid;
  border-width:1px;
+  border-color:#ffffff;
+
+ font-size:16px;
+ font-weight:normal;padding:6px 6px;
+
  overflow:hidden;
  word-break:normal;
- border-color:#ffffff;
+
   padding-top: 6px;
   padding-bottom: 6px;
   text-align: center;
@@ -265,7 +264,8 @@ textarea { height: auto;
         border-spacing:0;
         border-color:#ffffff;
         }
-.tg td{ font-family:Arial, sans-serif;
+.tg td{ font-family:Arial,
+ sans-serif;
         font-size:14px;
         padding:10px 10px;
         border-style:solid;
@@ -284,12 +284,6 @@ textarea { height: auto;
         word-break:normal;
         border-color:#ffffff;
 }
-.tg .tg-iwtr{background-color:#34cdf9;color:#ffffff;vertical-align:top;}
-.tg .tg-yzt1{background-color:#efefef;vertical-align:top}
-.tg .tg-cxkv{background-color:#ffffff}
-.tg .tg-bsv2{background-color:#efefef}
-.tg .tg-3we0{background-color:#ffffff;vertical-align:top}
-.tg .tg-yw4l{vertical-align:top}
 @media all and (max-width: 479px) {
   table,
   thead,
@@ -299,23 +293,4 @@ textarea { height: auto;
   tr {
     display: block	;
   }
-
-
-
-/*
-td:first-child, th:first-child {
-     border-left: none;
-}
-
-
-
-/*
-.table-hover{
-border-collapse: collapse;
-}
-żółty = #FFFF00
-tr td:hover {#f2f2f2:; #C0C0C0:;} * Highlights row**/
-/*
-tr:hover {background-color:#000; color:#ff0000;} <!-- row hover podswietlenie tekstu,
-tr td:hover {background-color:#CCC; color:#fff;}  <!-- individual cell hover
-*/
+  }

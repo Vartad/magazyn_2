@@ -237,8 +237,8 @@ uwagi : uwagi
 function wypelnijFormEdycji(){
 const headerRow = document.getElementById("modalHeadRow");
 const tabela = document.getElementById("tabelaModal");
-var
 _wyswietlTabliceWTabeli(_GodzinkiWniosek,headerRow,wnioski,tabela,"",
+"radio",
 "data_zlozenia",
 "data_wykonania",
 "godzinki_wnioskowane",
@@ -246,8 +246,42 @@ _wyswietlTabliceWTabeli(_GodzinkiWniosek,headerRow,wnioski,tabela,"",
 "osoba_wnioskujaca",
 "osoba_pomagajaca",
 "status"
-);
-_swapTable(tabela);
+)
+
+console.log("tablica w edycji : " + tablica)
+var osoba_wnioskujaca = document.getElementById("OsobaWypozyczajaca");
+var osoba_wydajaca = document.getElementById("OsobaWydajaca");
+var osoba_przyjmujaca = document.getElementById("OsobaPrzyjmujaca");
+var sprzet_kajak = document.getElementById("sprzet_kajaki");
+var sprzet_fartuch = document.getElementById("sprzet_fartuchy");
+var sprzet_wioslo = document.getElementById("sprzet_wiosla");
+var sprzet_kask =document.getElementById("sprzet_kaski");
+var sprzet_kamizelka = document.getElementById("sprzet_kamizelki");
+var data_wydania = document.getElementById("data_wydania");
+var data_planownaegoOddania = document.getElementById("data_planowanegoOddania");
+var data_zwrotu = document.getElementById("data_zwrotu");
+var koszt_planowany = document.getElementById("koszt_planowany");
+var koszt_rzeczywisty = document.getElementById("koszt_rzeczywisty");
+var status = document.getElementById("status");
+var uwagi = document.getElementById("uwagi");
+ var i = wybraneRadio -1;
+ console.log("wybrane radio = " + wybraneRadio + " i : " + i);
+osoba_wypozyczajaca.value = tablica[i].osoba_wypozyczajaca;
+osoba_wydajaca.value = tablica[i].osoba_wydajaca;
+osoba_przyjmujaca.value = tablica[i].osoba_przyjmujaca;
+sprzet_kajak.value = tablica[i].sprzet_kajak;
+sprzet_fartuch.value = tablica[i].sprzet_fartuch;
+sprzet_wioslo.value = tablica[i].sprzet_wioslo;
+sprzet_kask.value = tablica[i].sprzet_kask;
+sprzet_kamizelka.value = tablica[i].sprzet_kamizelka;
+sprzet_fartuch.value = tablica[i].sprzet_fartuch;
+data_wydania.value = tablica[i].data_wydania;
+data_planownaegoOddania.value = tablica[i].data_planowanegoZwrotu;
+data_zwrotu.value = tablica[i].data_zwrotu;
+koszt_planowany.value = tablica[i].koszt_planowany;
+koszt_rzeczywisty.value = tablica[i].koszt_rzeczywisty;
+status.value = tablica[i].status.split('/')[0];
+uwagi.value = tablica[i].uwagi;
 }
 
 

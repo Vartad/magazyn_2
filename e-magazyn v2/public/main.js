@@ -576,7 +576,7 @@ cell[j-argNb].innerHTML = arguments[j];
 
 }
 
-function _swapTable(tabela){
+function _obrocTabele(tabela){
 
     var tr= tabela.getElementsByTagName('tr');
     var th= tabela.getElementsByTagName("th");
@@ -605,7 +605,7 @@ var row = tr.length;
             }
 
     console.log("dokonano transforamcji tabeli");
-}
+} //nie dziala poprawnie
 
 var wypozyczenieConverter = {
 toFirestore: function(wypozyczenie){

@@ -21,7 +21,7 @@
         <a id="opcjaZwrot" href="zwrot.html"  class="navBarBtn w3-bar-item w3-button w3-mobile w3-hover-red">Zwróć</a>
         <a id="opcjaGodzinki" href="godzinki.html" class="navBarBtn w3-bar-item w3-button w3-mobile w3-hover-red">Godzinki</a>
         <a id="opcjaWyloguj" onclick="signOut()" class="navBarBtn w3-bar-item w3-button w3-mobile w3-hover-red" >wyloguj</a>
-        <div id="dropDown" class="navBarBtn dropdown w3-bar-item w3-button w3-mobile w3-hover-red">
+        <div id="dropDown" class="w3-orange navBarBtn dropdown w3-bar-item w3-button w3-mobile w3-hover-red">
             <href class="dropbtn w3-bar-item w3-button w3-mobile w3-hover-red" >Więcej
                 <i class="fa fa-caret-down"></i>
             </href>
@@ -57,9 +57,10 @@
             </div>
         </form>
     </div>
-    <button class="button" onclick="zatwierdzWniosek()" id="zatwierdzWniosek">zatwierdzWniosek</button>
-    <button class="button" onclick="modal()" id="edytujWniosek">edytujWniosek</button>
-    <button class="button" onclick="odrzucWniosek()" id="odrzucWniosek">odrzucWniosek</button>
+    <br>
+    <button class="button" onclick="zatwierdzWniosek()" id="zatwierdzWniosek">Zatwierdz</button>
+    <button class="button" onclick="modal()" id="edytujWniosek">Edytuj</button>
+    <button class="button" onclick="odrzucWniosek()" id="odrzucWniosek">Odrzuć</button>
 
     <br>
     <div class="stopka w3-deep-orange w3-container w3-round-xlarge">
@@ -74,20 +75,56 @@
     <div class="modal-content">
         <button class="close">&times;</button>
         <p align="center">Czy chcesz wypożyczyć poniższy sprzęt?</p>
-        <table class="table table-hover" id="tabelaModal">
-            <thead id="modalHeadRow">
-                <th>Osoba wnioskująca :</th>
-                <th><a>osoba pomagana : </a></th>
-                <th><a>opis :</a></th>
-                <th><a>godzinki wnioskowane :</a></th>
-                <th><a>data zlozenia wniosku :</a></th>
-                <th><a>data wykonania :</a></th>
-                <th><a>status :</a></th>
-            </thead>
-            <tbody>
-            </tbody>
+        <table class="table table-hover" id="tabelaSprawdzian">
+                    <tr>
+                        <th></th>
+                        <th>Aktualnie:</th>
+                        <th>Zmiana</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label>osoba pomocBiorca : </label>
+                        </th>
+                        <td>
+                            <input type="text" id="osoba_pomocBiorca" disabled >
+                        </td>
+                        <td>
+                            <input id="in_osoba_pomocBiorca" >
+                            <datalist id="dl_osoba_pomocBiorca"></datalist>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th><label>godzinki przyznane : </label>
+                        </th>
+                        <td>
+                            <input type="text"  id="godzinki_przyznane" disabled>
+                        </td>
+                        <td>
+                            <input type="number" id="nb_godzinki_przyznane" name="godzinki_przyznane"></input>
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <th>
+                            <label for="data_wykonania">Data wykonania :</label>
+                        </th>
+                        <td>
+                            <input type="text" id="data_wykonania" disabled>
+                        </td>
+                        <td>
+                            <input type="date" id="nowaData_wykonania" name="data_wykonania"></input>
+                        </td>
+                        <tr>
+                        <th>
+                            <label for="uwagi">Dodaj uwagę : </label>
+                        </th>
+                        <td colspan="2">
+                            <textarea id="uwagi" class="form-control" cols="70" rows="5" ></textarea>
+                        </td>
+                    </tr>
         </table>
-        <button class="button button1" id="zapiszDoBazy" onclick="storeData()">Tak, wypożyczam</button>
+        <button class="button button1" id="zapiszDoBazy" onclick="storeData()">edytuj</button>
     </div>
 
 
@@ -105,3 +142,61 @@
 <script src="main.js"></script>
 </body>
 </html>
+<!--
+                    <tr>
+                        <th>
+                            <label>osoba wnioskujaca : </label>
+                        </th>
+                        <td>
+                            <input type="text" id="osoba_wnioskujaca" disabled >
+                        </td>
+                        <td><p>Nie możesz zmienić osoby skladajacej wniosek</p></td>
+                    </tr>
+            <tr>
+                <th>
+                    <label>osoba rozpatrujaca : </label>
+                </th>
+                <td>
+                    <input type="text" id="osoba_rozpatrujaca" disabled >
+                </td>
+                <td><p>Nie możesz edytować osoby rozpatrujacej wniosek</p></td>
+
+            </tr>
+            <tr>
+                <th>
+                    <label>osoba pomagajaca : </label>
+                </th>
+                <td>
+                    <input type="text" id="osoba_pomagajaca" disabled >
+                </td>
+                <td><p>Nie możesz zmienić osoby pomagającej</p></td>
+            </tr>
+                    </tr>
+                        <th>
+                            <label for="status">Status :</label>
+                        </th>
+                        <td>
+                            <input type="text" id="status" disabled>
+                        </td>
+            <td><p>Nie możesz edytować statusu</p></td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label for="opis">opis :</label>
+                        </th>
+                        <td>
+                            <textarea id="opis" class="form-control"cols="40" rows="6" disabled></textarea>
+                        </td>
+                        <td><p>Nie możesz edytować opisu</p></td>
+                    </tr>
+                    <tr>
+                    <tr>
+                        <th>
+                            <label>godzinki wnioskowane</label>
+                        </th>
+                        <td>
+                            <input type="text" id="godzinki_wnioskowane" disabled >
+                        </td>
+                        <td><p>Nie możesz zmienić liczby godzinek na jaka wycenil prace wnioskujacy</p></td>
+                    </tr>
+-->
