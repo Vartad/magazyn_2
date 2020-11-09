@@ -116,7 +116,7 @@ for(var i =0;i<wypozyczeniaWModal.length;i++){
     //console.log("i " + i + " L " + L);
     var fartuch = wypozyczeniaWModal[i].sprzet_fartuch + (CB[3+i*L].disabled ? "":(CB[3+i*L].checked ?"":"/NIEzwrócono"));
     var kajak = wypozyczeniaWModal[i].sprzet_kajak + (CB[1+i*L].disabled ? "":(CB[1+i*L].checked ?"":"/NIEzwrócono"));
-    var kamizelka = wypozyczeniaWModal[i].sprzet_kamizelka + (CB[4+i*L].disabled ? "":(CB[4+i*L].checked ?"/zwrócono":"/NIEzwrócono"));
+    var kamizelka = wypozyczeniaWModal[i].sprzet_kamizelka + (CB[4+i*L].disabled ? "":(CB[4+i*L].checked ?"":"/NIEzwrócono"));
     var kask = wypozyczeniaWModal[i].sprzet_kask + (CB[5+i*L].disabled ? "":(CB[5+i*L].checked ?"":"/NIEzwrócono"));
     var wioslo = wypozyczeniaWModal[i].sprzet_wioslo + (CB[2+i*L].disabled ? "": (CB[2+i*L].checked ?"":"/NIEzwrócono"));
     //console.log("wioslo " + wioslo + " CB " );

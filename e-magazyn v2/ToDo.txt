@@ -44,6 +44,29 @@
     
 #TERAZ
     #JS/HTML:
+    - w rozpatrywaniu godzinek nie dziala wyswietlanie osoby wnioskujacej oraz nie skonczone sa przyciski
+    - po zmianach dat i sprzetu koszt rzeczywisty powinien byc na biezaco obliczany i prezentowany
+        w modalu rozpatrywania
+    - ustawic jezyk na polski
+    - czy powinna isteniec mozliwosc blokowania mozliwosci wypozyczenia sprzetu po odrzuceniu przyjecia lub wydania
+        sprzetu? aktualnie nie ma takiej mozliwosci
+    - zweryfikowac wplyw zmiany statusu wypoczyenia na poprawnosc zmiany godzinek itd
+    - czy po zatwierdzeniu odbioru wydanie powinno byc zatweirdzane automatycznie?
+    - dropdowny nie moga pozwalac  na wpisanie innych rzeczy niz sa na liscie
+    - uzupelnic dropdowny w modalu rozpatrywania
+    - na konto powinny byc informacje o zmianach takich jak oczekujace wnioski itp
+    - dodac do wniosku godzinkowego opcje grupowego przyznania godzinek
+    - brakuje komunikatu czy jestes pewnien ze nie zwracasz tej rzeczy, podaj powod w komentarzu. podczas zwrotu i
+        zaznaczania co wrocilo. Powinno sie tez od razu uruchamiac kolejne wypozyczenie tej jednej rzeczy z kontynuacja
+        daty i naliczania godzinek oraz korekta dotychczasowego wypozyczenia
+        - lepeij moze byc zrobic komentarz ze lepeij zamknac to wypozyczenie i otowrzyc nowe z data dzisiejsza(jutrzejsza
+        zeby nie kasowac podwojnie za jeden dzien)
+    - histria wypozyczen sprawdzic kolejnosc wyswietlanych
+        danych w przypadku duzej ich liczby
+    - jezeli zostalem przekierowany z bezposrdeniej proby wejscia to po pierwszym logowaniu wyrzuca z komunikatem
+        o braku zalogowania i po ponownym zalogowaniu dziala poprawnie
+    - w godzinki nie dziala poprawnie loadingscreen. nie pojawia sie w przypadku wejsca na strone bezposrednio.
+        znika zanim sie zaladuje strona.
     - poprawic kod JS rozpatrzwypozyczenia na obecny "standard"
     - informacje o edycji wypozyczen wnioskow powinno isc do wszystich zainteresowanych
     - skonczyc rozpatrywanie wnioskow godzinkowych, po rozpatrzenu przez pomagajacego wniosek musi isc do prezesa.
@@ -72,6 +95,7 @@
       - zmienic wyglad przyciskow, za bardzo zlewaja sie z navbarem.
       - usunac czarna ramke wokol przyciskow po nacisnieciu.
     + tabele
+      - do poprawy css tabelki w modalu przy wypozyczeniu
       - uatrakcyjnic wyglad tabeli, szczegolnie naglowka
       - zastosowac we wszystkich tabelach widocznosc lini a nie tak jak jest teraz czyli hover caly na szaro
       - podczs minimalizacji tabeli powinna sie minimalziowac do dwoch kolumn. po lewej naglowki, po prawej tresc do tego mniejszt tekst
@@ -79,6 +103,7 @@
       - poprawic rozmiar naglowkow w tabelach
       - wysrodkowanie tabeli w wypozyczeniu
     - zdefiniowac kolory zgodnie z indentyfikacja Bystrza
+    - usunac w3 zrobic wlasne cssy
     - czcionki, rozmiar tekstu opisujacego tabele i pozostale tresci na stronie
     - brakuje odejscia od krawedzi ekranu
     - tlo nie dziala poprawnie, zajmuje tylko najwieszzego diva
