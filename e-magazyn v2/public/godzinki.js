@@ -49,7 +49,8 @@ var username = getUserName()
     opis : opis,
     godzinki_wnioskowane : godzinki_wnioskowane,
     godzinki_przyznane : "",
-    status : status
+    status : status,
+    uwagi : ""
   })
   alert("wniosek został wysłany");
   console.log("sajvinio");
@@ -77,11 +78,12 @@ _wyswietlTabliceWTabeli(_GodzinkiWniosek,headerRowHistoria,wczytaneWnioski,tabel
 "data_zlozenia",
 "data_wykonania",
 "osoba_rozpatrujaca",
-"osoba_pomocBiorca",
+"osoba_wnioskujaca",
 "opis",
 "godzinki_wnioskowane",
 "godzinki_przyznane",
-"status"
+"status",
+"uwagi"
 );
  resolve('resolved');
  });

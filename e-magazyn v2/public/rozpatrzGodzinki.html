@@ -47,20 +47,23 @@
                         <th>Opis</th>
                         <th>Osoba wnioskująca</th>
                         <th>Osoba pomagajaca</th>
+                        <th>Osoba pomocBiorca</th>
+                        <th>Osoba rozpatrujaca</th>
                         <th>Status</th>
+                        <th>Uwagi</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr><td colspan="7">Brak danych do wyświetlenia</td></tr>
+                    <tr><td colspan="11">Brak danych do wyświetlenia</td></tr>
                     </tbody>
                 </table>
             </div>
         </form>
     </div>
     <br>
-    <button class="button" onclick="zatwierdzWniosek()" id="zatwierdzWniosek">Zatwierdz</button>
+    <button class="button" onclick="zatwierdz()" id="zatwierdzWniosek">Zatwierdz</button>
     <button class="button" onclick="modal()" id="edytujWniosek">Edytuj</button>
-    <button class="button" onclick="odrzucWniosek()" id="odrzucWniosek">Odrzuć</button>
+    <button class="button" onclick="odrzuc()" id="odrzucWniosek">Odrzuć</button>
 
     <br>
     <div class="stopka w3-deep-orange w3-container w3-round-xlarge">
@@ -71,10 +74,9 @@
 </div>
 
 <!-- modal --><div id="modal" class="modal">
-
     <div class="modal-content">
         <button class="close">&times;</button>
-        <p align="center">Czy chcesz wypożyczyć poniższy sprzęt?</p>
+        <p align="center"></p>
         <table class="table table-hover" id="tabelaSprawdzian">
                     <tr>
                         <th></th>
@@ -95,17 +97,19 @@
                     </tr>
 
                     <tr>
-                        <th><label>godzinki przyznane : </label>
+                        <th><label>godzinki : </label>
                         </th>
                         <td>
+                            <p>godzinki wnioskowane :</p>
                             <input type="text"  id="godzinki_przyznane" disabled>
                         </td>
                         <td>
+                            <p>godzinki przyznane :</p>
                             <input type="number" id="nb_godzinki_przyznane" name="godzinki_przyznane"></input>
                         </td>
                     </tr>
                     <tr>
-
+<!--
                         <th>
                             <label for="data_wykonania">Data wykonania :</label>
                         </th>
@@ -115,6 +119,7 @@
                         <td>
                             <input type="date" id="nowaData_wykonania" name="data_wykonania"></input>
                         </td>
+                        -->
                         <tr>
                         <th>
                             <label for="uwagi">Dodaj uwagę : </label>
@@ -124,11 +129,19 @@
                         </td>
                     </tr>
         </table>
-        <button class="button button1" id="zapiszDoBazy" onclick="storeData()">edytuj</button>
+        <button class="button" id="zapiszDoBazy" onclick="zatwierdzEdycje()">Zatwierdz edytowany wniosek</button>
     </div>
-
-
     <!-- modal -->       </div>
+
+<!-- modal --><div id="modalOdrzuc" class="modal">
+    <div class="modal-content">
+        <button class="close">&times;</button>
+        <p align="center">podaj powód dla którego odrzucasz wniosek</p>
+                    <textarea id="uwagiOdrzuc" class="form-control" cols="70" rows="5" ></textarea>
+        <button class="button" id="zatwierdzOdrzucenie" onclick="zatwierdzOdrzucenie()">Odrzuć wniosek</button>
+    </div>
+    <!-- modal -->       </div>
+
 
 </div> <!-- margines-->
 <div id="loading">

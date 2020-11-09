@@ -72,6 +72,9 @@ console.log("dostep : " + dostep);
 var btnWidth;
 const navBarBtns = document.querySelectorAll(".navBarBtn");
 switch(dostep){
+case "prezes" :
+btnWidth=100/7+"%";
+break;
 case "admin" :
 btnWidth=100/7+"%";
 break;
@@ -82,6 +85,7 @@ break;
 default:
  {
 document.getElementById("page").style.display = "none"
+console.log("nieAutoryzowaneWejscie")
  alert("jesteś niezalogowany");
  document.location.href=("index.html")
  }
@@ -91,7 +95,7 @@ navBarBtns.forEach(element =>{
 element.style.width = btnWidth;
 })
 document.getElementById("dropDown").style.width = btnWidth;
-if(dostep == "admin"){
+if(dostep == "admin" || dostep == "prezes"){
 //document.getElementById("btn_rozpatrzWypozyczenia").style.display = "block";
 }else{
 //document.getElementById("btn_rozpatrzWypozyczenia").style.display = "none";
@@ -738,3 +742,22 @@ function _pokazTablice (array){
 // console.log("i " + i + " - " + array[i].checked);
  }
  }
+
+function _zapiszDane(obj,ref){
+    var Sciezka = db.doc(ref);
+  Sciezka.set(obj,{merge: true}).catch(function(error){
+                    console.log("bład podczas zapisywania dokumentu " + error)
+                    }).then(()=>{
+                    console.log("zapisano");
+                    });//forEach;//then;
+}
+
+function _wybraneRadio(formNR){
+var dane = document.forms[formNR]; // pobiera pierwszy z formsow na stronie
+for(var i=0;i<dane.length;i++){
+if(dane[i].checked == true){
+console.log("wybraneRadio = " + i);
+return i;
+}
+}
+}

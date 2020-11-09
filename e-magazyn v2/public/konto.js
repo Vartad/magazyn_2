@@ -11,7 +11,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     sessionStorage.setItem( "dostep",uzytkownik[0].dostep);
     sessionStorage.setItem("skladka",uzytkownik[0].skladka);
     sessionStorage.setItem("godzinki",uzytkownik[0].godzinki);
-
+    sessionStorage.setItem("prezes","Mateusz Gąsior");
     sessionStorage.setItem("aktywneWypozyczenia",uzytkownik[0].aktywneWypozyczenia);
     var liczbaGodzinek = document.getElementById("liczbaGodzinek").innerHTML = uzytkownik[0].godzinki;
   if(uzytkownik[0].skladka != "oplacona"){
